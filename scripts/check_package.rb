@@ -68,7 +68,7 @@ module PackageCheck
         puts "BindingTable::DATA_PATH = #{path}"
       RUBY
       output, status = Bundler.with_unbundled_env do
-        Open3.capture2e({ "GEM_HOME" => home, "GEM_PATH" => ([home] + Gem.path).join(File::PATH_SEPARATOR),
+        Open3.capture2e({ "GEM_HOME" => home, "GEM_PATH" => ([home] + dependencies.map(&:base_dir) + Gem.path).uniq.join(File::PATH_SEPARATOR),
                          "BUNDLE_GEMFILE" => gemfile, "BUNDLE_PATH" => nil,
                          "BUNDLE_IGNORE_CONFIG" => "1", "RUBYLIB" => nil },
                        Gem.ruby, "-rbundler/setup", "-e", probe,
