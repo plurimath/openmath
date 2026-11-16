@@ -1,0 +1,448 @@
+{
+  "format": 1,
+  "source_manifest": "data/cd-groups/manifest.json",
+  "source_manifest_sha256": "479c328147edfb3d3f24d2d03994e4ff2ab36396ec0fb7a3ae634597f0e56d3d",
+  "admission_sha": "7719764a4fc7fe1438a49edfae23adb9a0b14405",
+  "source_commit": "cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c",
+  "official_dictionary_count": 38,
+  "groups": [
+    {
+      "path": "data/cd-groups/algstr1.cdg",
+      "sha256": "c50ef4bfb0cacad277f57c8c405a6cf93f342192509f9a175e8686b157e594e0",
+      "members": [
+        "relation0",
+        "semigroup",
+        "setoid",
+        "indnat"
+      ],
+      "unavailable_official_members": [
+        "relation0",
+        "semigroup",
+        "setoid",
+        "indnat"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/arith.cdg",
+      "sha256": "c897a7449df6bb592a570f7cfb7749d1356d2a57de5d9d6365608cf570ea77f8",
+      "members": [
+        "arith1",
+        "arith2"
+      ],
+      "unavailable_official_members": [
+        "arith2"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/combinat1.cdg",
+      "sha256": "28dd96dd1a091cdb2354ec43844dfa653274cbe693737c619484a1bcc20a23bb",
+      "members": [
+        "combinat1",
+        "permut1"
+      ],
+      "unavailable_official_members": [
+        "combinat1",
+        "permut1"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/constants.cdg",
+      "sha256": "f0584c70c27f17c87d9e804daa5778f7752e60949faf6c0e5c78b8810b06a255",
+      "members": [
+        "physical_consts1"
+      ],
+      "unavailable_official_members": [
+        "physical_consts1"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/directives1.cdg",
+      "sha256": "477b55099ce05868725d3e5f27d5498cef4cf563a0eced3824cc87942be21a0c",
+      "members": [
+        "directives1"
+      ],
+      "unavailable_official_members": [
+        "directives1"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/error.cdg",
+      "sha256": "87b0281921cc98185049014d495b4991bad272329f21a6c670679dfa618a3af3",
+      "members": [
+        "error",
+        "moreerrors"
+      ],
+      "unavailable_official_members": [
+        "moreerrors"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/fns.cdg",
+      "sha256": "68a115c337325513382a1e9258c9d84a3fdf21fa721d5d93ed7e0a54c6e41438",
+      "members": [
+        "fns1",
+        "fns2"
+      ],
+      "unavailable_official_members": [],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/group1.cdg",
+      "sha256": "e343ae97a47247c9b4d03c1c0b6f9c8cf8315af2b5efee4fa8ef4a76baf59650",
+      "members": [
+        "group1",
+        "group2",
+        "group3",
+        "group4",
+        "group5",
+        "groupname1",
+        "permgrp"
+      ],
+      "unavailable_official_members": [
+        "group1",
+        "group2",
+        "group3",
+        "group4",
+        "group5",
+        "groupname1",
+        "permgrp"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/linalg.cdg",
+      "sha256": "39420360bc27263945d905b2c1c718e2e2cb06455cb695fd6cbf9648ddd062d1",
+      "members": [
+        "linalg1",
+        "linalg2",
+        "linalg3",
+        "linalg4",
+        "linalg5"
+      ],
+      "unavailable_official_members": [
+        "linalg3",
+        "linalg4",
+        "linalg5"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/list.cdg",
+      "sha256": "2fd7335c4277db87118cb4bdf3cb7635d42ae880b8bc4cc9b0d39fb7dc3bc1ab",
+      "members": [
+        "list1",
+        "list2"
+      ],
+      "unavailable_official_members": [
+        "list2"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/mathml.cdg",
+      "sha256": "27bae09c0aaa5d98998476975cc016d2da86b8553e4a33ad19b7981e70ca9494",
+      "members": [
+        "alg1",
+        "arith1",
+        "bigfloat1",
+        "calculus1",
+        "complex1",
+        "fns1",
+        "integer1",
+        "interval1",
+        "linalg1",
+        "linalg2",
+        "limit1",
+        "list1",
+        "logic1",
+        "mathmltypes",
+        "mathmlattr",
+        "mathmlkeys",
+        "minmax1",
+        "multiset1",
+        "nums1",
+        "piece1",
+        "quant1",
+        "relation1",
+        "setname1",
+        "rounding1",
+        "set1",
+        "s_data1",
+        "s_dist1",
+        "transc1",
+        "veccalc1",
+        "altenc"
+      ],
+      "unavailable_official_members": [
+        "mathmlkeys"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/meta.cdg",
+      "sha256": "e8f9e7a82ee1125c8108fe74ed88b1bfd709afa7357c2d7dab52bccc90df9061",
+      "members": [
+        "meta",
+        "metasig",
+        "metagrp"
+      ],
+      "unavailable_official_members": [],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/polygrp.cdg",
+      "sha256": "01d35ffaf68650faa4f6f294b11f06117a2c3f25c14147a5fd4206778eab26c3",
+      "members": [
+        "opnode",
+        "poly",
+        "polyd",
+        "polyr",
+        "polyslp",
+        "polyu",
+        "polysts"
+      ],
+      "unavailable_official_members": [
+        "opnode",
+        "poly",
+        "polyd",
+        "polyr",
+        "polyslp",
+        "polyu",
+        "polysts"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/riaca_algebra.cdg",
+      "sha256": "3f31f01f3bd554ce568ff3b65432e13b2f1b3d5533ce38fd01280c55f5ee496e",
+      "members": [
+        "arith3",
+        "field1",
+        "field2",
+        "field3",
+        "field4",
+        "fieldname1",
+        "finfield1",
+        "fns3",
+        "graph1",
+        "graph2",
+        "group1",
+        "group2",
+        "group3",
+        "group4",
+        "group5",
+        "groupname1",
+        "integer2",
+        "linalg6",
+        "linalg7",
+        "list3",
+        "magma1",
+        "magma2",
+        "magma3",
+        "monoid1",
+        "monoid2",
+        "monoid3",
+        "permgp1",
+        "permgp2",
+        "permutation1",
+        "plangeo1",
+        "plangeo2",
+        "plangeo3",
+        "plangeo4",
+        "plangeo5",
+        "plangeo6",
+        "polyd1",
+        "polyd2",
+        "polyd3",
+        "polygb1",
+        "polygb2",
+        "polynomial1",
+        "polynomial2",
+        "polynomial3",
+        "polyoperators1",
+        "prog1",
+        "relation3",
+        "relation4",
+        "ring1",
+        "ring2",
+        "ring3",
+        "ring4",
+        "ring5",
+        "ringname1",
+        "semigroup1",
+        "semigroup2",
+        "semigroup3",
+        "semigroup4",
+        "set3"
+      ],
+      "unavailable_official_members": [
+        "arith3",
+        "field1",
+        "field2",
+        "field3",
+        "field4",
+        "fieldname1",
+        "finfield1",
+        "fns3",
+        "graph1",
+        "graph2",
+        "group1",
+        "group2",
+        "group3",
+        "group4",
+        "group5",
+        "groupname1",
+        "integer2",
+        "linalg6",
+        "linalg7",
+        "list3",
+        "magma1",
+        "magma2",
+        "magma3",
+        "monoid1",
+        "monoid2",
+        "monoid3",
+        "permgp1",
+        "permgp2",
+        "permutation1",
+        "plangeo1",
+        "plangeo2",
+        "plangeo3",
+        "plangeo4",
+        "plangeo5",
+        "plangeo6",
+        "polyd1",
+        "polyd2",
+        "polyd3",
+        "polygb1",
+        "polygb2",
+        "polynomial1",
+        "polynomial2",
+        "polynomial3",
+        "polyoperators1",
+        "prog1",
+        "relation4",
+        "ring1",
+        "ring2",
+        "ring3",
+        "ring4",
+        "ring5",
+        "ringname1",
+        "semigroup1",
+        "semigroup2",
+        "semigroup3",
+        "semigroup4",
+        "set3"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/scscp.cdg",
+      "sha256": "bf25d82c8c994ccae8ead68226d0acbc1c6c35e91ee5991e578468646b99a24b",
+      "members": [
+        "scscp1",
+        "scscp2"
+      ],
+      "unavailable_official_members": [],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/sets.cdg",
+      "sha256": "5b7a22cdefa2d42b5069d4231ad2f942b96e129c5362284b70602059f5eccd23",
+      "members": [
+        "set1",
+        "set2",
+        "setname1",
+        "setname2"
+      ],
+      "unavailable_official_members": [
+        "set2",
+        "setname2"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/transc.cdg",
+      "sha256": "d360da6767501069b500338f101c0f99e872985034e4c68cfe3a7b4da40e45d3",
+      "members": [
+        "transc1",
+        "transc2",
+        "transc3"
+      ],
+      "unavailable_official_members": [
+        "transc2",
+        "transc3"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/types1.cdg",
+      "sha256": "76b8a5b4704444720e2c311d4bcab2904d9a5fb77d959285b0ce032487f14930",
+      "members": [
+        "sts",
+        "mathmltypes"
+      ],
+      "unavailable_official_members": [],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/types2.cdg",
+      "sha256": "ec19530793cd8b7fee4ee1aa8feeaa3d05d9e36f0b89aac3f791eded45f5369d",
+      "members": [
+        "sts",
+        "mathmltypes",
+        "cc",
+        "typesorts",
+        "lc",
+        "sigma",
+        "ecc",
+        "icc",
+        "omtypes",
+        "coercions"
+      ],
+      "unavailable_official_members": [
+        "cc",
+        "typesorts",
+        "lc",
+        "sigma",
+        "ecc",
+        "icc",
+        "omtypes",
+        "coercions"
+      ],
+      "includes": []
+    },
+    {
+      "path": "data/cd-groups/units.cdg",
+      "sha256": "9c060319e21340242dbad47dccbace546d6a49240bfdee97a0c14b760048580f",
+      "members": [
+        "dimensions1",
+        "units_imperial1",
+        "units_metric1",
+        "units_ops1",
+        "units_siprefix1",
+        "units_sts1",
+        "units_time1",
+        "units_us1"
+      ],
+      "unavailable_official_members": [
+        "dimensions1",
+        "units_imperial1",
+        "units_metric1",
+        "units_ops1",
+        "units_siprefix1",
+        "units_sts1",
+        "units_time1",
+        "units_us1"
+      ],
+      "includes": []
+    }
+  ],
+  "merge_gate": "After F-ext is on main, verify this descriptor through public discovery and packaged API tests before merge."
+}

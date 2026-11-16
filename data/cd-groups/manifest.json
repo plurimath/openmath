@@ -1,0 +1,523 @@
+{
+  "format": 1,
+  "repository": "https://github.com/OpenMath/CDs",
+  "commit": "cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c",
+  "archive_url": "https://codeload.github.com/OpenMath/CDs/tar.gz/refs/heads/master",
+  "archive_sha256": "7b3bfde99b74a26c7296bfc839b393ab372836b399cfeb82afe8c4a953a21711",
+  "artifacts": [
+    {
+      "path": "data/cd-groups/algstr1.cdg",
+      "sha256": "c50ef4bfb0cacad277f57c8c405a6cf93f342192509f9a175e8686b157e594e0",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/algstr1.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/arith.cdg",
+      "sha256": "c897a7449df6bb592a570f7cfb7749d1356d2a57de5d9d6365608cf570ea77f8",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/arith.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/combinat1.cdg",
+      "sha256": "28dd96dd1a091cdb2354ec43844dfa653274cbe693737c619484a1bcc20a23bb",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/combinat1.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/constants.cdg",
+      "sha256": "f0584c70c27f17c87d9e804daa5778f7752e60949faf6c0e5c78b8810b06a255",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/constants.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/directives1.cdg",
+      "sha256": "477b55099ce05868725d3e5f27d5498cef4cf563a0eced3824cc87942be21a0c",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/directives1.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/error.cdg",
+      "sha256": "87b0281921cc98185049014d495b4991bad272329f21a6c670679dfa618a3af3",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/error.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/fns.cdg",
+      "sha256": "68a115c337325513382a1e9258c9d84a3fdf21fa721d5d93ed7e0a54c6e41438",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/fns.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/group1.cdg",
+      "sha256": "e343ae97a47247c9b4d03c1c0b6f9c8cf8315af2b5efee4fa8ef4a76baf59650",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/group1.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/linalg.cdg",
+      "sha256": "39420360bc27263945d905b2c1c718e2e2cb06455cb695fd6cbf9648ddd062d1",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/linalg.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/list.cdg",
+      "sha256": "2fd7335c4277db87118cb4bdf3cb7635d42ae880b8bc4cc9b0d39fb7dc3bc1ab",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/list.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/mathml.cdg",
+      "sha256": "27bae09c0aaa5d98998476975cc016d2da86b8553e4a33ad19b7981e70ca9494",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/mathml.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/meta.cdg",
+      "sha256": "e8f9e7a82ee1125c8108fe74ed88b1bfd709afa7357c2d7dab52bccc90df9061",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/meta.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/polygrp.cdg",
+      "sha256": "01d35ffaf68650faa4f6f294b11f06117a2c3f25c14147a5fd4206778eab26c3",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/polygrp.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/riaca_algebra.cdg",
+      "sha256": "3f31f01f3bd554ce568ff3b65432e13b2f1b3d5533ce38fd01280c55f5ee496e",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/riaca_algebra.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/scscp.cdg",
+      "sha256": "bf25d82c8c994ccae8ead68226d0acbc1c6c35e91ee5991e578468646b99a24b",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/scscp.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/sets.cdg",
+      "sha256": "5b7a22cdefa2d42b5069d4231ad2f942b96e129c5362284b70602059f5eccd23",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/sets.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/transc.cdg",
+      "sha256": "d360da6767501069b500338f101c0f99e872985034e4c68cfe3a7b4da40e45d3",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/transc.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/types1.cdg",
+      "sha256": "76b8a5b4704444720e2c311d4bcab2904d9a5fb77d959285b0ce032487f14930",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/types1.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/types2.cdg",
+      "sha256": "ec19530793cd8b7fee4ee1aa8feeaa3d05d9e36f0b89aac3f791eded45f5369d",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/types2.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cd-groups/units.cdg",
+      "sha256": "9c060319e21340242dbad47dccbace546d6a49240bfdee97a0c14b760048580f",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cdgroups/units.cdg",
+      "kind": "group"
+    },
+    {
+      "path": "data/cds/alg1.ocd",
+      "sha256": "e3660d4031649da6fc76a9de5c5efffc19568d47f50e20885541204dd07a4405",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/alg1.ocd",
+      "kind": "cd",
+      "name": "alg1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/altenc.ocd",
+      "sha256": "541e8e3d00fb1dfc75e5a8146b13f26291e44ab102f7075fbb7ca28d83b2f191",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/altenc.ocd",
+      "kind": "cd",
+      "name": "altenc",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "2"
+    },
+    {
+      "path": "data/cds/arith1.ocd",
+      "sha256": "8dab1c657db03b87da8ed3a139c2490df0e86076ab634c3804b757c5594f6d8a",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/arith1.ocd",
+      "kind": "cd",
+      "name": "arith1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/bigfloat1.ocd",
+      "sha256": "064c72c188c0962838ec372bfa2945d955383a07c2ebc53a5433fc0e197f5967",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/bigfloat1.ocd",
+      "kind": "cd",
+      "name": "bigfloat1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/calculus1.ocd",
+      "sha256": "bd61e71618800e50935bd4f8503ad3d7bd7f131456854cb5d7cb49fa3df780e7",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/calculus1.ocd",
+      "kind": "cd",
+      "name": "calculus1",
+      "base": "http://www.openmath.org/cd",
+      "version": "5",
+      "revision": "0"
+    },
+    {
+      "path": "data/cds/complex1.ocd",
+      "sha256": "f3fd7eb99fcea16165a8ef44bf3adf6e14c2e6c462fbfe8cc425291d0ebaba91",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/complex1.ocd",
+      "kind": "cd",
+      "name": "complex1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/error.ocd",
+      "sha256": "19b7d3e8700ef9c227919aaf7cf7cc6956b61329273795b0a4f1ec0ce31c1a3a",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/error.ocd",
+      "kind": "cd",
+      "name": "error",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/fns1.ocd",
+      "sha256": "9d45eafcb9b527de68dee8f2a129fe8ec71667ef8490fa5e50ddb7eedd3f8c5e",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/fns1.ocd",
+      "kind": "cd",
+      "name": "fns1",
+      "base": "http://www.openmath.org/cd",
+      "version": "4",
+      "revision": "0"
+    },
+    {
+      "path": "data/cds/fns2.ocd",
+      "sha256": "c9a64a0848fb8e23f1321b2a9f4fb2a4fb73e3c85a32878267e5cadbaafec286",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/fns2.ocd",
+      "kind": "cd",
+      "name": "fns2",
+      "base": "http://www.openmath.org/cd",
+      "version": "4",
+      "revision": "0"
+    },
+    {
+      "path": "data/cds/integer1.ocd",
+      "sha256": "e8844f0415a9078293717f075fa83a06985f0ba7ddca9cd74b1d234ff79d287d",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/integer1.ocd",
+      "kind": "cd",
+      "name": "integer1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/interval1.ocd",
+      "sha256": "f49fe43b4c1dc79d7972ed6fce79d02437d4920320cbd9faffdf460938717f6a",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/interval1.ocd",
+      "kind": "cd",
+      "name": "interval1",
+      "base": "http://www.openmath.org/cd",
+      "version": "4",
+      "revision": "0"
+    },
+    {
+      "path": "data/cds/limit1.ocd",
+      "sha256": "b104ee1a78b9c0528344b5b375ce1790296ddeaca9d8ef5429a80e4ae4e049c6",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/limit1.ocd",
+      "kind": "cd",
+      "name": "limit1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/linalg1.ocd",
+      "sha256": "2aec606eea01c8011db4aa151df6f623efd10eb4ecc58429acb6ba8cd160227a",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/linalg1.ocd",
+      "kind": "cd",
+      "name": "linalg1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/linalg2.ocd",
+      "sha256": "3c472e80a97a2a3ec1fd2a534d3e24efc38f3e177bbd44d14cfb1770038f4aee",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/linalg2.ocd",
+      "kind": "cd",
+      "name": "linalg2",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/list1.ocd",
+      "sha256": "789f2be93ea0d9fde24ca653072eca771ee85dd66e19fcb631e2b9f9ca14780a",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/list1.ocd",
+      "kind": "cd",
+      "name": "list1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/logic1.ocd",
+      "sha256": "5bd450962d9ee3f867770608ce6f823b0ad705123afb9af5d1950a39a46498cd",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/logic1.ocd",
+      "kind": "cd",
+      "name": "logic1",
+      "base": "http://www.openmath.org/cd",
+      "version": "4",
+      "revision": "0"
+    },
+    {
+      "path": "data/cds/mathmlattr.ocd",
+      "sha256": "8884e0e8b0a7e51c26ecfe217c3532d047e5ead0e602e141ba2c73ba3c1c474e",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/mathmlattr.ocd",
+      "kind": "cd",
+      "name": "mathmlattr",
+      "base": "http://www.openmath.org/cd",
+      "version": "1",
+      "revision": "0"
+    },
+    {
+      "path": "data/cds/mathmltypes.ocd",
+      "sha256": "576d3b662a9590d1df431f0dde211864dcb11a3d12fdeb997382a2f5a6177c88",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/mathmltypes.ocd",
+      "kind": "cd",
+      "name": "mathmltypes",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/meta.ocd",
+      "sha256": "ee50d09bbdc5fe54c546c42526e8c19c735642f15eaf257584459512c35e6610",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/meta.ocd",
+      "kind": "cd",
+      "name": "meta",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/metagrp.ocd",
+      "sha256": "6ea5921f8d74a2a9fd62be010ad1c9fb238ad01118381fe498ed6f3b68b2c846",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/metagrp.ocd",
+      "kind": "cd",
+      "name": "metagrp",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/metasig.ocd",
+      "sha256": "14d061373ab41f40d634ffbf98d31abc4505af96761f537213e02424cddaf8fa",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/metasig.ocd",
+      "kind": "cd",
+      "name": "metasig",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/minmax1.ocd",
+      "sha256": "d91f0dfa4caf850002a86cf76d404479d8a183eb9b1653a44dabe6d1f9e04ce9",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/minmax1.ocd",
+      "kind": "cd",
+      "name": "minmax1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/multiset1.ocd",
+      "sha256": "b18aadbabc5d83ddb45e948b274b538de2acbcb88c4d9317dacd646c52de3674",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/multiset1.ocd",
+      "kind": "cd",
+      "name": "multiset1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/nums1.ocd",
+      "sha256": "691c8ebfaad1375bdd54c6084b223a093782aacc634151bdb49ba70938ddbbe5",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/nums1.ocd",
+      "kind": "cd",
+      "name": "nums1",
+      "base": "http://www.openmath.org/cd",
+      "version": "4",
+      "revision": "0"
+    },
+    {
+      "path": "data/cds/piece1.ocd",
+      "sha256": "d7835f3eea72c2322a2b37dc45779676bb1593344bc826344bf536ea81caa89d",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/piece1.ocd",
+      "kind": "cd",
+      "name": "piece1",
+      "base": "http://www.openmath.org/cd",
+      "version": "2",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/quant1.ocd",
+      "sha256": "58e065460b461514e83fc432372e1b598a5a589ed8c5992d20913a20c49db928",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/quant1.ocd",
+      "kind": "cd",
+      "name": "quant1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "2"
+    },
+    {
+      "path": "data/cds/relation1.ocd",
+      "sha256": "1c50e72514373c6d60c3f82c28936670ccb8615e8cf85b40de6ee747487842e6",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/relation1.ocd",
+      "kind": "cd",
+      "name": "relation1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/relation3.ocd",
+      "sha256": "8be23fecc1275f553377fbf46b806b4895cfc723c1e82549b292c1743155e2d6",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/relation3.ocd",
+      "kind": "cd",
+      "name": "relation3",
+      "base": "http://www.openmath.org/cd",
+      "version": "2",
+      "revision": "0"
+    },
+    {
+      "path": "data/cds/rounding1.ocd",
+      "sha256": "35280066a32b9b527b4940dcf5f726639f197b980a212badce9df4efc237ed6b",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/rounding1.ocd",
+      "kind": "cd",
+      "name": "rounding1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "2"
+    },
+    {
+      "path": "data/cds/s_data1.ocd",
+      "sha256": "5992571d7c8942e309a5701aa7ae860c7b13424d51f079867c77adef2aa52cb3",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/s_data1.ocd",
+      "kind": "cd",
+      "name": "s_data1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/s_dist1.ocd",
+      "sha256": "e44c089199ba5337cda22e933fdf61e3491d5441bcfb09d5e78df0971486b9a6",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/s_dist1.ocd",
+      "kind": "cd",
+      "name": "s_dist1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/scscp1.ocd",
+      "sha256": "d763ba93fc3ce126648a8da4c533b9807bf9cf36fefaddeab8efe924f4afe05c",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/scscp1.ocd",
+      "kind": "cd",
+      "name": "scscp1",
+      "base": "http://www.openmath.org/cd",
+      "version": "1",
+      "revision": "13",
+      "base_source": "OpenMath default CDBase (omitted in source)"
+    },
+    {
+      "path": "data/cds/scscp2.ocd",
+      "sha256": "80ab8ad5a6bbd969375dd6a3bd34c27a293e8910d865173c6afb378abf4a8147",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/scscp2.ocd",
+      "kind": "cd",
+      "name": "scscp2",
+      "base": "http://www.openmath.org/cd",
+      "version": "1",
+      "revision": "8",
+      "base_source": "OpenMath default CDBase (omitted in source)"
+    },
+    {
+      "path": "data/cds/set1.ocd",
+      "sha256": "6d4995d2e7f1f24e062f52f600f33cceabe24e3055927e668dbea6a5dd0c5ea2",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/set1.ocd",
+      "kind": "cd",
+      "name": "set1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/setname1.ocd",
+      "sha256": "746cc460c6aec8601d72dbfe16b99451dcd24f165b2d9ec4f77b4f391bd54abd",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/setname1.ocd",
+      "kind": "cd",
+      "name": "setname1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/sts.ocd",
+      "sha256": "12080bc5486caeba73f14e6f748c9d5adfbba60c6244d1002588c2033ab49fa3",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/sts.ocd",
+      "kind": "cd",
+      "name": "sts",
+      "base": "http://www.openmath.org/cd",
+      "version": "4",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/transc1.ocd",
+      "sha256": "75ed9e263f1256e957d56fc30648835d3d0a0c1fc375947b0a2fa1bdf71a177d",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/transc1.ocd",
+      "kind": "cd",
+      "name": "transc1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "data/cds/veccalc1.ocd",
+      "sha256": "5a8b5dc4f26b535161cb98a74145f9077a4aaea3abba81643f96c67da187b0c8",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/Official/veccalc1.ocd",
+      "kind": "cd",
+      "name": "veccalc1",
+      "base": "http://www.openmath.org/cd",
+      "version": "3",
+      "revision": "1"
+    },
+    {
+      "path": "schemas/cdgroup/omcdgroup2.rnc",
+      "sha256": "ffdbf002e96579cb1fd230f5bbfcf61374c96cf2251e6111e14098209a596d81",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/lib/RelaxNG/omcdgroup2.rnc",
+      "kind": "schema"
+    },
+    {
+      "path": "schemas/cdgroup/omcdgroup2.rng",
+      "sha256": "452cb17f448bb685ec8b471aab9eca387987fe02a0b56e1c1cee4b6bba801505",
+      "url": "https://raw.githubusercontent.com/OpenMath/CDs/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/lib/RelaxNG/omcdgroup2.rng",
+      "kind": "schema"
+    }
+  ]
+}
