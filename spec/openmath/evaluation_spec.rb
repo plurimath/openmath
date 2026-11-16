@@ -24,6 +24,15 @@ RSpec.describe Openmath do
     "<OMA>#{oms(op_cd, op_name)}#{args.join}</OMA>"
   end
 
+  def lambda_om(*vars, body:)
+    variables = vars.map { |v| omv(v) }.join
+    "<OMBIND>#{oms("fns1", "lambda")}<OMBVAR>#{variables}</OMBVAR>#{body}</OMBIND>"
+  end
+
+  def applied_lambda(lambda_node, *args)
+    om("<OMA>#{lambda_node}#{args.join}</OMA>")
+  end
+
   describe "the arithmetic core" do
     it "evaluates plus, times, minus, unary_minus and abs exactly" do
       expect(described_class.evaluate(app("arith1", "plus", omi(1), omi(1)))).to eq(2)
@@ -161,15 +170,6 @@ RSpec.describe Openmath do
   end
 
   describe "lambda application" do
-    def lambda_om(*vars, body:)
-      variables = vars.map { |v| omv(v) }.join
-      "<OMBIND>#{oms("fns1", "lambda")}<OMBVAR>#{variables}</OMBVAR>#{body}</OMBIND>"
-    end
-
-    def applied_lambda(lambda_node, *args)
-      om("<OMA>#{lambda_node}#{args.join}</OMA>")
-    end
-
     it "applies a lambda to its arguments" do
       body = inner_app("arith1", "plus", omv("x"), omi(1))
 
@@ -296,6 +296,95 @@ RSpec.describe Openmath do
     end
   end
 
+  describe "the binding families" do
+  def eval_om(inner) = described_class.evaluate(om(inner))
+
+  it "evaluates integer1 and rounding1 exactly" do
+    expect(described_class.evaluate(app("integer1", "factorial", omi(5)))).to eq(120)
+    expect(described_class.evaluate(app("integer1", "quotient", omi(7), omi(2)))).to eq(3)
+    expect(described_class.evaluate(app("integer1", "remainder", omi(7), omi(2)))).to eq(1)
+    halves = inner_app("nums1", "rational", omi(7), omi(2))
+    expect(described_class.evaluate(app("rounding1", "floor", halves))).to eq(3)
+    expect(described_class.evaluate(app("rounding1", "ceiling", halves))).to eq(4)
+    expect(described_class.evaluate(app("rounding1", "round", halves))).to eq(4)
+  end
+
+  it "contaminates through floats before the exact rounding step" do
+    expect(described_class.evaluate(app("rounding1", "floor", omf_dec(1.5)))).to eq(1)
+  end
+
+  it "evaluates set1 and list1 as exact collections" do
+    listed = inner_app("list1", "list", omi(1), omi(2), omi(3))
+    expect(eval_om(listed)).to eq([1, 2, 3])
+    expect(described_class.evaluate(app("set1", "set", omi(1), omi(2), omi(1))))
+      .to eq([1, 2])
+    expect(described_class.evaluate(app("set1", "size", listed))).to eq(3)
+    expect(described_class.evaluate(app("set1", "in", omi(2), listed))).to be(true)
+    expect(described_class.evaluate(app("set1", "in", omi(9), listed))).to be(false)
+  end
+
+  it "maps and filters through the lambda layer" do
+    double = lambda_om("x", body: inner_app("arith1", "times", omv("x"), omi(2)))
+    listed = inner_app("list1", "list", omi(1), omi(2))
+
+    expect(described_class.evaluate(app("list1", "map", double, listed))).to eq([2, 4])
+
+    under_three = lambda_om("x", body: inner_app("relation1", "lt", omv("x"), omi(3)))
+    four = inner_app("list1", "list", omi(1), omi(2), omi(3), omi(4))
+    expect(described_class.evaluate(app("set1", "suchthat", four, under_three)))
+      .to eq([1, 2])
+  end
+
+  it "refuses non-boolean predicates and non-collection operands" do
+    numeric = "<OMBIND>#{oms("fns1", "lambda")}<OMBVAR>#{omv("x")}</OMBVAR>#{omv("x")}</OMBIND>"
+    listed = inner_app("list1", "list", omi(1))
+    expect { described_class.evaluate(app("set1", "suchthat", listed, numeric)) }
+      .to raise_error(Openmath::Evaluation::OperandTypeError, /logic/)
+    expect { described_class.evaluate(app("set1", "size", omi(3))) }
+      .to raise_error(Openmath::Evaluation::OperandTypeError, /collection size/)
+  end
+
+  it "evaluates interval1 with open and closed bounds" do
+    open_low = inner_app("interval1", "interval_oc", omi(1), omi(3))
+    expect(described_class.evaluate(app("set1", "in", omi(3), open_low))).to be(true)
+    expect(described_class.evaluate(app("set1", "in", omi(1), open_low))).to be(false)
+    closed = inner_app("interval1", "interval", omi(1), omi(3))
+    expect(described_class.evaluate(app("set1", "in", omi(1), closed))).to be(true)
+    rational = inner_app("nums1", "rational", omi(5), omi(2))
+    expect(described_class.evaluate(app("set1", "in", rational, open_low))).to be(true)
+  end
+
+  it "evaluates linalg matrices exactly" do
+    m2 = inner_app("linalg2", "matrix",
+                   inner_app("linalg2", "matrixrow", omi(1), omi(2)),
+                   inner_app("linalg2", "matrixrow", omi(3), omi(4)))
+    expect(described_class.evaluate(app("linalg3", "determinant", m2))).to eq(-2)
+    expect(described_class.evaluate(app("linalg1", "transpose", m2)))
+      .to eq([[1, 3], [2, 4]])
+    unit_x = inner_app("linalg2", "matrixrow", omi(1), omi(0), omi(0))
+    unit_y = inner_app("linalg2", "matrixrow", omi(0), omi(1), omi(0))
+    expect(described_class.evaluate(app("linalg1", "vector_product", unit_x, unit_y)))
+      .to eq([0, 0, 1])
+  end
+
+  it "refuses shape contradictions with the PM extension name" do
+    rectangular = inner_app("linalg2", "matrix",
+                            inner_app("linalg2", "matrixrow", omi(1), omi(2), omi(3)),
+                            inner_app("linalg2", "matrixrow", omi(4), omi(5), omi(6)))
+    expect { described_class.evaluate(app("linalg3", "determinant", rectangular)) }
+      .to raise_error(Openmath::Evaluation::DimensionMismatchError, /DimensionMismatch/)
+    unit_x = inner_app("linalg2", "matrixrow", omi(1), omi(0), omi(0))
+    unit_w = inner_app("linalg2", "matrixrow", omi(0), omi(0), omi(0), omi(1))
+    expect { described_class.evaluate(app("linalg1", "vector_product", unit_x, unit_w)) }
+      .to raise_error(Openmath::Evaluation::DimensionMismatchError, /two 3-vectors/)
+  end
+
+  it "keeps calculus1 symbolic entries outside the evaluated surface" do
+    expect { described_class.evaluate(app("calculus1", "diff", omv("x"))) }
+      .to raise_error(Openmath::Evaluation::UnboundSymbolError, /calculus1#diff/)
+  end
+end
+
   describe "the binding table artifact" do
     it "pins the shipped table's checksum" do
       checksum = Openmath::Evaluation::BindingTable.default_checksum
@@ -305,8 +394,8 @@ RSpec.describe Openmath do
 
     it "records the schema and version" do
       table = Openmath::Evaluation::BindingTable.default
-      expect(table.version).to eq(1)
-      expect(table.bindings.size).to be >= 21
+      expect(table.version).to eq(2)
+      expect(table.bindings.size).to be >= 42
     end
   end
 end

@@ -23,14 +23,19 @@ OpenMath/OMSVN). Namespaced documents parse in both the unprefixed and the
   symbol resolution with cdbase matching, and CD validation against
   `omcd2.rng` — CD content is data, never code.
 * **Evaluation**: the CD binding table (`data/binding-table-1.yml`) binds
-  the working core (nums1, arith1, relation1, logic1) to operations;
-  `Openmath.evaluate(xml, variables:)` walks the tree under the exactness
-  discipline — integers and rationals stay exact, floats contaminate to the
-  limited class, unbound symbols refuse naming the symbol. `fns1/lambda`
-  binds: `OMBIND` evaluates to a closure captured lexically, applied
-  through an enclosing `OMA` with typed arity refusals; attributed
-  variables bind by their wrapped name; `OMATTR` evaluates its attributed
-  object, attributions riding along as data.
+  the working families — nums1, arith1, relation1, logic1, integer1,
+  rounding1, set1/list1, interval1, linalg1/linalg2/linalg3 — to exact
+  operations; `Openmath.evaluate(xml, variables:)` walks the tree under the
+  exactness discipline — integers and rationals stay exact, floats
+  contaminate to the limited class, unbound symbols refuse naming the
+  symbol. `fns1/lambda` binds: `OMBIND` evaluates to a closure captured
+  lexically, applied through an enclosing `OMA` with typed arity refusals;
+  `map`/`suchthat` ride the lambda layer; attributed variables bind by
+  their wrapped name; `OMATTR` evaluates its attributed object,
+  attributions riding along as data; `OMR` references resolve within the
+  document scope with cycle detection; shape contradictions refuse with
+  the DimensionMismatch name. calculus1 stays symbolic — outside the
+  evaluated surface, refused typed.
 
 * **Foreign objects**: markup inside OMFOREIGN (the schema's notOM content)
   is captured verbatim at parse time (`notom_value`) and re-emitted at its

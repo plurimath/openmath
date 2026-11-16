@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 schema: openmath-binding-table/1
-version: 1
+version: 2
 description: >
   The CD binding table: which content-dictionary symbols evaluate, and the
   operation each binds to. Adding a binding is adding data here plus the
@@ -34,3 +34,28 @@ bindings:
   - { cd: logic1, name: xor, operation: xor }
   - { cd: logic1, name: not, operation: not }
   - { cd: logic1, name: implies, operation: implies }
+  # integer1 / rounding1 — exact integer semantics
+  - { cd: integer1, name: factorial, operation: factorial }
+  - { cd: integer1, name: quotient, operation: quotient }
+  - { cd: integer1, name: remainder, operation: remainder }
+  - { cd: rounding1, name: floor, operation: floor }
+  - { cd: rounding1, name: ceiling, operation: ceiling }
+  - { cd: rounding1, name: round, operation: round }
+  # set1 / list1 — exact collections; suchthat/map ride the lambda layer
+  - { cd: list1, name: list, operation: list }
+  - { cd: set1, name: set, operation: set }
+  - { cd: set1, name: in, operation: in }
+  - { cd: set1, name: size, operation: size }
+  - { cd: list1, name: map, operation: map }
+  - { cd: set1, name: suchthat, operation: suchthat }
+  # interval1 — exact domains
+  - { cd: interval1, name: interval, operation: interval }
+  - { cd: interval1, name: interval_oo, operation: interval_oo }
+  - { cd: interval1, name: interval_oc, operation: interval_oc }
+  - { cd: interval1, name: interval_co, operation: interval_co }
+  # linalg — exact matrices over rationals
+  - { cd: linalg2, name: matrix, operation: matrix }
+  - { cd: linalg2, name: matrixrow, operation: matrixrow }
+  - { cd: linalg1, name: transpose, operation: transpose }
+  - { cd: linalg3, name: determinant, operation: determinant }
+  - { cd: linalg1, name: vector_product, operation: vector_product }

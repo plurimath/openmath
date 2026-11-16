@@ -71,5 +71,15 @@ module Openmath
         super("cyclic OMR reference to #{name.inspect}")
       end
     end
+
+    # Shapes contradict (the PM error extension name).
+    class DimensionMismatchError < Error
+      attr_reader :context
+
+      def initialize(context)
+        @context = context
+        super("DimensionMismatch: #{context}")
+      end
+    end
   end
 end
