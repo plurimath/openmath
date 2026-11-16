@@ -18,10 +18,12 @@ RSpec.describe "the corpus round-trip" do
       xml = File.read(path)
       expect(Openmath.valid?(xml, version: 2)).to be(true), "#{id}: schema"
 
-      object = Openmath.parse(xml, version: 2)
-      once = object.to_xml
-      twice = Openmath.parse(once, version: 2).to_xml
-      expect(twice).to eq(once), "#{id}: not a fixed point"
+      [2, 3].each do |version|
+        object = Openmath.parse(xml, version: version)
+        once = object.to_xml
+        twice = Openmath.parse(once, version: version).to_xml
+        expect(twice).to eq(once), "#{id}: not a fixed point under v#{version}"
+      end
     end
   end
 end

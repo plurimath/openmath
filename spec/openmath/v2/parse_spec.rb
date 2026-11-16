@@ -6,7 +6,7 @@ require "spec_helper"
 # object (spec/fixtures/scscp_example.om, vendored from OpenMath/py-openmath,
 # MIT — an independent implementation's example, version="2.0", om-prefixed).
 RSpec.describe Openmath do
-  FIXTURE = File.expand_path("../fixtures/scscp_example.om", __dir__)
+  FIXTURE = File.expand_path("../../fixtures/scscp_example.om", __dir__)
 
   let(:xml) { File.read(FIXTURE) }
   let(:object) { described_class.parse(xml, version: 2) }
@@ -61,8 +61,15 @@ RSpec.describe Openmath do
     expect(object.omi_value).to be_empty
   end
 
-  it "refuses an unsupported version" do
-    expect { described_class.parse(xml, version: 3) }
-      .to raise_error(ArgumentError, /unsupported OpenMath version/)
-  end
+it "parses version 3 documents through the V3 hierarchy" do
+  object = described_class.parse(xml, version: 3)
+  expect(object).to be_a(Openmath::V3::Omobj)
+  expect(object.version).to eq("2.0")
+end
+
+it "refuses an unsupported version" do
+  expect { described_class.parse(xml, version: 9) }
+    .to raise_error(ArgumentError, /unsupported OpenMath version/)
+end
+
 end

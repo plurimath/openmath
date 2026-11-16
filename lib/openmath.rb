@@ -7,6 +7,7 @@ module Openmath
   autoload :CommonElements, "openmath/common_elements"
   autoload :Namespace, "openmath/namespace"
   autoload :V2, "openmath/v2"
+  autoload :V3, "openmath/v3"
   autoload :Validation, "openmath/validation"
 
   module Base
@@ -35,6 +36,7 @@ module Openmath
   def parse(input, version: 2)
     case version
     when 2 then V2.parse(input)
+    when 3 then V3.parse(input)
     else raise ArgumentError, "unsupported OpenMath version #{version.inspect}"
     end
   end
