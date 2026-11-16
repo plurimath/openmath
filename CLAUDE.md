@@ -1,0 +1,60 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working
+with code in this repository.
+
+## Project Overview
+
+`openmath` parses the OpenMath XML encoding into a typed model declared
+with LutaML Model, and serializes it back. Version-scoped hierarchies:
+`Openmath::V2` (the published standard) today, `Openmath::V3` (the draft)
+when its model lands. Part of the Plurimath ecosystem.
+
+## Commands
+
+```bash
+rake                                # specs (default task)
+bundle exec rspec                   # run the suite
+bundle exec rspec spec/openmath/v2/roundtrip_spec.rb:14  # single spec
+```
+
+## Architecture
+
+- **mml-pattern composition**: `Openmath::V2::CommonElements` holds the
+  child object collections and element maps; `lib/openmath/base/*.rb`
+  modules add each element's attributes and root; the version classes
+  (`Openmath::V2::Oms` …) subclass CommonElements and include their Base
+  module. Follow the mml gem's structure when extending.
+- **Registry, not direct types**: child attributes declare SYMBOL types
+  (`attribute :oms_value, :oms, collection: true`) resolved through
+  `Openmath::V2::Configuration`'s LutaML context
+  (`lutaml_default_register :openmath_v2`). `V2.parse` calls
+  `register_models!` once per process. Declaring direct class types in a
+  superclass body creates a load-order inheritance race — do not revert
+  to direct types.
+- **Schema-first**: `schemas/openmath2.rnc` is the authoritative content
+  model (vendored from OpenMath/OMSVN, formerCVS/OpenMath2). Verify every
+  element/attribute against the schema before modeling; the Common and
+  Compound attribute modules mirror the schema's `common.attributes` and
+  `compound.attributes`.
+- **Namespace**: `Openmath::Namespace` (Lutaml::Xml::Namespace, uri
+  `http://www.openmath.org/OpenMath`). Both unprefixed and `om:`-prefixed
+  documents parse.
+- **Ordered containers**: OMA/OMBIND/OME/OMATTR/OMATP/OMBVAR/OMOBJ are
+  element-only (`ordered`); OMATP's pairs alternate (symbol, value) and
+  the document order is the pairing.
+
+## Conventions
+
+- `frozen_string_literal: true` in all files; autoloads in the immediate
+  parent namespace's file (no `require_relative` for internal code).
+- `Gemfile.lock` is gitignored; dependencies come from the gemspec.
+- CI workflows: release via metanorma/ci's rubygems-release (OIDC Trusted
+  Publishing); tests are plain rspec for now.
+
+## Known limitations (by design at 0.1.0)
+
+- No schema validation of the root element; the reader is lenient.
+- OMFOREIGN models the encoding and OpenMath children only — foreign
+  markup inside is not represented.
+- OpenMath 3 has no model yet; `Openmath.parse(version: 3)` refuses.
