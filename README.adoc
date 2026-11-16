@@ -5,7 +5,7 @@ Ruby model: parse the XML encoding, serialize it back, and evaluate through
 content dictionaries. Part of the {plurimath}[https://github.com/plurimath]
 ecosystem; consumed by the plurimath gem.
 
-== Status (0.1.0)
+== Status
 
 The complete OpenMath 2 object grammar — OMOBJ, OMS, OMV, OMI, OMB, OMSTR,
 OMF, OMA, OMBIND, OMBVAR, OME, OMATTR, OMATP, OMFOREIGN, OMR — modeled with
@@ -14,12 +14,22 @@ authoritative schema (`schemas/openmath2.rnc`, vendored from
 OpenMath/OMSVN). Namespaced documents parse in both the unprefixed and the
 `om:`-prefixed form; round trips are byte-stable.
 
+* **Validation ships**: `Openmath.valid?` / `validate!` check any document
+  against its version's vendored RelaxNG schema (OpenMath 2 and the OM3
+  draft) through nokogiri; violations refuse with typed errors.
+* **OpenMath 3**: the versioned hierarchy (`Openmath::V3`) parses and
+  round-trips the same object grammar under `Openmath.parse(xml, version: 3)`.
+* **Content dictionaries**: the CD document model, the collection loader,
+  symbol resolution with cdbase matching, and CD validation against
+  `omcd2.rng` — CD content is data, never code.
+* **Evaluation**: the CD binding table (`data/binding-table-1.yml`) binds
+  the working core (nums1, arith1, relation1, logic1) to operations;
+  `Openmath.evaluate(xml, variables:)` walks the tree under the exactness
+  discipline — integers and rationals stay exact, floats contaminate to the
+  limited class, unbound symbols refuse naming the symbol.
+
 Known limitations (tracked in the issues):
 
-* OpenMath 3 is scaffolded, not modeled — its versioned hierarchy lands
-  with the draft revision it implements (plurimath#582).
-* Root-element and schema validation are roadmap work; the reader is
-  lenient about unknown roots.
 * Non-OpenMath markup inside OMFOREIGN is not yet represented.
 
 == Usage
@@ -38,6 +48,17 @@ object.oma_value.first.omi_value.map { |i| i.value.first.strip }
 # => ["1", "1"]
 
 puts object.to_xml
+
+# Always-available schema validation
+Openmath.valid?(xml, version: 2)   # => true
+
+# Semantic math that evaluates
+Openmath.evaluate(<<~XML)
+  <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+    <OMA><OMS cd="nums1" name="rational"/><OMI>1</OMI><OMI>4</OMI></OMA>
+  </OMOBJ>
+XML
+# => rational 1/4 (an exact Rational — never a float)
 ----
 
 == Roadmap
