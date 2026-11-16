@@ -163,7 +163,7 @@ row_count = groups.values.sum(&:size)
 ledger["entries"] << {
   "generation" => generation,
   "path" => "stages/openmath/generations/#{format('%06d', generation)}",
-  "snapshot_digest" => "sha256:#{digest}",
+  "snapshot_digest" => digest,
   "payloads" => payloads.size,
   "rows" => row_count,
   "producer_kinds" => ["stage-gem"],
