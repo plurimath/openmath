@@ -106,7 +106,7 @@ module Openmath
         fragment_node = Nokogiri.XML(fragment).root
         next unless fragment_node
 
-        anchor = siblings[positions[i]]
+        anchor = siblings[positions[i]] if positions[i]
         anchor ? anchor.add_previous_sibling(fragment_node) : node.add_child(fragment_node)
       end
     end

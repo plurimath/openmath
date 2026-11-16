@@ -12,6 +12,7 @@ module Openmath
   autoload :Evaluation, "openmath/evaluation"
   autoload :Foreign, "openmath/foreign"
   autoload :Canonical, "openmath/canonical"
+  autoload :Binary, "openmath/binary"
   autoload :CD, "openmath/cd"
 
   module Base

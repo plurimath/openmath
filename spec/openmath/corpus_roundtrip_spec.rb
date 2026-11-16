@@ -38,5 +38,17 @@ RSpec.describe "the corpus round-trip" do
 
       expect(hashes.uniq.size).to eq(1), "#{id}: v2 and v3 canonicals differ"
     end
+
+    it "#{id} survives the binary encoding at a fixed point" do
+      xml = File.read(path)
+      bytes = Openmath::Binary.encode(xml)
+      decoded = Openmath::Binary.decode(bytes)
+      once = decoded.to_xml
+      expect(once).to be_a(String), "#{id}: binary decode produced no XML"
+
+      reparsed = Openmath.parse(once, version: 2)
+      expect(Openmath::Binary.encode(reparsed)).to eq(bytes),
+                                                    "#{id}: not a binary fixed point"
+    end
   end
 end
