@@ -4,6 +4,10 @@ require "spec_helper"
 require "openmath/cd/group"
 require "tmpdir"
 require "fileutils"
+require "yaml"
+require "open3"
+require "rbconfig"
+require "rubygems/package"
 
 RSpec.describe Openmath::CD::Group do
   before(:context) { @official = Openmath::CD::Group.official }
@@ -152,6 +156,63 @@ RSpec.describe Openmath::CD::Group do
       File.symlink(File.join(root, "data/cds/arith1.ocd"), File.join(directory, "escape"))
       expect { artifacts.local_path("escape") }.to raise_error(described_class::UnsafePath, /escape/)
       expect { artifacts.read("unrecorded") }.to raise_error(described_class::IntegrityError, /unrecorded/)
+    end
+  end
+
+  it "declares checksummed files and the registry installer contract" do
+    descriptor = YAML.safe_load_file(File.join(root, "data/extensions/groups.yml"))
+    expect(descriptor.keys.sort).to eq(%w[bindings files hooks id schema])
+    expect(descriptor.fetch("bindings")).to eq([])
+    expect(descriptor.fetch("hooks")).to eq([
+      { "type" => "installer", "file" => "lib/openmath/cd/group.rb",
+        "constant" => "Openmath::CD::Group" },
+    ])
+    descriptor.fetch("files").each do |path, checksum|
+      expect(Digest::SHA256.file(File.join(root, path)).hexdigest).to eq(checksum), path
+    end
+    target = Module.new
+    described_class.install(target, nil)
+    expect(target.parse_cd_group(arith_xml).name).to eq("arith")
+    expect(target.official_cd_collection.size).to eq(38)
+  end
+
+  def public_probe(directory)
+    Open3.capture3(RbConfig.ruby, "-I", File.join(directory, "lib"), "-ropenmath", "-e", <<~'RUBY', chdir: directory)
+      require "json"
+      collection = Openmath.official_cd_collection
+      puts JSON.generate(group: Openmath.parse_cd_group(File.read("data/cd-groups/fns.cdg")).name,
+                         members: collection.members(collection.group("fns")).map(&:cd_name),
+                         symbol: collection.resolve(cd: "arith1", name: "plus").name)
+    RUBY
+  end
+
+  it "discovers groups from require openmath in a fresh process after F-ext admission" do
+    pending("F-ext public discovery is absent at this admission; required before landing") unless
+      File.file?(File.join(root, "lib/openmath/extensions/registry.rb"))
+    stdout, stderr, status = public_probe(root)
+    expect(status.exitstatus).to eq(0), stderr
+    expect(JSON.parse(stdout.lines.last)).to eq("group" => "fns", "members" => %w[fns1 fns2], "symbol" => "plus")
+  end
+
+  it "discovers groups from the actual gem package after packaging admission" do
+    specification = Gem::Specification.load(File.join(root, "openmath.gemspec"))
+    descriptor = YAML.safe_load_file(File.join(root, "data/extensions/groups.yml"))
+    required = descriptor.fetch("files").keys + ["data/extensions/groups.yml"]
+    missing = required - specification.files
+    pending("F-ext/F-pkg admission required: #{missing.join(', ')}") unless
+      missing.empty? && File.file?(File.join(root, "lib/openmath/extensions/registry.rb"))
+    Dir.mktmpdir("openmath-groups-package") do |directory|
+      specification.files.each do |path|
+        destination = File.join(directory, path)
+        FileUtils.mkdir_p(File.dirname(destination))
+        FileUtils.cp(File.join(root, path), destination)
+      end
+      archive = Dir.chdir(directory) { Gem::Package.build(specification, true) }
+      installed = File.join(directory, "installed")
+      Gem::Package.new(File.join(directory, archive)).extract_files(installed)
+      stdout, stderr, status = public_probe(installed)
+      expect(status.exitstatus).to eq(0), stderr
+      expect(JSON.parse(stdout.lines.last).fetch("members")).to eq(%w[fns1 fns2])
     end
   end
 

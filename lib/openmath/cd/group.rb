@@ -41,9 +41,13 @@ module Openmath
       end
 
       # F-ext installer hook; it adds APIs without changing cd.rb or Collection.
+      def install(target = Openmath, _registry = nil)
+        target.define_singleton_method(:parse_cd_group) { |xml| Group.parse(xml) }
+        target.define_singleton_method(:official_cd_collection) { Group.official }
+      end
+
       def install!
-        Openmath.define_singleton_method(:parse_cd_group) { |xml| Group.parse(xml) }
-        Openmath.define_singleton_method(:official_cd_collection) { Group.official }
+        install
       end
     end
   end

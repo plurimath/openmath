@@ -28,12 +28,11 @@ begin
   end
   descriptor_path = artifacts.local_path("data/extensions/groups.yml")
   descriptor = YAML.safe_load_file(descriptor_path)
-  descriptor.fetch("artifacts").each do |record|
-    path = record.fetch("path")
+  descriptor.fetch("files").each do |path, expected_digest|
     actual_digest = Digest::SHA256.file(artifacts.local_path(path)).hexdigest
-    unless actual_digest == record.fetch("sha256")
+    unless actual_digest == expected_digest
       raise Openmath::CD::Group::IntegrityError,
-            "refused descriptor artifact #{path}: SHA256 expected #{record['sha256']}, actual #{actual_digest}"
+            "refused descriptor artifact #{path}: SHA256 expected #{expected_digest}, actual #{actual_digest}"
     end
   end
   puts "verified #{tracked.size} artifacts; #{collection.size} exact CD identities; offline"

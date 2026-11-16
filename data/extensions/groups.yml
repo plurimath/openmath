@@ -1,143 +1,80 @@
-schema: openmath-extension/1
-id: groups
-require: openmath/cd/group
-installer: Openmath::CD::Group
-artifacts:
-  - path: corpora/groups/PROFILE.md
-    sha256: c001821f74354ce808fb9af86fded86cf7cdfc0633f18e46316ba31b59d02df5
-  - path: corpora/groups/manifest.json
-    sha256: 3d1f0a223216e676e608bfe859bc6725b69376aa340ef74d378fe3be74c8de1c
-  - path: data/cd-groups/algstr1.cdg
-    sha256: c50ef4bfb0cacad277f57c8c405a6cf93f342192509f9a175e8686b157e594e0
-  - path: data/cd-groups/arith.cdg
-    sha256: c897a7449df6bb592a570f7cfb7749d1356d2a57de5d9d6365608cf570ea77f8
-  - path: data/cd-groups/combinat1.cdg
-    sha256: 28dd96dd1a091cdb2354ec43844dfa653274cbe693737c619484a1bcc20a23bb
-  - path: data/cd-groups/constants.cdg
-    sha256: f0584c70c27f17c87d9e804daa5778f7752e60949faf6c0e5c78b8810b06a255
-  - path: data/cd-groups/directives1.cdg
-    sha256: 477b55099ce05868725d3e5f27d5498cef4cf563a0eced3824cc87942be21a0c
-  - path: data/cd-groups/error.cdg
-    sha256: 87b0281921cc98185049014d495b4991bad272329f21a6c670679dfa618a3af3
-  - path: data/cd-groups/fns.cdg
-    sha256: 68a115c337325513382a1e9258c9d84a3fdf21fa721d5d93ed7e0a54c6e41438
-  - path: data/cd-groups/group1.cdg
-    sha256: e343ae97a47247c9b4d03c1c0b6f9c8cf8315af2b5efee4fa8ef4a76baf59650
-  - path: data/cd-groups/linalg.cdg
-    sha256: 39420360bc27263945d905b2c1c718e2e2cb06455cb695fd6cbf9648ddd062d1
-  - path: data/cd-groups/list.cdg
-    sha256: 2fd7335c4277db87118cb4bdf3cb7635d42ae880b8bc4cc9b0d39fb7dc3bc1ab
-  - path: data/cd-groups/manifest.json
-    sha256: 479c328147edfb3d3f24d2d03994e4ff2ab36396ec0fb7a3ae634597f0e56d3d
-  - path: data/cd-groups/mathml.cdg
-    sha256: 27bae09c0aaa5d98998476975cc016d2da86b8553e4a33ad19b7981e70ca9494
-  - path: data/cd-groups/meta.cdg
-    sha256: e8f9e7a82ee1125c8108fe74ed88b1bfd709afa7357c2d7dab52bccc90df9061
-  - path: data/cd-groups/polygrp.cdg
-    sha256: 01d35ffaf68650faa4f6f294b11f06117a2c3f25c14147a5fd4206778eab26c3
-  - path: data/cd-groups/riaca_algebra.cdg
-    sha256: 3f31f01f3bd554ce568ff3b65432e13b2f1b3d5533ce38fd01280c55f5ee496e
-  - path: data/cd-groups/scscp.cdg
-    sha256: bf25d82c8c994ccae8ead68226d0acbc1c6c35e91ee5991e578468646b99a24b
-  - path: data/cd-groups/sets.cdg
-    sha256: 5b7a22cdefa2d42b5069d4231ad2f942b96e129c5362284b70602059f5eccd23
-  - path: data/cd-groups/transc.cdg
-    sha256: d360da6767501069b500338f101c0f99e872985034e4c68cfe3a7b4da40e45d3
-  - path: data/cd-groups/types1.cdg
-    sha256: 76b8a5b4704444720e2c311d4bcab2904d9a5fb77d959285b0ce032487f14930
-  - path: data/cd-groups/types2.cdg
-    sha256: ec19530793cd8b7fee4ee1aa8feeaa3d05d9e36f0b89aac3f791eded45f5369d
-  - path: data/cd-groups/units.cdg
-    sha256: 9c060319e21340242dbad47dccbace546d6a49240bfdee97a0c14b760048580f
-  - path: data/cds/alg1.ocd
-    sha256: e3660d4031649da6fc76a9de5c5efffc19568d47f50e20885541204dd07a4405
-  - path: data/cds/altenc.ocd
-    sha256: 541e8e3d00fb1dfc75e5a8146b13f26291e44ab102f7075fbb7ca28d83b2f191
-  - path: data/cds/arith1.ocd
-    sha256: 8dab1c657db03b87da8ed3a139c2490df0e86076ab634c3804b757c5594f6d8a
-  - path: data/cds/bigfloat1.ocd
-    sha256: 064c72c188c0962838ec372bfa2945d955383a07c2ebc53a5433fc0e197f5967
-  - path: data/cds/calculus1.ocd
-    sha256: bd61e71618800e50935bd4f8503ad3d7bd7f131456854cb5d7cb49fa3df780e7
-  - path: data/cds/complex1.ocd
-    sha256: f3fd7eb99fcea16165a8ef44bf3adf6e14c2e6c462fbfe8cc425291d0ebaba91
-  - path: data/cds/error.ocd
-    sha256: 19b7d3e8700ef9c227919aaf7cf7cc6956b61329273795b0a4f1ec0ce31c1a3a
-  - path: data/cds/fns1.ocd
-    sha256: 9d45eafcb9b527de68dee8f2a129fe8ec71667ef8490fa5e50ddb7eedd3f8c5e
-  - path: data/cds/fns2.ocd
-    sha256: c9a64a0848fb8e23f1321b2a9f4fb2a4fb73e3c85a32878267e5cadbaafec286
-  - path: data/cds/integer1.ocd
-    sha256: e8844f0415a9078293717f075fa83a06985f0ba7ddca9cd74b1d234ff79d287d
-  - path: data/cds/interval1.ocd
-    sha256: f49fe43b4c1dc79d7972ed6fce79d02437d4920320cbd9faffdf460938717f6a
-  - path: data/cds/limit1.ocd
-    sha256: b104ee1a78b9c0528344b5b375ce1790296ddeaca9d8ef5429a80e4ae4e049c6
-  - path: data/cds/linalg1.ocd
-    sha256: 2aec606eea01c8011db4aa151df6f623efd10eb4ecc58429acb6ba8cd160227a
-  - path: data/cds/linalg2.ocd
-    sha256: 3c472e80a97a2a3ec1fd2a534d3e24efc38f3e177bbd44d14cfb1770038f4aee
-  - path: data/cds/list1.ocd
-    sha256: 789f2be93ea0d9fde24ca653072eca771ee85dd66e19fcb631e2b9f9ca14780a
-  - path: data/cds/logic1.ocd
-    sha256: 5bd450962d9ee3f867770608ce6f823b0ad705123afb9af5d1950a39a46498cd
-  - path: data/cds/mathmlattr.ocd
-    sha256: 8884e0e8b0a7e51c26ecfe217c3532d047e5ead0e602e141ba2c73ba3c1c474e
-  - path: data/cds/mathmltypes.ocd
-    sha256: 576d3b662a9590d1df431f0dde211864dcb11a3d12fdeb997382a2f5a6177c88
-  - path: data/cds/meta.ocd
-    sha256: ee50d09bbdc5fe54c546c42526e8c19c735642f15eaf257584459512c35e6610
-  - path: data/cds/metagrp.ocd
-    sha256: 6ea5921f8d74a2a9fd62be010ad1c9fb238ad01118381fe498ed6f3b68b2c846
-  - path: data/cds/metasig.ocd
-    sha256: 14d061373ab41f40d634ffbf98d31abc4505af96761f537213e02424cddaf8fa
-  - path: data/cds/minmax1.ocd
-    sha256: d91f0dfa4caf850002a86cf76d404479d8a183eb9b1653a44dabe6d1f9e04ce9
-  - path: data/cds/multiset1.ocd
-    sha256: b18aadbabc5d83ddb45e948b274b538de2acbcb88c4d9317dacd646c52de3674
-  - path: data/cds/nums1.ocd
-    sha256: 691c8ebfaad1375bdd54c6084b223a093782aacc634151bdb49ba70938ddbbe5
-  - path: data/cds/piece1.ocd
-    sha256: d7835f3eea72c2322a2b37dc45779676bb1593344bc826344bf536ea81caa89d
-  - path: data/cds/quant1.ocd
-    sha256: 58e065460b461514e83fc432372e1b598a5a589ed8c5992d20913a20c49db928
-  - path: data/cds/relation1.ocd
-    sha256: 1c50e72514373c6d60c3f82c28936670ccb8615e8cf85b40de6ee747487842e6
-  - path: data/cds/relation3.ocd
-    sha256: 8be23fecc1275f553377fbf46b806b4895cfc723c1e82549b292c1743155e2d6
-  - path: data/cds/rounding1.ocd
-    sha256: 35280066a32b9b527b4940dcf5f726639f197b980a212badce9df4efc237ed6b
-  - path: data/cds/s_data1.ocd
-    sha256: 5992571d7c8942e309a5701aa7ae860c7b13424d51f079867c77adef2aa52cb3
-  - path: data/cds/s_dist1.ocd
-    sha256: e44c089199ba5337cda22e933fdf61e3491d5441bcfb09d5e78df0971486b9a6
-  - path: data/cds/scscp1.ocd
-    sha256: d763ba93fc3ce126648a8da4c533b9807bf9cf36fefaddeab8efe924f4afe05c
-  - path: data/cds/scscp2.ocd
-    sha256: 80ab8ad5a6bbd969375dd6a3bd34c27a293e8910d865173c6afb378abf4a8147
-  - path: data/cds/set1.ocd
-    sha256: 6d4995d2e7f1f24e062f52f600f33cceabe24e3055927e668dbea6a5dd0c5ea2
-  - path: data/cds/setname1.ocd
-    sha256: 746cc460c6aec8601d72dbfe16b99451dcd24f165b2d9ec4f77b4f391bd54abd
-  - path: data/cds/sts.ocd
-    sha256: 12080bc5486caeba73f14e6f748c9d5adfbba60c6244d1002588c2033ab49fa3
-  - path: data/cds/transc1.ocd
-    sha256: 75ed9e263f1256e957d56fc30648835d3d0a0c1fc375947b0a2fa1bdf71a177d
-  - path: data/cds/veccalc1.ocd
-    sha256: 5a8b5dc4f26b535161cb98a74145f9077a4aaea3abba81643f96c67da187b0c8
-  - path: lib/openmath/cd/group.rb
-    sha256: 5edcc0b625573c3d8e2ad0b0243cbc38428472c8196ed426bc28b18f04149e1b
-  - path: lib/openmath/cd/group/artifacts.rb
-    sha256: 3823c93c059c03a8ee95f4d2bb247ae3d8b24e10ee4ba1a53ca717f693721d09
-  - path: lib/openmath/cd/group/errors.rb
-    sha256: b01f3c817a531007142dd6744d962883b33ec9a1b0b16ad086b012fea5a42a16
-  - path: lib/openmath/cd/group/models.rb
-    sha256: ec29f5de5efa014ecdac0bc773cf8c1b144a792a4c54f19903879dd5ded4c5f9
-  - path: lib/openmath/cd/group/pinned_collection.rb
-    sha256: 17ea70a9cc508e5a023c57915ba71981cf98b00697472c2013bc53725c3df747
-  - path: schemas/cdgroup/omcdgroup2.rnc
-    sha256: ffdbf002e96579cb1fd230f5bbfcf61374c96cf2251e6111e14098209a596d81
-  - path: schemas/cdgroup/omcdgroup2.rng
-    sha256: 452cb17f448bb685ec8b471aab9eca387987fe02a0b56e1c1cee4b6bba801505
-  - path: scripts/vendor_cd_collection.rb
-    sha256: 7b21af3b607913d4403c9495572dad25725850a7a3c8ada4ef391cdff00bc2d7
+{
+  "schema": "openmath-extension/1",
+  "id": "groups",
+  "files": {
+    "data/cd-groups/algstr1.cdg": "c50ef4bfb0cacad277f57c8c405a6cf93f342192509f9a175e8686b157e594e0",
+    "data/cd-groups/arith.cdg": "c897a7449df6bb592a570f7cfb7749d1356d2a57de5d9d6365608cf570ea77f8",
+    "data/cd-groups/combinat1.cdg": "28dd96dd1a091cdb2354ec43844dfa653274cbe693737c619484a1bcc20a23bb",
+    "data/cd-groups/constants.cdg": "f0584c70c27f17c87d9e804daa5778f7752e60949faf6c0e5c78b8810b06a255",
+    "data/cd-groups/directives1.cdg": "477b55099ce05868725d3e5f27d5498cef4cf563a0eced3824cc87942be21a0c",
+    "data/cd-groups/error.cdg": "87b0281921cc98185049014d495b4991bad272329f21a6c670679dfa618a3af3",
+    "data/cd-groups/fns.cdg": "68a115c337325513382a1e9258c9d84a3fdf21fa721d5d93ed7e0a54c6e41438",
+    "data/cd-groups/group1.cdg": "e343ae97a47247c9b4d03c1c0b6f9c8cf8315af2b5efee4fa8ef4a76baf59650",
+    "data/cd-groups/linalg.cdg": "39420360bc27263945d905b2c1c718e2e2cb06455cb695fd6cbf9648ddd062d1",
+    "data/cd-groups/list.cdg": "2fd7335c4277db87118cb4bdf3cb7635d42ae880b8bc4cc9b0d39fb7dc3bc1ab",
+    "data/cd-groups/manifest.json": "479c328147edfb3d3f24d2d03994e4ff2ab36396ec0fb7a3ae634597f0e56d3d",
+    "data/cd-groups/mathml.cdg": "27bae09c0aaa5d98998476975cc016d2da86b8553e4a33ad19b7981e70ca9494",
+    "data/cd-groups/meta.cdg": "e8f9e7a82ee1125c8108fe74ed88b1bfd709afa7357c2d7dab52bccc90df9061",
+    "data/cd-groups/polygrp.cdg": "01d35ffaf68650faa4f6f294b11f06117a2c3f25c14147a5fd4206778eab26c3",
+    "data/cd-groups/riaca_algebra.cdg": "3f31f01f3bd554ce568ff3b65432e13b2f1b3d5533ce38fd01280c55f5ee496e",
+    "data/cd-groups/scscp.cdg": "bf25d82c8c994ccae8ead68226d0acbc1c6c35e91ee5991e578468646b99a24b",
+    "data/cd-groups/sets.cdg": "5b7a22cdefa2d42b5069d4231ad2f942b96e129c5362284b70602059f5eccd23",
+    "data/cd-groups/transc.cdg": "d360da6767501069b500338f101c0f99e872985034e4c68cfe3a7b4da40e45d3",
+    "data/cd-groups/types1.cdg": "76b8a5b4704444720e2c311d4bcab2904d9a5fb77d959285b0ce032487f14930",
+    "data/cd-groups/types2.cdg": "ec19530793cd8b7fee4ee1aa8feeaa3d05d9e36f0b89aac3f791eded45f5369d",
+    "data/cd-groups/units.cdg": "9c060319e21340242dbad47dccbace546d6a49240bfdee97a0c14b760048580f",
+    "data/cds/alg1.ocd": "e3660d4031649da6fc76a9de5c5efffc19568d47f50e20885541204dd07a4405",
+    "data/cds/altenc.ocd": "541e8e3d00fb1dfc75e5a8146b13f26291e44ab102f7075fbb7ca28d83b2f191",
+    "data/cds/arith1.ocd": "8dab1c657db03b87da8ed3a139c2490df0e86076ab634c3804b757c5594f6d8a",
+    "data/cds/bigfloat1.ocd": "064c72c188c0962838ec372bfa2945d955383a07c2ebc53a5433fc0e197f5967",
+    "data/cds/calculus1.ocd": "bd61e71618800e50935bd4f8503ad3d7bd7f131456854cb5d7cb49fa3df780e7",
+    "data/cds/complex1.ocd": "f3fd7eb99fcea16165a8ef44bf3adf6e14c2e6c462fbfe8cc425291d0ebaba91",
+    "data/cds/error.ocd": "19b7d3e8700ef9c227919aaf7cf7cc6956b61329273795b0a4f1ec0ce31c1a3a",
+    "data/cds/fns1.ocd": "9d45eafcb9b527de68dee8f2a129fe8ec71667ef8490fa5e50ddb7eedd3f8c5e",
+    "data/cds/fns2.ocd": "c9a64a0848fb8e23f1321b2a9f4fb2a4fb73e3c85a32878267e5cadbaafec286",
+    "data/cds/integer1.ocd": "e8844f0415a9078293717f075fa83a06985f0ba7ddca9cd74b1d234ff79d287d",
+    "data/cds/interval1.ocd": "f49fe43b4c1dc79d7972ed6fce79d02437d4920320cbd9faffdf460938717f6a",
+    "data/cds/limit1.ocd": "b104ee1a78b9c0528344b5b375ce1790296ddeaca9d8ef5429a80e4ae4e049c6",
+    "data/cds/linalg1.ocd": "2aec606eea01c8011db4aa151df6f623efd10eb4ecc58429acb6ba8cd160227a",
+    "data/cds/linalg2.ocd": "3c472e80a97a2a3ec1fd2a534d3e24efc38f3e177bbd44d14cfb1770038f4aee",
+    "data/cds/list1.ocd": "789f2be93ea0d9fde24ca653072eca771ee85dd66e19fcb631e2b9f9ca14780a",
+    "data/cds/logic1.ocd": "5bd450962d9ee3f867770608ce6f823b0ad705123afb9af5d1950a39a46498cd",
+    "data/cds/mathmlattr.ocd": "8884e0e8b0a7e51c26ecfe217c3532d047e5ead0e602e141ba2c73ba3c1c474e",
+    "data/cds/mathmltypes.ocd": "576d3b662a9590d1df431f0dde211864dcb11a3d12fdeb997382a2f5a6177c88",
+    "data/cds/meta.ocd": "ee50d09bbdc5fe54c546c42526e8c19c735642f15eaf257584459512c35e6610",
+    "data/cds/metagrp.ocd": "6ea5921f8d74a2a9fd62be010ad1c9fb238ad01118381fe498ed6f3b68b2c846",
+    "data/cds/metasig.ocd": "14d061373ab41f40d634ffbf98d31abc4505af96761f537213e02424cddaf8fa",
+    "data/cds/minmax1.ocd": "d91f0dfa4caf850002a86cf76d404479d8a183eb9b1653a44dabe6d1f9e04ce9",
+    "data/cds/multiset1.ocd": "b18aadbabc5d83ddb45e948b274b538de2acbcb88c4d9317dacd646c52de3674",
+    "data/cds/nums1.ocd": "691c8ebfaad1375bdd54c6084b223a093782aacc634151bdb49ba70938ddbbe5",
+    "data/cds/piece1.ocd": "d7835f3eea72c2322a2b37dc45779676bb1593344bc826344bf536ea81caa89d",
+    "data/cds/quant1.ocd": "58e065460b461514e83fc432372e1b598a5a589ed8c5992d20913a20c49db928",
+    "data/cds/relation1.ocd": "1c50e72514373c6d60c3f82c28936670ccb8615e8cf85b40de6ee747487842e6",
+    "data/cds/relation3.ocd": "8be23fecc1275f553377fbf46b806b4895cfc723c1e82549b292c1743155e2d6",
+    "data/cds/rounding1.ocd": "35280066a32b9b527b4940dcf5f726639f197b980a212badce9df4efc237ed6b",
+    "data/cds/s_data1.ocd": "5992571d7c8942e309a5701aa7ae860c7b13424d51f079867c77adef2aa52cb3",
+    "data/cds/s_dist1.ocd": "e44c089199ba5337cda22e933fdf61e3491d5441bcfb09d5e78df0971486b9a6",
+    "data/cds/scscp1.ocd": "d763ba93fc3ce126648a8da4c533b9807bf9cf36fefaddeab8efe924f4afe05c",
+    "data/cds/scscp2.ocd": "80ab8ad5a6bbd969375dd6a3bd34c27a293e8910d865173c6afb378abf4a8147",
+    "data/cds/set1.ocd": "6d4995d2e7f1f24e062f52f600f33cceabe24e3055927e668dbea6a5dd0c5ea2",
+    "data/cds/setname1.ocd": "746cc460c6aec8601d72dbfe16b99451dcd24f165b2d9ec4f77b4f391bd54abd",
+    "data/cds/sts.ocd": "12080bc5486caeba73f14e6f748c9d5adfbba60c6244d1002588c2033ab49fa3",
+    "data/cds/transc1.ocd": "75ed9e263f1256e957d56fc30648835d3d0a0c1fc375947b0a2fa1bdf71a177d",
+    "data/cds/veccalc1.ocd": "5a8b5dc4f26b535161cb98a74145f9077a4aaea3abba81643f96c67da187b0c8",
+    "lib/openmath/cd/group.rb": "f58689a950f88019e96450033a531c42da011763c8d8767bfc5b1cee7857f6ef",
+    "lib/openmath/cd/group/artifacts.rb": "3823c93c059c03a8ee95f4d2bb247ae3d8b24e10ee4ba1a53ca717f693721d09",
+    "lib/openmath/cd/group/errors.rb": "b01f3c817a531007142dd6744d962883b33ec9a1b0b16ad086b012fea5a42a16",
+    "lib/openmath/cd/group/models.rb": "ec29f5de5efa014ecdac0bc773cf8c1b144a792a4c54f19903879dd5ded4c5f9",
+    "lib/openmath/cd/group/pinned_collection.rb": "17ea70a9cc508e5a023c57915ba71981cf98b00697472c2013bc53725c3df747",
+    "schemas/cdgroup/omcdgroup2.rnc": "ffdbf002e96579cb1fd230f5bbfcf61374c96cf2251e6111e14098209a596d81",
+    "schemas/cdgroup/omcdgroup2.rng": "452cb17f448bb685ec8b471aab9eca387987fe02a0b56e1c1cee4b6bba801505"
+  },
+  "bindings": [],
+  "hooks": [
+    {
+      "type": "installer",
+      "file": "lib/openmath/cd/group.rb",
+      "constant": "Openmath::CD::Group"
+    }
+  ]
+}
