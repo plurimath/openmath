@@ -57,6 +57,29 @@ RSpec.describe OrderReproduction do
     end
   end
 
+  it "returns harness success when the captured product ordering fails" do
+    report = { "coverage_complete" => true, "product_ordering_pass" => false }
+    allow(described_class).to receive(:run).and_return(report)
+
+    expect do
+      expect(described_class.main(["--json"])).to eq(0)
+    end.to output(JSON.pretty_generate(report) + "\n").to_stdout
+    expect do
+      expect(described_class.main(["--json", "--assert-product"])).to eq(1)
+    end.to output(JSON.pretty_generate(report) + "\n").to_stdout
+  end
+
+  it "refuses a complete product assertion when an adapter cannot be measured" do
+    report = { "coverage_complete" => false, "product_ordering_pass" => nil,
+               "adapters" => [{ "adapter" => "ox", "status" => "unavailable" }] }
+    allow(described_class).to receive(:run).and_return(report)
+    allow(described_class).to receive(:puts)
+
+    expect do
+      expect(described_class.main(["--assert-product"])).to eq(2)
+    end.to output(/OrderReproduction::CoverageError: refused complete adapter assertion: unavailable ox/).to_stderr
+  end
+
   it "refuses unrecognized nodes and command options with typed diagnostics" do
     expect { described_class.signature(Object.new) }
       .to raise_error(OrderReproduction::UnsupportedNodeError, /Object/)
