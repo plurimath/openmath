@@ -1,0 +1,11 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="s_data1" name="moment"/>
+    <OMI> 2 </OMI>
+    <OMS cd="alg1" name="zero"/>
+    <OMF dec="3.1"/> <OMF dec="2.2"/> <OMF dec="1.8"/> <OMF dec="1.1"/>
+    <OMF dec="3.3"/> <OMF dec="2.4"/> <OMF dec="5.5"/> <OMF dec="2.3"/>
+    <OMF dec="1.7"/> <OMF dec="1.8"/> <OMF dec="3.4"/> <OMF dec="4.0"/>
+    <OMF dec="3.3"/>
+  </OMA>
+</OMOBJ>

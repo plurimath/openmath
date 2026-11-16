@@ -1,0 +1,17 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="scscp1" name="call_id"/>
+            <OMSTR>1324769</OMSTR>
+          </OMATP>
+          <OMA>
+            <OMS cd="scscp1" name="procedure_completed"/>
+            <OMA>
+              <OMS cd="scscp2" name="service_description"/>
+              <OMSTR>MyGreatService</OMSTR>
+              <OMSTR>1.1.0</OMSTR>
+              <OMSTR>This service does fantastic things!</OMSTR>
+            </OMA>
+          </OMA>
+        </OMATTR>
+      </OMOBJ>

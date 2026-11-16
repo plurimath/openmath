@@ -1,0 +1,11 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="scscp1" name="call_id"/>
+            <OMSTR>9882862</OMSTR>
+          </OMATP>
+          <OMA>
+            <OMS cd="scscp1" name="procedure_completed"/>
+          </OMA>
+        </OMATTR>
+      </OMOBJ>

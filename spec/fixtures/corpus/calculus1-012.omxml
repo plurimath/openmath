@@ -1,0 +1,20 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="calculus1" name="defint"/>
+    <OMA>
+      <OMS cd="interval1" name="ordered_interval"/>
+      <OMF dec="-1.0"/>
+      <OMF dec="1.0"/>
+    </OMA>
+    <OMBIND>
+      <OMS cd="fns1" name="lambda"/>
+      <OMBVAR>
+        <OMV name="x"/>
+      </OMBVAR>
+      <OMA>
+         <OMS cd="transc1" name="sin"/>
+	<OMV name="x"/>
+      </OMA>
+    </OMBIND>
+  </OMA>
+</OMOBJ>

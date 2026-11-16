@@ -1,0 +1,26 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+      <OMS cd="calculus1" name="defintint"/>
+      <OMA>
+        <OMS name="oriented_interval" cd="interval1"/>
+        <OMV name="a"/>
+        <OMV name="b"/>
+      </OMA>
+      <OMV name="f"/>
+    </OMA>
+    <OMA>
+      <OMS cd="arith1" name="minus"/>
+      <OMA>
+        <OMS cd="calculus1" name="defintint"/>
+        <OMA>
+          <OMS name="oriented_interval" cd="interval1"/>
+          <OMV name="b"/>
+          <OMV name="a"/>
+        </OMA>
+        <OMV name="f"/>
+      </OMA>
+    </OMA>
+  </OMA>
+</OMOBJ>

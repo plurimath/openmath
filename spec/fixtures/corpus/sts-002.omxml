@@ -1,0 +1,8 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="sts" name="mapsto"/>
+    <OMS cd="setname1" name="R"/>
+    <OMS cd="setname1" name="Z"/>
+    <OMS cd="setname1" name="R"/>
+  </OMA>
+</OMOBJ>

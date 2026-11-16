@@ -7,6 +7,7 @@ module Openmath
   autoload :CommonElements, "openmath/common_elements"
   autoload :Namespace, "openmath/namespace"
   autoload :V2, "openmath/v2"
+  autoload :Validation, "openmath/validation"
 
   module Base
     autoload :Oms, "openmath/base/oms"
@@ -38,5 +39,15 @@ module Openmath
     end
   end
 
-  module_function :parse
+  # Validates the document against the version's schema and raises
+  # Openmath::Validation::ValidationError on any violation.
+  def validate!(xml, version: 2)
+    Validation.validate!(xml, version: version)
+  end
+
+  def valid?(xml, version: 2)
+    Validation.valid?(xml, version: version)
+  end
+
+  module_function :parse, :validate!, :valid?
 end

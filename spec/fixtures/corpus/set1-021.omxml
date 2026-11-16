@@ -1,0 +1,17 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="set1" name="notsubset"/>
+    <OMA>
+      <OMS cd="set1" name="set"/>
+      <OMI> 2 </OMI>
+      <OMI> 3 </OMI>
+      <OMI> 4 </OMI>
+    </OMA>
+    <OMA>
+      <OMS cd="set1" name="set"/>
+      <OMI> 1 </OMI>
+      <OMI> 2 </OMI>
+      <OMI> 3 </OMI>
+    </OMA>
+  </OMA>
+</OMOBJ>

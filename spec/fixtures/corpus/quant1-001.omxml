@@ -1,0 +1,27 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMBIND>
+    <OMS cd="quant1" name="forall"/>
+    <OMBVAR>
+      <OMV name="x"/>
+    </OMBVAR>
+    <OMA>
+    <OMS name="implies" cd="logic1"/>
+    <OMA>
+      <OMS name="in" cd="set1"/>
+      <OMV name="x"/>
+      <OMS name="R" cd="setname1"/>
+    </OMA>
+    <OMA>
+      <OMS cd="relation1" name="leq"/>
+      <OMA>
+        <OMS cd="arith1" name="abs"/>
+        <OMA>
+          <OMS cd="transc1" name="sin"/>
+          <OMV name="x"/>
+        </OMA>
+      </OMA>
+      <OMF dec="1.0"/>
+    </OMA>
+    </OMA>
+  </OMBIND>
+</OMOBJ>

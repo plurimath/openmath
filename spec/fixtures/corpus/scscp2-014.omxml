@@ -1,0 +1,37 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="scscp1" name="call_id"/>
+            <OMSTR>1324766</OMSTR>
+          </OMATP>
+          <OMA>
+            <OMS cd="scscp1" name="procedure_completed"/>
+            <OMA>
+              <OMS cd="meta" name="CD"/>
+              <OMA>
+                <OMS cd="meta" name="CDName"/>
+                <OMSTR>scscp_transient_1</OMSTR>
+              </OMA>
+              <OMA>
+                <OMS cd="meta" name="CDDate"/>
+                <OMSTR>2007-08-24</OMSTR>
+              </OMA>
+              <OMA>
+                <OMS cd="meta" name="Description"/>
+                <OMSTR>CD created by the service provider</OMSTR>
+              </OMA>
+              <OMA>
+                <OMS name="CDDefinition" cd="meta"/>
+                <OMA>
+                  <OMS cd="meta" name="Name"/>
+                  <OMSTR>GroupIdentificationService</OMSTR>
+                </OMA>
+                <OMA>
+                  <OMS cd="meta" name="Description"/>
+                  <OMSTR>IdGroup(permgroup by gens)</OMSTR>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMATTR>
+      </OMOBJ>

@@ -1,0 +1,16 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS name="defint" cd="calculus1"/>
+    <OMV name="C"/>
+    <OMBIND>
+      <OMS name="lambda" cd="fns1"/>
+      <OMBVAR>
+        <OMV name="x"/>
+      </OMBVAR>
+      <OMA>
+        <OMV name="f"/>
+        <OMV name="x"/>
+      </OMA>
+    </OMBIND>
+  </OMA>
+</OMOBJ>

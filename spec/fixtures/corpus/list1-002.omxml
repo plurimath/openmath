@@ -1,0 +1,34 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="list1" name="suchthat"/>
+    <OMS cd="setname1" name="Z"/>
+    <OMBIND>
+      <OMS cd="fns1" name="lambda"/>
+      <OMBVAR>
+        <OMV name="x"/>
+      </OMBVAR>
+      <OMA>
+        <OMS cd="logic1" name="and"/>
+	<OMA>
+	  <OMS cd="relation1" name="geq"/>
+	  <OMV name="x"/>
+	  <OMS cd="alg1" name="zero"/>
+	</OMA>
+	<OMA>
+	  <OMS cd="relation1" name="lt"/>
+	  <OMV name="x"/>
+	  <OMI> 100 </OMI>
+	</OMA>
+        <OMA>
+          <OMS cd="set1" name="in"/>
+	  <OMA>
+	    <OMS cd="arith1" name="divide"/>
+	    <OMV name="x"/>
+	    <OMI> 2 </OMI>
+	  </OMA>
+	  <OMS cd="setname1" name="Z"/>
+        </OMA>
+      </OMA>
+    </OMBIND>
+  </OMA>
+</OMOBJ>

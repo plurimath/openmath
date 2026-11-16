@@ -1,0 +1,12 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="scscp1" name="call_id"/>
+            <OMSTR>localhost:26137:18668:s2sYf1pg</OMSTR>
+          </OMATP>
+          <OMA>
+            <OMS cd="scscp1" name="procedure_completed"/>
+            <OMR href="scscp://somehost.somedomain:26133/q9t4eX"/>
+          </OMA>
+        </OMATTR>
+      </OMOBJ>

@@ -1,0 +1,12 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+  <OMS cd="relation1" name="eq"/>
+  <OMF dec="8.5"/>
+  <OMA>
+    <OMS cd="nums1" name="based_float"/>
+    <OMI>8</OMI>
+    <OMSTR>10.4</OMSTR>
+  </OMA>
+
+</OMA>
+</OMOBJ>

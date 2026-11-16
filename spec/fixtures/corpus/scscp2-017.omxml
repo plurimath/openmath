@@ -1,0 +1,28 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="scscp1" name="call_id"/>
+            <OMSTR>1324767</OMSTR>
+          </OMATP>
+          <OMA>
+            <OMS cd="scscp1" name="procedure_completed"/>
+            <OMA>
+              <OMS cd="scscp2" name="signature"/>
+              <OMS cd="scscp_transient_1" name="GroupIdentificationService"/>
+              <OMI>1</OMI>
+              <OMI>1</OMI>
+              <OMA>
+                <OMS cd="list1" name="list"/>
+                <OMA>
+                  <OMS cd="scscp2" name="symbol_set"/>
+                  <OMS cd="group1" name="group"/>
+                  <OMA>
+                    <OMS cd="meta" name="CDName"/>
+                    <OMSTR>permut1</OMSTR>
+                  </OMA>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMATTR>
+      </OMOBJ>

@@ -1,0 +1,17 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="limit1" name="limit"/>
+    <OMI> 0 </OMI>
+    <OMS cd="limit1" name="above"/>
+    <OMBIND>
+      <OMS cd="fns1" name="lambda"/>
+        <OMBVAR>
+        <OMV name="x"/>
+        </OMBVAR>
+        <OMA>
+          <OMS cd="transc1" name="sin"/>
+          <OMV name="x"/>
+        </OMA>
+    </OMBIND>
+  </OMA>
+</OMOBJ>

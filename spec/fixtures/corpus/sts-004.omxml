@@ -1,0 +1,10 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS name="mapsto" cd="sts"/>
+    <OMA>
+      <OMS name="nassoc" cd="sts"/> 
+      <OMV name="AbelianSemiGroup"/>
+    </OMA>
+    <OMV name="AbelianSemiGroup"/>
+  </OMA>
+</OMOBJ>

@@ -1,0 +1,17 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="scscp1" name="call_id"/>
+            <OMSTR>a24904e5d3ed28eae9225fd787f64a71</OMSTR>
+            <OMS cd="scscp1" name="info_runtime"/>
+            <OMSTR>21897</OMSTR>
+          </OMATP>
+          <OMA>
+            <OMS cd="scscp1" name="procedure_terminated"/>
+            <OME>
+              <OMS cd="scscp1" name="error_system_specific"/>
+              <OMSTR>Segmentation fault</OMSTR>
+            </OME>
+          </OMA>
+        </OMATTR>
+      </OMOBJ>

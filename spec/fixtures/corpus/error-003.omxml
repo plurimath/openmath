@@ -1,0 +1,6 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OME>
+    <OMS cd="error" name="unsupported_CD"/>
+    <OMS cd="specfun1" name="BesselJ"/>
+  </OME>
+</OMOBJ>

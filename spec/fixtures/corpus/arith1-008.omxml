@@ -1,0 +1,47 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+<OMA>
+  <OMS cd="relation1" name="eq"/>
+  <OMA>
+    <OMS cd="arith1" name="times"/>
+    <OMA>
+      <OMS cd="linalg2" name="matrix"/>
+      <OMA>
+        <OMS cd="linalg2" name="matrixrow"/>
+        <OMI> 1 </OMI>
+        <OMI> 2 </OMI>
+      </OMA>
+      <OMA>
+        <OMS cd="linalg2" name="matrixrow"/>
+        <OMI> 3 </OMI>
+        <OMI> 4 </OMI>
+      </OMA>
+    </OMA>
+    <OMA>
+      <OMS cd="linalg2" name="matrix"/>
+      <OMA>
+        <OMS cd="linalg2" name="matrixrow"/>
+        <OMI> 5 </OMI>
+        <OMI> 6 </OMI>
+      </OMA>
+      <OMA>
+        <OMS cd="linalg2" name="matrixrow"/>
+        <OMI> 7 </OMI>
+        <OMI> 8 </OMI>
+      </OMA>
+    </OMA>
+  </OMA>
+  <OMA>
+    <OMS cd="linalg2" name="matrix"/>
+    <OMA>
+      <OMS cd="linalg2" name="matrixrow"/>
+      <OMI> 19 </OMI>
+      <OMI> 22 </OMI>
+    </OMA>
+    <OMA>
+      <OMS cd="linalg2" name="matrixrow"/>
+      <OMI> 43 </OMI>
+      <OMI> 50 </OMI>
+    </OMA>
+  </OMA>
+</OMA>
+</OMOBJ>

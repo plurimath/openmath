@@ -21,13 +21,14 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = Gem::Requirement.new(">= 3.2.0")
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
-    Dir["lib/**/*.rb", "README.adoc", "LICENSE.md"]
+    Dir["lib/**/*.rb", "schemas/**/*", "README.adoc", "LICENSE.md"]
       .select { |f| File.file?(f) }
   end
   spec.require_paths = ["lib"]
 
   spec.add_dependency "lutaml-model", "~> 0.8", ">= 0.8.162"
   spec.add_dependency "moxml", "~> 0.6.1"
+  spec.add_dependency "nokogiri", "~> 1.16"
 
   spec.metadata["rubygems_mfa_required"] = "true"
 end

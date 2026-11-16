@@ -1,0 +1,12 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+  <OMS cd="linalg1" name="vector_selector"/>
+    <OMI>2</OMI>
+    <OMA>
+    <OMS cd="linalg2" name="vector"/>
+      <OMI> 3 </OMI>
+      <OMI> 6 </OMI>
+      <OMI> 9 </OMI>
+    </OMA>     
+  </OMA>
+</OMOBJ>

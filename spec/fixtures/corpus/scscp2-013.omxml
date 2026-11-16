@@ -1,0 +1,20 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="scscp1" name="call_id"/>
+            <OMSTR>1324766</OMSTR>
+            <OMS cd="scscp1" name="option_return_object"/>
+            <OMSTR/>
+          </OMATP>
+          <OMA>
+            <OMS cd="scscp1" name="procedure_call"/>
+            <OMA>
+              <OMS cd="scscp2" name="get_transient_cd"/>
+              <OMA>
+                <OMS cd="meta" name="CDName"/>
+                <OMSTR>scscp_transient_1</OMSTR>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMATTR>
+      </OMOBJ>

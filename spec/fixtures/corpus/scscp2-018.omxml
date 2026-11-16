@@ -1,0 +1,40 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="scscp1" name="call_id"/>
+            <OMSTR>1324767</OMSTR>
+          </OMATP>
+          <OMA>
+            <OMS cd="scscp1" name="procedure_completed"/>
+            <OMA>
+              <OMS cd="scscp2" name="signature"/>
+              <OMS cd="scscp_transient_1" name="CAS_Service"/>
+              <OMI>0</OMI>
+              <OMS cd="nums1" name="infinity"/>
+              <OMA>
+                <OMS cd="list1" name="list"/>
+                <OMA>
+                  <OMS cd="meta" name="CDGroupName"/>
+                  <OMSTR>scscp</OMSTR>
+                </OMA>
+                <OMA>
+                  <OMS cd="meta" name="CDName"/>
+                  <OMSTR>scscp_transient_0</OMSTR>
+                </OMA>
+                <OMA>
+                  <OMS cd="meta" name="CDName"/>
+                  <OMSTR>scscp_transient_1</OMSTR>
+                </OMA>
+                <OMA>
+                  <OMS cd="meta" name="CDName"/>
+                  <OMSTR>arith1</OMSTR>
+                </OMA>
+                <OMA>
+                  <OMS cd="meta" name="CDName"/>
+                  <OMSTR>transc1</OMSTR>
+                </OMA>
+              </OMA>
+            </OMA>
+          </OMA>
+        </OMATTR>
+      </OMOBJ>

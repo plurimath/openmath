@@ -1,0 +1,6 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OME>
+          <OMS cd="scscp2" name="no_such_transient_cd"/>
+          <OMSTR>scscp_transient_7</OMSTR>
+        </OME>
+      </OMOBJ>

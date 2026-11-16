@@ -1,0 +1,16 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="scscp1" name="call_id"/>
+            <OMSTR>1324765</OMSTR>
+            <OMS cd="scscp1" name="option_return_object"/>
+            <OMSTR/>
+          </OMATP>
+          <OMA>
+            <OMS cd="scscp1" name="procedure_call"/>
+            <OMA>
+              <OMS cd="scscp2" name="get_allowed_heads"/>
+            </OMA>
+          </OMA>
+        </OMATTR>
+      </OMOBJ>

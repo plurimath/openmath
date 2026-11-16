@@ -1,0 +1,21 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="arith1" name="sum"/>
+      <OMA>
+        <OMS cd="interval1" name="integer_interval"/>
+        <OMI> 1 </OMI>
+        <OMI> 10 </OMI>
+      </OMA>
+    <OMBIND>
+      <OMS cd="fns1" name="lambda"/>
+        <OMBVAR>
+          <OMV name="x"/>
+        </OMBVAR>
+        <OMA>
+          <OMS cd="arith1" name="divide"/>
+          <OMI> 1 </OMI>
+          <OMV name="x"/>
+        </OMA>
+    </OMBIND>
+  </OMA>
+</OMOBJ>

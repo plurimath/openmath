@@ -1,0 +1,15 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="relation1" name="eq"/>
+    <OMA>
+      <OMS cd="minmax1" name="max"/>
+      <OMA>
+        <OMS cd="set1" name="set"/>
+        <OMI> 1 </OMI>
+        <OMI> 9 </OMI>
+        <OMI> 5 </OMI>
+      </OMA>
+    </OMA>
+    <OMI> 9 </OMI>
+  </OMA>
+</OMOBJ>

@@ -1,0 +1,19 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0">
+<OMA><OMS cd="relation1" name="eq"/>
+     <OMA><OMS cd="relation3" name="class"/>
+          <OMV name="S"/>    <OMV name="R"/> <OMV name="a"/>
+     </OMA>
+     <OMA><OMS cd="set1" name="suchthat"/>
+          <OMV name="S"/>
+          <OMBIND><OMS cd="fns1" name="lambda"/>
+               <OMBVAR> <OMV name="b"/></OMBVAR>
+               <OMA><OMS cd="set1" name="in"/>
+                    <OMA><OMS cd="list1" name="list"/>
+                         <OMV name="a"/>  <OMV name="b"/>
+                    </OMA>
+                    <OMV name="R"/>
+               </OMA>
+          </OMBIND>
+     </OMA>
+</OMA>
+</OMOBJ>

@@ -1,0 +1,16 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="multiset1" name="prsubset"/>
+    <OMA>
+      <OMS cd="multiset1" name="multiset"/>
+      <OMI> 2 </OMI>
+      <OMI> 3 </OMI>
+    </OMA>
+    <OMA>
+      <OMS cd="multiset1" name="multiset"/>
+      <OMI> 2 </OMI>
+      <OMI> 2 </OMI>
+      <OMI> 3 </OMI>
+    </OMA>
+  </OMA>
+</OMOBJ>

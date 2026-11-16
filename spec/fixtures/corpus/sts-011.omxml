@@ -1,0 +1,7 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+ <OMA>
+  <OMS name="mapsto" cd="sts"/>
+  <OMS name="NumericalValue" cd="sts"/> 
+  <OMS name="SetNumericalValue" cd="sts"/> 
+ </OMA>
+</OMOBJ>

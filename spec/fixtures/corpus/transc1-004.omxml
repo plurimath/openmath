@@ -1,0 +1,6 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath" version="2.0" cdbase="http://www.openmath.org/cd">
+  <OMA>
+    <OMS cd="transc1" name="ln"/>
+    <OMF dec="1"/>
+  </OMA>
+</OMOBJ>

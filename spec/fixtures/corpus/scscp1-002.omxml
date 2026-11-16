@@ -1,0 +1,16 @@
+<OMOBJ xmlns="http://www.openmath.org/OpenMath">
+        <OMATTR>
+          <OMATP>
+            <OMS cd="scscp1" name="call_id"/>
+            <OMSTR>a1d0c6e83f027327d8461063f4ac58a6</OMSTR>
+            <OMS cd="scscp1" name="info_runtime"/>
+            <OMI>72643</OMI>
+            <OMS cd="scscp1" name="info_memory"/>
+            <OMI>52876</OMI>
+          </OMATP>
+          <OMA>
+            <OMS cd="scscp1" name="procedure_completed"/>
+            <OMI>26925748508234281076009</OMI>
+          </OMA>
+        </OMATTR>
+      </OMOBJ>
