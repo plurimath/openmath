@@ -173,4 +173,4 @@ ledger["entries"] << {
                  "scripts/generate_stage_cases.rb at #{gem_commit[0, 7]}.",
 }
 File.write(ledger_path, YAML.dump(ledger))
-puts "generation #{format('%06d', generation)}: #{payloads.size} payloads, #{row_count} rows, digest sha256:#{digest}"
+puts "generation #{format('%06d', generation)}: #{payloads.size} payloads, #{row_count} rows, digest #{digest}"
