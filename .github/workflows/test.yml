@@ -24,3 +24,16 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
       - run: bundle exec rspec
+
+  portable-artifact:
+    name: portable artifact determinism
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      # The shipped portable-bindings.json must equal a fresh export byte
+      # for byte (the rs/wasm replay lanes consume exactly these bytes).
+      - run: bundle exec ruby scripts/export_portable.rb --check
