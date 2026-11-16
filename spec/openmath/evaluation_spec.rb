@@ -385,6 +385,72 @@ RSpec.describe Openmath do
   end
 end
 
+describe "the v1 core's remaining official symbols" do
+  def eval_om(inner) = described_class.evaluate(om(inner))
+
+  def binder(body, var = "x")
+    "<OMBIND>#{oms("fns1", "lambda")}<OMBVAR>#{omv(var)}</OMBVAR>#{body}</OMBIND>"
+  end
+
+  it "constructs based integers exactly" do
+    expect(described_class.evaluate(app("nums1", "based_integer", omi(16), "<OMSTR>1af</OMSTR>")))
+      .to eq(431)
+    expect(described_class.evaluate(app("nums1", "based_integer", omi(2), "<OMSTR>-101</OMSTR>")))
+      .to eq(-5)
+    expect { described_class.evaluate(app("nums1", "based_integer", omi(1), "<OMSTR>1</OMSTR>")) }
+      .to raise_error(Openmath::Evaluation::OperandTypeError, /base/)
+  end
+
+  it "takes exact roots over the exact ring and contaminates otherwise" do
+    expect(described_class.evaluate(app("arith1", "root", omi(4), omi(2)))).to eq(2)
+    expect(described_class.evaluate(app("arith1", "root", omi(-8), omi(3)))).to eq(-2)
+    expect(described_class.evaluate(app("arith1", "root",
+      inner_app("nums1", "rational", omi(9), omi(4)), omi(2))))
+      .to eq(Rational(3, 2))
+    irrational = described_class.evaluate(app("arith1", "root", omi(2), omi(2)))
+    expect(irrational).to be_a(Float)
+    expect(irrational).to be_within(1e-12).of(1.4142135623730951)
+    expect { described_class.evaluate(app("arith1", "root", omi(8), omi(-2))) }
+      .to raise_error(Openmath::Evaluation::OperandTypeError, /root index/)
+  end
+
+  it "sums and multiplies over enumerated domains through the lambda layer" do
+    half = binder(inner_app("arith1", "divided_by", omv("x"), omi(2)))
+    unit = inner_app("interval1", "interval", omi(1), omi(4))
+    result = described_class.evaluate(app("arith1", "sum", unit, half))
+    expect(result).to eq(5)
+    expect(result).to be_a(Rational)
+
+    double = binder(inner_app("arith1", "times", omv("x"), omi(2)))
+    expect(described_class.evaluate(app("arith1", "product", unit, double))).to eq(384)
+
+    listed = inner_app("list1", "list", omi(1), omi(2), omi(3))
+    expect(described_class.evaluate(app("arith1", "sum", listed, binder(omv("x"))))).to eq(6)
+
+    expect(described_class.evaluate(app("arith1", "sum",
+      inner_app("interval1", "interval_oc", omi(1), omi(2)),
+      binder(omv("x"))))).to eq(2)
+  end
+
+  it "refuses non-enumerable summation domains" do
+    matrix = inner_app("linalg2", "matrix",
+                       inner_app("linalg2", "matrixrow", omi(1)))
+    expect { described_class.evaluate(app("arith1", "sum", matrix, binder(omv("x")))) }
+      .to raise_error(Openmath::Evaluation::OperandTypeError, /summation domain/)
+  end
+
+  it "compares approximately with a documented tolerance" do
+    expect(described_class.evaluate(app("relation1", "approx", omi(1), omi(1)))).to be(true)
+    expect(described_class.evaluate(app("relation1", "approx", omi(1), omi(2)))).to be(false)
+    float_sum = inner_app("arith1", "plus", %(<OMF dec="0.1"/>), %(<OMF dec="0.2"/>))
+    expect(described_class.evaluate(app("relation1", "approx", float_sum, %(<OMF dec="0.3"/>))))
+      .to be(true)
+    expect(described_class.evaluate(app("relation1", "approx",
+      inner_app("nums1", "rational", omi(355), omi(113)),
+      %(<OMF dec="3.141592653589793"/>)))).to be(true)
+  end
+end
+
   describe "the binding table artifact" do
     it "pins the shipped table's checksum" do
       checksum = Openmath::Evaluation::BindingTable.default_checksum
@@ -394,8 +460,8 @@ end
 
     it "records the schema and version" do
       table = Openmath::Evaluation::BindingTable.default
-      expect(table.version).to eq(2)
-      expect(table.bindings.size).to be >= 42
+      expect(table.version).to eq(3)
+      expect(table.bindings.size).to be >= 46
     end
   end
 end

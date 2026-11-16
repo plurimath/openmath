@@ -60,6 +60,12 @@ module Openmath
         transpose:    [->(args) { matrix_arg(args).transpose }, 1..1],
         determinant:  [->(args) { determinant(matrix_arg(args)) }, 1..1],
         vector_product: [->(args) { vector_product(args) }, 2..2],
+        # the v1 core's remaining official symbols
+        based_integer: [->(args) { based_integer(args) }, 2..2],
+        root:          [->(args) { root(args) }, 2..2],
+        sum:           [->(args) { aggregate(args, 0, :+) }, 2..2],
+        product:       [->(args) { aggregate(args, 1, :*) }, 2..2],
+        approx:        [->(args) { approx(args) }, 2..2],
       }.freeze
 
       def implementation(operation)
@@ -256,6 +262,120 @@ module Openmath
           left[2] * right[0] - left[0] * right[2],
           left[0] * right[1] - left[1] * right[0],
         ]
+      end
+
+      # nums1/based_integer: (base, digit string) — digits 0-9a-z, base
+      # 2-36 per the CD (10 and 16 ride the encodings).
+      def based_integer(args)
+        base, digits = args
+        unless base.is_a?(Integer) && base.between?(2, 36)
+          raise OperandTypeError.new("based_integer base", base)
+        end
+        unless digits.is_a?(String) && digits.match?(/\A[+-]?[0-9a-z]+\z/i)
+          raise OperandTypeError.new("based_integer digits", digits)
+        end
+
+        Integer(digits, base)
+      end
+
+      # arith1/root: the inverse of power — exact when the operand is a
+      # perfect n-th power over the exact ring, float-contaminated
+      # otherwise (power's own negative-exponent discipline mirrored).
+      def root(args)
+        base, n = args
+        require_numeric(args)
+        unless n.is_a?(Integer) && n.positive?
+          raise OperandTypeError.new("root index", n)
+        end
+
+        exact_root(base, n) || base.to_f**Rational(1, n)
+      end
+
+      def exact_root(base, n)
+        if base.is_a?(Rational)
+          numerator = integer_root_floor(base.numerator, n)
+          denominator = integer_root_floor(base.denominator, n)
+          if numerator**n == base.numerator && denominator**n == base.denominator
+            Rational(numerator, denominator)
+          end
+        elsif base.is_a?(Integer)
+          root = integer_root_floor(base, n)
+          root if root**n == base
+        end
+      end
+
+      # The integer floor of the n-th root by bisection under a
+      # bit-length bound; integers and rationals never convert through
+      # floats.
+      def integer_root_floor(value, n)
+        negative = value.negative?
+        magnitude = value.abs
+        return value if n == 1
+        return 0 if magnitude.zero?
+
+        high = 1 << ((magnitude.bit_length + n - 1) / n)
+        low = high >> 1
+        while low < high
+          mid = (low + high + 1) / 2
+          mid**n <= magnitude ? low = mid : high = mid - 1
+        end
+        negative ? -low : low
+      end
+
+      # arith1/sum and arith1/product: (domain, function) per the CD —
+      # the function applies elementwise over the enumerated domain and
+      # folds under the monoid identity. Infinite domains refuse typed
+      # (the CD permits them; enumeration of them does not terminate).
+      def aggregate(args, identity, operator)
+        domain, closure = args
+        values = apply_elementwise(closure, domain_elements(domain)) do |_element, result|
+          result
+        end
+        values.reduce(identity, operator)
+      end
+
+      def domain_elements(domain)
+        case domain
+        when Range then domain.to_a
+        when Array
+          unless domain.all? { |element| element.is_a?(Numeric) }
+            raise OperandTypeError.new("summation domain", domain)
+          end
+
+          domain
+        when Interval then interval_elements(domain)
+        else raise OperandTypeError.new("summation domain", domain)
+        end
+      end
+
+      def interval_elements(interval)
+        unless interval.low.is_a?(Integer) && interval.high.is_a?(Integer)
+          raise OperandTypeError.new("interval bounds", interval)
+        end
+
+        low = interval.low_closed ? interval.low : interval.low + 1
+        high = interval.high_closed ? interval.high : interval.high - 1
+        low > high ? [] : (low..high).to_a
+      end
+
+      # relation1/approx: exact operands compare exactly; a float
+      # contaminates the comparison to the limited class under a
+      # documented relative tolerance of 10^-6 — loose enough for the
+      # CD's own example (approx(355/113, pi) holds), exact equality
+      # still exact.
+      APPROX_TOLERANCE = 1e-6
+
+      def approx(args)
+        left, right = args
+        require_numeric(args)
+        if left.is_a?(Float) || right.is_a?(Float)
+          fl = left.to_f
+          fr = right.to_f
+          scale = [fl.abs, fr.abs].max
+          return scale.zero? || (fl - fr).abs <= APPROX_TOLERANCE * scale
+        end
+
+        left == right
       end
 
       def compare_chain(args, operator)
