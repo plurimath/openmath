@@ -54,9 +54,12 @@ Dir[File.join(corpus_dir, "*.omxml")].sort.each do |path|
   group = id.split("-").first.tr("_", "-")
   groups[group] << {
     "id" => id,
-    "input" => xml,
-    "model" => Openmath::Tagged.node(object),
-    "output" => output,
+    "input" => Openmath::Tagged.node(xml),
+    "options" => {},
+    "expected" => {
+      "model" => Openmath::Tagged.node(object),
+      "output" => Openmath::Tagged.node(output),
+    },
   }
 end
 
