@@ -16,6 +16,7 @@ RSpec.describe Openmath::Extensions::Registry do
     Dir.mktmpdir("openmath-extension-contract") do |directory|
       @package = directory
       %w[lib data].each { |name| FileUtils.cp_r(File.join(source_root, name), directory) }
+      FileUtils.cp(File.join(source_root, "openmath.gemspec"), directory)
       example.run
     end
   end
@@ -63,7 +64,7 @@ RSpec.describe Openmath::Extensions::Registry do
   end
 
   it "discovers a temporary packaged extension, binding and public API in a fresh process" do
-    protected_paths = %w[lib/openmath.rb lib/openmath/v2.rb lib/openmath/v3.rb lib/openmath/extensions/registry.rb]
+    protected_paths = %w[lib/openmath.rb lib/openmath/v2.rb lib/openmath/v3.rb lib/openmath/extensions/registry.rb openmath.gemspec data/extensions/core.yml]
     before = protected_paths.to_h { |path| [path, Digest::SHA256.file(File.join(@package, path)).hexdigest] }
     fixture("zeta")
     fixture("alpha", hook: false)
@@ -75,14 +76,13 @@ RSpec.describe Openmath::Extensions::Registry do
   end
 
   it "ships discovery data and loads a fixture from an actual gem package" do
-    specification = Gem::Specification.load(File.join(source_root, "openmath.gemspec"))
+    fixture("zeta")
+    specification = Gem::Specification.load(File.join(@package, "openmath.gemspec"))
     required = Dir.chdir(source_root) { Dir["data/*-schema.json", "data/extensions/*.yml", "data/bindings/*.yml"] }
     missing = required - specification.files
-    pending("F-pkg prerequisite absent at admission 7719764: #{missing.join(', ')}") unless missing.empty?
     expect(missing).to be_empty
 
-    fixture("zeta")
-    specification.files = (specification.files + Dir.chdir(@package) { Dir["lib/openmath/extensions/zeta/*.rb", "data/bindings/zeta.yml", "data/extensions/zeta.yml"] }).uniq
+    expect(specification.files).to include("lib/openmath/extensions/zeta/probe.rb", "data/bindings/zeta.yml", "data/extensions/zeta.yml")
     # Copy existing package files only; the fixture adds its own files without
     # changing the installed gemspec, entrypoints or a shared manifest.
     specification.files.each do |relative|
