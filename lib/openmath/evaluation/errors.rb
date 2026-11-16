@@ -81,5 +81,15 @@ module Openmath
         super("DimensionMismatch: #{context}")
       end
     end
+
+    # An application contradicts the operator's STS signature.
+    class SignatureViolationError < Error
+      attr_reader :detail
+
+      def initialize(detail)
+        @detail = detail
+        super(detail)
+      end
+    end
   end
 end

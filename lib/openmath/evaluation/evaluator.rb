@@ -13,18 +13,20 @@ module Openmath
       module_function
 
       # The per-walk state: the variable environment and binding table in
-      # effect, the id index of the document scope, and the reference
-      # bookkeeping (memoized results, in-progress targets).
-      Context = Struct.new(:variables, :table, :index, :memo, :in_progress,
-                           keyword_init: true) do
-        def self.build(variables, table, root)
-          new(variables: variables, table: table, index: scope_index(root),
-              memo: {}, in_progress: [])
+      # effect, the optional STS signatures the walk checks against, the
+      # id index of the document scope, and the reference bookkeeping
+      # (memoized results, in-progress targets).
+      Context = Struct.new(:variables, :table, :signatures, :index, :memo,
+                           :in_progress, keyword_init: true) do
+        def self.build(variables, table, root, signatures: nil)
+          new(variables: variables, table: table, signatures: signatures,
+              index: scope_index(root), memo: {}, in_progress: [])
         end
 
         def with(variables:, table:)
-          Context.new(variables: variables, table: table, index: index,
-                      memo: memo, in_progress: in_progress)
+          Context.new(variables: variables, table: table,
+                      signatures: signatures, index: index, memo: memo,
+                      in_progress: in_progress)
         end
 
         def self.scope_index(root)
@@ -47,8 +49,10 @@ module Openmath
 
       # Evaluates an OpenMath object under the variable bindings. Variables
       # bind by name (PM 1004's binding domain: numbers, booleans, strings).
-      def evaluate(object, variables: {}, table: BindingTable.default)
-        walk(object, Context.build(variables, table, object))
+      # When STS signatures are supplied, applications check against their
+      # operator's signature and violations refuse typed.
+      def evaluate(object, variables: {}, table: BindingTable.default, signatures: nil)
+        walk(object, Context.build(variables, table, object, signatures: signatures))
       end
 
       def walk(object, context)
@@ -172,13 +176,28 @@ module Openmath
         binding = context.table.lookup(operator.cd, operator.name)
         raise UnboundSymbolError.new(operator.cd, operator.name) unless binding
 
-        implementation, arity_spec = Operations.implementation(binding.operation)
         arguments = argument_nodes.map { |child| walk(child, context) }
+        check_signature(operator, arguments, context)
+        implementation, arity_spec = Operations.implementation(binding.operation)
         unless arity_spec.cover?(arguments.size)
           raise ArityError.new(binding.operation, arity_spec, arguments.size)
         end
 
         implementation.call(arguments)
+      end
+
+      # Advisory by default: without supplied signatures nothing checks;
+      # with them, a signed operator's application refuses typed on any
+      # profile violation.
+      def check_signature(operator, arguments, context)
+        return unless context.signatures
+
+        signature = context.signatures.lookup(operator.cd, operator.name)
+        return unless signature
+
+        violations = SignatureChecker.violations(operator.cd, operator.name,
+                                                 signature, arguments)
+        violations.each { |detail| raise SignatureViolationError, detail }
       end
 
       def apply_closure(closure, argument_nodes, context)

@@ -71,8 +71,10 @@ module Openmath
   end
 
   # Evaluates an OpenMath object (or XML text) under the variable bindings.
-  def evaluate(object, variables: {}, table: nil, version: nil)
-    args = { variables: variables, version: version }.compact
+  # When STS signatures are supplied, applications check against their
+  # operator's signature and violations refuse typed.
+  def evaluate(object, variables: {}, table: nil, version: nil, signatures: nil)
+    args = { variables: variables, version: version, signatures: signatures }.compact
     args[:table] = table if table
     Evaluation.evaluate(object, **args)
   end

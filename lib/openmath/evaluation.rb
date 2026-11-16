@@ -14,6 +14,8 @@ module Openmath
     autoload :UnimplementedOperationError, "openmath/evaluation/errors"
     autoload :RecursionError, "openmath/evaluation/errors"
     autoload :DimensionMismatchError, "openmath/evaluation/errors"
+    autoload :SignatureViolationError, "openmath/evaluation/errors"
+    autoload :SignatureChecker, "openmath/evaluation/signature_checker"
     autoload :BindingTable, "openmath/evaluation/binding_table"
     autoload :Operations, "openmath/evaluation/operations"
     autoload :ErrorValue, "openmath/evaluation/error_value"
@@ -25,9 +27,10 @@ module Openmath
 
     # Evaluates an OpenMath object (or XML text) under the variable
     # bindings. The binding table is the shipped artifact unless given.
-    def evaluate(object, variables: {}, table: BindingTable.default, version: nil)
+    def evaluate(object, variables: {}, table: BindingTable.default, version: nil, signatures: nil)
       object = Openmath.parse(object, version: version || 2) if object.is_a?(String)
-      Evaluator.evaluate(object, variables: variables, table: table)
+      Evaluator.evaluate(object, variables: variables, table: table,
+                         signatures: signatures)
     end
   end
 end
