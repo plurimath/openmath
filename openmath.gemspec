@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "lutaml-model", "~> 0.8", ">= 0.8.162"
+  spec.add_dependency "lutaml-model", "~> 0.8"
   spec.add_dependency "moxml", "~> 0.6.1"
   spec.add_dependency "nokogiri", "~> 1.16"
 

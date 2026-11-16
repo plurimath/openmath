@@ -10,6 +10,17 @@ module Openmath
   autoload :V3, "openmath/v3"
   autoload :Validation, "openmath/validation"
 
+  module CD
+    autoload :Namespace, "openmath/cd/namespace"
+    autoload :Configuration, "openmath/cd/configuration"
+    autoload :Fmp, "openmath/cd/fmp"
+    autoload :Example, "openmath/cd/example"
+    autoload :Definition, "openmath/cd/definition"
+    autoload :Document, "openmath/cd/document"
+    autoload :Collection, "openmath/cd/collection"
+    autoload :Validation, "openmath/cd/validation"
+  end
+
   module Base
     autoload :Oms, "openmath/base/oms"
     autoload :Omv, "openmath/base/omv"
@@ -51,5 +62,11 @@ module Openmath
     Validation.valid?(xml, version: version)
   end
 
-  module_function :parse, :validate!, :valid?
+  # Parses a CD document into Openmath::CD::Document.
+  def parse_cd(input)
+    CD::Configuration.register_models!
+    CD::Document.from_xml(input)
+  end
+
+  module_function :parse, :validate!, :valid?, :parse_cd
 end
