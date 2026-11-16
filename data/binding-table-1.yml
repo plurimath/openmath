@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 schema: openmath-binding-table/1
-version: 3
+version: 4
 description: >
   The CD binding table: which content-dictionary symbols evaluate, and the
   operation each binds to. Adding a binding is adding data here plus the
@@ -64,3 +64,13 @@ bindings:
   - { cd: linalg1, name: transpose, operation: transpose }
   - { cd: linalg3, name: determinant, operation: determinant }
   - { cd: linalg1, name: vector_product, operation: vector_product }
+  # pmquant — the PM 1002 quantity/uncertainty constructors
+  - { cd: pmquant, name: ustd, operation: ustd }
+  - { cd: pmquant, name: uexp, operation: uexp }
+  - { cd: pmquant, name: ucov, operation: ucov }
+  - { cd: pmquant, name: value, operation: value }
+  # pmquant — the PM 1002 quantity/uncertainty constructors
+  - { cd: pmquant, name: ustd, operation: ustd }
+  - { cd: pmquant, name: uexp, operation: uexp }
+  - { cd: pmquant, name: ucov, operation: ucov }
+  - { cd: pmquant, name: value, operation: value }

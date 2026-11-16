@@ -460,8 +460,8 @@ end
 
     it "records the schema and version" do
       table = Openmath::Evaluation::BindingTable.default
-      expect(table.version).to eq(3)
-      expect(table.bindings.size).to be >= 46
+      expect(table.version).to eq(4)
+      expect(table.bindings.size).to be >= 50
     end
   end
 end

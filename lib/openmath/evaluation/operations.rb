@@ -16,8 +16,8 @@ module Openmath
         rational:     [->(args) { rational(args) }, 2..2],
         plus:         [->(args) { numeric_fold(args, :+) }, 1..],
         times:        [->(args) { numeric_fold(args, :*) }, 1..],
-        minus:        [->(args) { numeric_pair(args) { |a, b| a - b } }, 2..2],
-        unary_minus:  [->(args) { require_numeric(args); -args.fetch(0) }, 1..1],
+        minus:        [->(args) { numeric_pair(args, :-) { |a, b| a - b } }, 2..2],
+        unary_minus:  [->(args) { unary_minus(args) }, 1..1],
         divided_by:   [->(args) { divided_by(args) }, 2..2],
         power:        [->(args) { power(args) }, 2..2],
         abs:          [->(args) { args.fetch(0).abs }, 1..1],
@@ -66,6 +66,11 @@ module Openmath
         sum:           [->(args) { aggregate(args, 0, :+) }, 2..2],
         product:       [->(args) { aggregate(args, 1, :*) }, 2..2],
         approx:        [->(args) { approx(args) }, 2..2],
+        # pmquant — the PM 1002 quantity/uncertainty constructors
+        ustd:          [->(args) { ustd(args) }, 2..2],
+        uexp:          [->(args) { uexp(args) }, 3..4],
+        ucov:          [->(args) { ucov(args) }, 3..5],
+        value:         [->(args) { quantity_value(args) }, 1..1],
       }.freeze
 
       def implementation(operation)
@@ -90,25 +95,84 @@ module Openmath
       end
 
       def numeric_fold(args, operator)
-        require_numeric(args)
-        args.reduce { |a, b| a.public_send(operator, b) }
+        require_arithmetic(args)
+        args.reduce { |left, right| combine(operator, left, right) }
       end
 
-      def numeric_pair(args, &block)
-        require_numeric(args)
-        block.call(args.fetch(0), args.fetch(1))
+      def numeric_pair(args, operator, &block)
+        require_arithmetic(args)
+        left, right = args
+        value = block.call(reported(left), reported(right))
+        propagate(operator, left, right, value)
+      end
+
+      def unary_minus(args)
+        require_arithmetic(args)
+        operand = args.fetch(0)
+        return -operand unless operand.is_a?(Uncertain)
+
+        Uncertain.new(**operand.to_h, value: -operand.value)
+      end
+
+      # The reported value of a quantity; plain numbers are themselves.
+      def reported(operand)
+        operand.is_a?(Uncertain) ? operand.value : operand
+      end
+
+      # The arithmetic domain: numbers and standard-uncertainty
+      # quantities; the other categories refuse arithmetically.
+      def require_arithmetic(args)
+        args.each do |arg|
+          next if arg.is_a?(Numeric)
+          next if arg.is_a?(Uncertain) && arg.category == UNCERTAIN_STANDARD
+
+          raise OperandTypeError.new("arithmetic", arg)
+        end
+      end
+
+      # Arithmetic over quantities (PM 1004's computations, JCGM 101's
+      # propagation): the reported values combine; standard-uncertainty
+      # magnitudes propagate — absolute quadrature under plus and minus,
+      # relative quadrature under times and divided_by (first-order).
+      # Expanded and coverage categories refuse arithmetically: converting
+      # between categories is a computation, never an accident. A
+      # propagated magnitude is a realization of a combined real, so it
+      # carries the limited class; reported values keep their exactness.
+      def combine(operator, left, right)
+        value = reported(left).public_send(operator, reported(right))
+        propagate(operator, left, right, value)
+      end
+
+      def propagate(operator, left, right, value)
+        uncertains = [left, right].grep(Uncertain)
+        return value if uncertains.empty?
+
+        magnitude =
+          if %i[* /].include?(operator)
+            relative = uncertains.sum(0.0) do |uncertain|
+              (uncertain.magnitude / uncertain.value)**2
+            end
+            value.abs * Math.sqrt(relative)
+          else
+            Math.sqrt(uncertains.sum(0.0) { |uncertain| uncertain.magnitude**2 })
+          end
+        Uncertain.new(value: value, category: UNCERTAIN_STANDARD,
+                      magnitude: magnitude)
       end
 
       def divided_by(args)
-        require_numeric(args)
+        require_arithmetic(args)
         numerator, denominator = args
-        if numerator.is_a?(Float) || denominator.is_a?(Float)
-          numerator / denominator
-        elsif denominator.zero?
+        reported_numerator = reported(numerator)
+        reported_denominator = reported(denominator)
+        if reported_numerator.is_a?(Float) || reported_denominator.is_a?(Float)
+          value = reported_numerator / reported_denominator
+        elsif reported_denominator.zero?
           raise ZeroDivisionError, "exact division by zero"
         else
-          Rational(numerator, denominator)
+          value = Rational(reported_numerator, reported_denominator)
         end
+        propagate(:/, numerator, denominator, value)
       end
 
       def power(args)
@@ -376,6 +440,36 @@ module Openmath
         end
 
         left == right
+      end
+
+      # pmquant — the PM 1002 quantity/uncertainty constructors. The
+      # category is part of the value's identity; exact operands stay
+      # exact inside the constructed quantity.
+      def ustd(args)
+        value, magnitude = args
+        require_numeric(args)
+        Uncertain.standard(value, magnitude)
+      end
+
+      def uexp(args)
+        value, magnitude, factor, probability = args
+        require_numeric(args)
+        Uncertain.expanded(value, magnitude, factor, probability)
+      end
+
+      def ucov(args)
+        value, lower, upper = args
+        require_numeric([value, lower, upper])
+        probability = args[3]
+        require_numeric([probability]) if probability
+        Uncertain.coverage(value, lower, upper, probability,
+                           args[4] || INTERVAL_KINDS.last)
+      end
+
+      def quantity_value(args)
+        quantity = args.fetch(0)
+        require_numeric([quantity]) unless quantity.is_a?(Uncertain)
+        quantity.is_a?(Uncertain) ? quantity.value : quantity
       end
 
       def compare_chain(args, operator)

@@ -14,19 +14,21 @@ module Openmath
 
       # The per-walk state: the variable environment and binding table in
       # effect, the optional STS signatures the walk checks against, the
-      # id index of the document scope, and the reference bookkeeping
-      # (memoized results, in-progress targets).
-      Context = Struct.new(:variables, :table, :signatures, :index, :memo,
-                           :in_progress, keyword_init: true) do
-        def self.build(variables, table, root, signatures: nil)
+      # optional Monte-Carlo sampler (every Uncertain the walk produces
+      # passes through it), the id index of the document scope, and the
+      # reference bookkeeping (memoized results, in-progress targets).
+      Context = Struct.new(:variables, :table, :signatures, :sampler, :index,
+                           :memo, :in_progress, keyword_init: true) do
+        def self.build(variables, table, root, signatures: nil, sampler: nil)
           new(variables: variables, table: table, signatures: signatures,
-              index: scope_index(root), memo: {}, in_progress: [])
+              sampler: sampler, index: scope_index(root), memo: {},
+              in_progress: [])
         end
 
         def with(variables:, table:)
           Context.new(variables: variables, table: table,
-                      signatures: signatures, index: index, memo: memo,
-                      in_progress: in_progress)
+                      signatures: signatures, sampler: sampler, index: index,
+                      memo: memo, in_progress: in_progress)
         end
 
         def self.scope_index(root)
@@ -176,7 +178,10 @@ module Openmath
           raise ArityError.new(binding.operation, arity_spec, arguments.size)
         end
 
-        implementation.call(arguments)
+        result = implementation.call(arguments)
+        return result unless context.sampler && result.is_a?(Uncertain)
+
+        context.sampler.call(result)
       end
 
       # Advisory by default: without supplied signatures nothing checks;

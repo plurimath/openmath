@@ -21,6 +21,8 @@ module Openmath
     autoload :ErrorValue, "openmath/evaluation/error_value"
     autoload :Closure, "openmath/evaluation/closure"
     autoload :Interval, "openmath/evaluation/interval"
+    autoload :Uncertain, "openmath/evaluation/uncertain"
+    autoload :Stochastic, "openmath/evaluation/stochastic"
     autoload :Evaluator, "openmath/evaluation/evaluator"
 
     module_function

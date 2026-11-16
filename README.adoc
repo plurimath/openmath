@@ -53,6 +53,13 @@ OpenMath/OMSVN). Namespaced documents parse in both the unprefixed and the
   by OMR, and typed refusals for every malformed byte sequence. Every
   corpus object round-trips at a binary fixed point.
 
+* **The PM register**: the `pmquant` CD family (`data/pmquant.ocd`, schema-
+  validated) carries PM 1002's quantity/uncertainty constructors — `ustd`,
+  `uexp`, `ucov` — as OpenMath data with its own signature file; quantities
+  combine under JCGM 101's first-order propagation, and
+  `Openmath.evaluate_stochastic` runs deterministic Monte-Carlo evaluation
+  under a declared generator and seed (same seed, same samples).
+
 Known limitations (tracked in the issues):
 
 * OMFOREIGN fragments re-serialize pretty-printed by nokogiri rather than

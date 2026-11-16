@@ -79,6 +79,19 @@ module Openmath
     Evaluation.evaluate(object, **args)
   end
 
+  # Deterministic Monte-Carlo evaluation over uncertainty-carrying
+  # objects: every pmquant quantity draws from its category's documented
+  # distribution under the seeded generator; the result carries the
+  # generator, seed, sample count, samples, mean and standard deviation,
+  # so the same seed reproduces the same run.
+  def evaluate_stochastic(object, samples:, seed:, generator: "mt19937",
+                          variables: {}, table: nil, version: nil)
+    args = { variables: variables, version: version }.compact
+    args[:table] = table if table
+    Evaluation::Stochastic.evaluate(object, samples: samples, seed: seed,
+                                    generator: generator, **args)
+  end
+
   # Canonical equality: two objects are canonically equal when their
   # canonical serializations hash identically (see Openmath::Canonical).
   def canonical_equal?(left, right)
@@ -86,5 +99,6 @@ module Openmath
   end
 
   module_function :parse, :validate!, :valid?, :parse_cd, :canonical_equal?,
-                  :parse_cdgroup, :validate_cdgroup!, :evaluate
+                  :parse_cdgroup, :validate_cdgroup!, :evaluate,
+                  :evaluate_stochastic
 end

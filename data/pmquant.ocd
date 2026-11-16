@@ -1,0 +1,89 @@
+<CD xmlns="http://www.openmath.org/OpenMathCD">
+  <CDName>pmquant</CDName>
+  <CDBase>http://www.plurimath.org/cd</CDBase>
+  <CDDate>2026-11-16</CDDate>
+  <CDStatus>experimental</CDStatus>
+  <CDUses>
+    <CDName>sts</CDName>
+  </CDUses>
+  <CDVersion>1</CDVersion>
+  <CDRevision>0</CDRevision>
+  <Description>
+    The PM quantity and uncertainty constructors: the measurement-uncertainty
+    categories of PM 1002 (the standard, expanded and coverage-interval
+    categories of JCGM 100/101) as OpenMath symbols. The category is part of
+    the constructed value's identity; converting between categories is a
+    computation (PM 1004), never a rendering act. This CD is the Plurimath PM
+    register's own content dictionary; it is experimental and loads beside
+    the official collection.
+  </Description>
+  <CDDefinition>
+    <Name>ustd</Name>
+    <Role>application</Role>
+    <Description>
+      The standard uncertainty category (JCGM 100 7.2.1, PM 1002 clause 6):
+      ustd(v, m) reports the result v with its standard uncertainty m. It
+      carries value and magnitude; it carries no coverage factor, no
+      coverage probability and no endpoints.
+    </Description>
+    <CMP>
+      The constructed quantity keeps the category, the reported value and
+      the magnitude exactly as given: exact operands stay exact. A magnitude
+      must be non-negative and finite; a negative magnitude refuses.
+    </CMP>
+    <Example>ustd(10.3, 0.2)</Example>
+  </CDDefinition>
+  <CDDefinition>
+    <Name>uexp</Name>
+    <Role>application</Role>
+    <Description>
+      The expanded uncertainty category (JCGM 100 6.2.1 and 7.2.3, PM 1002
+      clause 6): uexp(v, m, k) reports the result v with expanded-uncertainty
+      magnitude m and coverage factor k, optionally with the coverage
+      probability p that was used to choose k (uexp(v, m, k, p)). The
+      magnitude here is the expanded uncertainty itself, not a standard
+      uncertainty.
+    </Description>
+    <CMP>
+      The coverage factor is a positive unsigned number: 0, 0.5 and negative
+      factors do not describe coverage factors and refuse. The coverage
+      probability, when present, lies strictly between 0 and 1; both bounds
+      are exact comparisons, not float comparisons.
+    </CMP>
+    <Example>uexp(10.3, 0.5, 2, 0.95)</Example>
+  </CDDefinition>
+  <CDDefinition>
+    <Name>ucov</Name>
+    <Role>application</Role>
+    <Description>
+      The coverage interval category (JCGM 101 5.3 and 5.5, PM 1002 clause
+      6): ucov(v, l, u) reports the result v with the interval [l, u];
+      ucov(v, l, u, p) carries the coverage probability p; ucov(v, l, u, p,
+      kind) carries the interval kind, the string "shortest" or "symmetric"
+      (the probabilistically-symmetric kind; AsciiMath spells it symmetric
+      because the dash would read as minus). The kind defaults to symmetric.
+    </Description>
+    <CMP>
+      The lower endpoint must not exceed the upper one. The coverage
+      probability, when present, lies strictly between 0 and 1. The two
+      kinds differ semantically - the shortest interval of a distribution
+      need not be its probabilistically symmetric one - and the constructed
+      value carries the one kind it was given.
+    </CMP>
+    <Example>ucov(10.3, 9.9, 10.7, 0.95, shortest)</Example>
+  </CDDefinition>
+  <CDDefinition>
+    <Name>value</Name>
+    <Role>application</Role>
+    <Description>
+      The reported value of a quantity: value(q) extracts the reported value
+      v of the uncertain quantity q without touching its uncertainty.
+    </Description>
+    <CMP>
+      Applying value to a plain numeric quantity is the identity; applying
+      it to an uncertain quantity gives the reported value with the exact
+      class preserved.
+    </CMP>
+    <Example>value(ustd(10.3, 0.2))</Example>
+  </CDDefinition>
+</CD>

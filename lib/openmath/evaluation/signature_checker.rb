@@ -71,7 +71,7 @@ module Openmath
       def acceptable?(domain, argument)
         case domain
         when V2::Oms, V3::Oms
-          if domain.cd == "setname" || domain.cd == "setname2"
+          if domain.cd.start_with?("setname")
             predicate = SETNAME_PREDICATES[domain.name]
             predicate ? predicate.call(argument) : true
           else

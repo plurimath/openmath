@@ -1,0 +1,60 @@
+<CDSignatures type="sts" cd="pmquant" xmlns="http://www.openmath.org/OpenMathCDS">
+  <CDSComment>
+    The STS signatures for the pmquant CD. Quantities are real-valued
+    reports; the constructed quantity's own type rides the Quantity carrier
+    variable. The optional arguments of uexp and ucov ride sts/nary tails,
+    so the signatures pin the required arguments and leave the optional
+    ones to the CD's CMP prose.
+  </CDSComment>
+  <CDSReviewDate>2027-11-16</CDSReviewDate>
+  <CDSStatus>experimental</CDSStatus>
+  <Signature name="ustd">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+        <OMS cd="sts" name="mapsto"/>
+        <OMS cd="setname1" name="R"/>
+        <OMS cd="setname1" name="R"/>
+        <OMV name="Quantity"/>
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  <Signature name="uexp">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+        <OMS cd="sts" name="mapsto"/>
+        <OMS cd="setname1" name="R"/>
+        <OMS cd="setname1" name="R"/>
+        <OMS cd="setname1" name="R"/>
+        <OMA>
+          <OMS cd="sts" name="nary"/>
+          <OMS cd="setname1" name="R"/>
+        </OMA>
+        <OMV name="Quantity"/>
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  <Signature name="ucov">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+        <OMS cd="sts" name="mapsto"/>
+        <OMS cd="setname1" name="R"/>
+        <OMS cd="setname1" name="R"/>
+        <OMS cd="setname1" name="R"/>
+        <OMA>
+          <OMS cd="sts" name="nary"/>
+          <OMS cd="setname1" name="R"/>
+        </OMA>
+        <OMV name="Quantity"/>
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  <Signature name="value">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+        <OMS cd="sts" name="mapsto"/>
+        <OMV name="Quantity"/>
+        <OMS cd="setname1" name="R"/>
+      </OMA>
+    </OMOBJ>
+  </Signature>
+</CDSignatures>
