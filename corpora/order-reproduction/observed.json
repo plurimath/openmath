@@ -1,0 +1,4022 @@
+{
+  "schema_version": 1,
+  "admission_sha": "7719764a4fc7fe1438a49edfae23adb9a0b14405",
+  "ruby": "ruby 4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x86_64-linux]",
+  "dependencies": {
+    "base64": {
+      "version": "0.3.0"
+    },
+    "bigdecimal": {
+      "version": "4.1.3"
+    },
+    "bundler": {
+      "version": "4.0.3"
+    },
+    "canon": {
+      "version": "0.3.127"
+    },
+    "concurrent-ruby": {
+      "version": "1.3.8"
+    },
+    "csv": {
+      "version": "3.3.7"
+    },
+    "diff-lcs": {
+      "version": "1.6.2"
+    },
+    "ffi": {
+      "version": "1.17.4"
+    },
+    "json": {
+      "version": "3.1.0"
+    },
+    "leptris": {
+      "version": "1.9.424.0"
+    },
+    "liquid": {
+      "version": "5.14.0"
+    },
+    "lutaml-model": {
+      "version": "0.8.175",
+      "revision": "fe146de346c4a7aa73ea26bb1131cad16697b5d7"
+    },
+    "memo_wise": {
+      "version": "1.13.0"
+    },
+    "moxml": {
+      "version": "0.6.14"
+    },
+    "nokogiri": {
+      "version": "1.19.7"
+    },
+    "openmath": {
+      "version": "0.1.1"
+    },
+    "ostruct": {
+      "version": "0.6.3"
+    },
+    "paint": {
+      "version": "2.3.0"
+    },
+    "racc": {
+      "version": "1.8.1"
+    },
+    "rainbow": {
+      "version": "3.1.1"
+    },
+    "rake": {
+      "version": "13.4.2"
+    },
+    "rspec": {
+      "version": "3.13.2"
+    },
+    "rspec-core": {
+      "version": "3.13.7"
+    },
+    "rspec-expectations": {
+      "version": "3.13.6"
+    },
+    "rspec-mocks": {
+      "version": "3.13.9"
+    },
+    "rspec-support": {
+      "version": "3.13.8"
+    },
+    "rubyzip": {
+      "version": "3.7.0"
+    },
+    "strscan": {
+      "version": "3.1.8"
+    },
+    "table_tennis": {
+      "version": "1.0.0"
+    },
+    "thor": {
+      "version": "1.5.0"
+    },
+    "unicode-display_width": {
+      "version": "3.3.0"
+    },
+    "unicode-emoji": {
+      "version": "4.3.0"
+    },
+    "unicode-name": {
+      "version": "1.15.1"
+    },
+    "unicode-types": {
+      "version": "1.12.0"
+    },
+    "yeptris": {
+      "version": "0.6.69.0"
+    }
+  },
+  "issue_source": {
+    "path": "corpora/order-reproduction/issue-1163.json",
+    "sha256": "7b958bd42dd4996286919fa4b7e8260096687f6db8db5ccbdf4e4d605e686c4d",
+    "url": "https://github.com/lutaml/lutaml-model/issues/1163",
+    "source": "local planning snapshot: /tmp/openmath-plan-20261116-codex/raw/lutaml-order-issues.json",
+    "freshness": "2026-11-16 planning snapshot; live API refresh returned HTTP 403"
+  },
+  "adapters": [
+    {
+      "adapter": "nokogiri",
+      "status": "measured",
+      "issue_1163": {
+        "plain_content": "plain",
+        "nested_content": "a<b>x</b>b",
+        "nested_metadata": [
+          {
+            "name": "text",
+            "type": "Text",
+            "node_type": "text",
+            "text_content": "a",
+            "namespace_uri": null,
+            "namespace_prefix": null,
+            "attributes": null
+          },
+          {
+            "name": "b",
+            "type": "Element",
+            "node_type": "element",
+            "text_content": null,
+            "namespace_uri": null,
+            "namespace_prefix": null,
+            "attributes": null
+          },
+          {
+            "name": "text",
+            "type": "Text",
+            "node_type": "text",
+            "text_content": "b",
+            "namespace_uri": null,
+            "namespace_prefix": null,
+            "attributes": null
+          }
+        ],
+        "matches_reported_nil_targets": false
+      },
+      "observations": [
+        {
+          "case": "interleaved",
+          "version": 2,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "second"
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "7"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "x"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              }
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "nums1",
+                  "name": "pi"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "x"
+                },
+                "text": ""
+              }
+            ],
+            "OMI": [
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "7"
+              }
+            ],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "Qg=="
+              }
+            ],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "first"
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "second"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "second"
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "7"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "repeated-text",
+          "version": 2,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "last"
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [],
+            "OMB": [],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "first"
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": ""
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "last"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "last"
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "repeated-bytes",
+          "version": 2,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": ""
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "Qg=="
+              }
+            ],
+            "OMSTR": [],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "attribute-only",
+          "version": 2,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMF",
+              "attributes": {
+                "dec": "1.5"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "y"
+              },
+              "text": ""
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "x"
+              }
+            },
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              }
+            },
+            {
+              "name": "OMF",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "dec": "1.5"
+              }
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "y"
+              }
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "nums1",
+                  "name": "pi"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "x"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "y"
+                },
+                "text": ""
+              }
+            ],
+            "OMI": [],
+            "OMB": [],
+            "OMSTR": [],
+            "OMF": [
+              {
+                "name": "OMF",
+                "attributes": {
+                  "dec": "1.5"
+                },
+                "text": ""
+              }
+            ],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMF",
+              "attributes": {
+                "dec": "1.5"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "y"
+              },
+              "text": ""
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "planning-counterexample",
+          "version": 2,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "1"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "middle"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "2"
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "1"
+              },
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "2"
+              }
+            ],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              }
+            ],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "middle"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "1"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "middle"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "2"
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "interleaved",
+          "version": 3,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "second"
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "7"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "x"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              }
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "nums1",
+                  "name": "pi"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "x"
+                },
+                "text": ""
+              }
+            ],
+            "OMI": [
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "7"
+              }
+            ],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "Qg=="
+              }
+            ],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "first"
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "second"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "second"
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "7"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "repeated-text",
+          "version": 3,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "last"
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [],
+            "OMB": [],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "first"
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": ""
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "last"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "last"
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "repeated-bytes",
+          "version": 3,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": ""
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "Qg=="
+              }
+            ],
+            "OMSTR": [],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "attribute-only",
+          "version": 3,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMF",
+              "attributes": {
+                "dec": "1.5"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "y"
+              },
+              "text": ""
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "x"
+              }
+            },
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              }
+            },
+            {
+              "name": "OMF",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "dec": "1.5"
+              }
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "y"
+              }
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "nums1",
+                  "name": "pi"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "x"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "y"
+                },
+                "text": ""
+              }
+            ],
+            "OMI": [],
+            "OMB": [],
+            "OMSTR": [],
+            "OMF": [
+              {
+                "name": "OMF",
+                "attributes": {
+                  "dec": "1.5"
+                },
+                "text": ""
+              }
+            ],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMF",
+              "attributes": {
+                "dec": "1.5"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "y"
+              },
+              "text": ""
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "planning-counterexample",
+          "version": 3,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "1"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "middle"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "2"
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "1"
+              },
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "2"
+              }
+            ],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              }
+            ],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "middle"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "1"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "middle"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "2"
+            }
+          ],
+          "legacy_matches_expected": true
+        }
+      ]
+    },
+    {
+      "adapter": "oga",
+      "status": "unavailable",
+      "refusal": {
+        "error_class": "OrderReproduction::AdapterUnavailableError",
+        "message": "refused adapter oga: Moxml::AdapterError: Failed to load oga adapter\n  Adapter: oga\n  Operation: require\n  Native Error: LoadError: cannot load such file -- oga\n  Hint: Ensure the adapter gem is properly installed and compatible"
+      }
+    },
+    {
+      "adapter": "rexml",
+      "status": "unavailable",
+      "refusal": {
+        "error_class": "OrderReproduction::AdapterUnavailableError",
+        "message": "refused adapter rexml: Moxml::AdapterError: Failed to load rexml adapter\n  Adapter: rexml\n  Operation: require\n  Native Error: LoadError: cannot load such file -- rexml\n  Hint: Ensure the adapter gem is properly installed and compatible"
+      }
+    },
+    {
+      "adapter": "ox",
+      "status": "unavailable",
+      "refusal": {
+        "error_class": "OrderReproduction::AdapterUnavailableError",
+        "message": "refused adapter ox: Moxml::AdapterError: Failed to load ox adapter\n  Adapter: ox\n  Operation: require\n  Native Error: LoadError: cannot load such file -- ox\n  Hint: Ensure the adapter gem is properly installed and compatible"
+      }
+    },
+    {
+      "adapter": "headed_ox",
+      "status": "unavailable",
+      "refusal": {
+        "error_class": "OrderReproduction::AdapterUnavailableError",
+        "message": "refused adapter headed_ox: Moxml::AdapterError: Failed to load headed_ox adapter\n  Adapter: headed_ox\n  Operation: require\n  Native Error: LoadError: cannot load such file -- headed_ox\n  Hint: Ensure the adapter gem is properly installed and compatible"
+      }
+    },
+    {
+      "adapter": "libxml",
+      "status": "unavailable",
+      "refusal": {
+        "error_class": "OrderReproduction::AdapterUnavailableError",
+        "message": "refused adapter libxml: Moxml::AdapterError: Failed to load libxml adapter\n  Adapter: libxml\n  Operation: require\n  Native Error: LoadError: cannot load such file -- libxml\n  Hint: Ensure the adapter gem is properly installed and compatible"
+      }
+    },
+    {
+      "adapter": "leptris",
+      "status": "measured",
+      "issue_1163": {
+        "plain_content": null,
+        "nested_content": null,
+        "nested_metadata": null,
+        "matches_reported_nil_targets": true
+      },
+      "observations": [
+        {
+          "case": "interleaved",
+          "version": 2,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "second"
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "7"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "x"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              }
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "nums1",
+                  "name": "pi"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "x"
+                },
+                "text": ""
+              }
+            ],
+            "OMI": [
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "7"
+              }
+            ],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "Qg=="
+              }
+            ],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "first"
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "second"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "second"
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "7"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "repeated-text",
+          "version": 2,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "last"
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [],
+            "OMB": [],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "first"
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": ""
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "last"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "last"
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "repeated-bytes",
+          "version": 2,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": ""
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "Qg=="
+              }
+            ],
+            "OMSTR": [],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "attribute-only",
+          "version": 2,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMF",
+              "attributes": {
+                "dec": "1.5"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "y"
+              },
+              "text": ""
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "x"
+              }
+            },
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              }
+            },
+            {
+              "name": "OMF",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "dec": "1.5"
+              }
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "y"
+              }
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "nums1",
+                  "name": "pi"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "x"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "y"
+                },
+                "text": ""
+              }
+            ],
+            "OMI": [],
+            "OMB": [],
+            "OMSTR": [],
+            "OMF": [
+              {
+                "name": "OMF",
+                "attributes": {
+                  "dec": "1.5"
+                },
+                "text": ""
+              }
+            ],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMF",
+              "attributes": {
+                "dec": "1.5"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "y"
+              },
+              "text": ""
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "planning-counterexample",
+          "version": 2,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "1"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "middle"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "2"
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "1"
+              },
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "2"
+              }
+            ],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              }
+            ],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "middle"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "1"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "middle"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "2"
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "interleaved",
+          "version": 3,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "second"
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "7"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "x"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              }
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "nums1",
+                  "name": "pi"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "x"
+                },
+                "text": ""
+              }
+            ],
+            "OMI": [
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "7"
+              }
+            ],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "Qg=="
+              }
+            ],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "first"
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "second"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "second"
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "7"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "repeated-text",
+          "version": 3,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "last"
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [],
+            "OMB": [],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "first"
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": ""
+              },
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "last"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "first"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "last"
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "repeated-bytes",
+          "version": 3,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": ""
+              },
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "Qg=="
+              }
+            ],
+            "OMSTR": [],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": ""
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "Qg=="
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "attribute-only",
+          "version": 3,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMF",
+              "attributes": {
+                "dec": "1.5"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "y"
+              },
+              "text": ""
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "x"
+              }
+            },
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              }
+            },
+            {
+              "name": "OMF",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "dec": "1.5"
+              }
+            },
+            {
+              "name": "OMV",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "name": "y"
+              }
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "nums1",
+                  "name": "pi"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "x"
+                },
+                "text": ""
+              },
+              {
+                "name": "OMV",
+                "attributes": {
+                  "name": "y"
+                },
+                "text": ""
+              }
+            ],
+            "OMI": [],
+            "OMB": [],
+            "OMSTR": [],
+            "OMF": [
+              {
+                "name": "OMF",
+                "attributes": {
+                  "dec": "1.5"
+                },
+                "text": ""
+              }
+            ],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "x"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "nums1",
+                "name": "pi"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMF",
+              "attributes": {
+                "dec": "1.5"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMV",
+              "attributes": {
+                "name": "y"
+              },
+              "text": ""
+            }
+          ],
+          "legacy_matches_expected": true
+        },
+        {
+          "case": "planning-counterexample",
+          "version": 3,
+          "expected": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "1"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "middle"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "2"
+            }
+          ],
+          "root_metadata": [
+            {
+              "name": "OMA",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "actual_metadata": [
+            {
+              "name": "OMS",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              }
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMSTR",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMB",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            },
+            {
+              "name": "OMI",
+              "type": "Element",
+              "node_type": "element",
+              "text_content": null,
+              "namespace_uri": "http://www.openmath.org/OpenMath",
+              "namespace_prefix": null,
+              "attributes": null
+            }
+          ],
+          "collections": {
+            "OMS": [
+              {
+                "name": "OMS",
+                "attributes": {
+                  "cd": "list1",
+                  "name": "list"
+                },
+                "text": ""
+              }
+            ],
+            "OMV": [],
+            "OMI": [
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "1"
+              },
+              {
+                "name": "OMI",
+                "attributes": {},
+                "text": "2"
+              }
+            ],
+            "OMB": [
+              {
+                "name": "OMB",
+                "attributes": {},
+                "text": "QQ=="
+              }
+            ],
+            "OMSTR": [
+              {
+                "name": "OMSTR",
+                "attributes": {},
+                "text": "middle"
+              }
+            ],
+            "OMF": [],
+            "OMA": [],
+            "OMBIND": [],
+            "OMBVAR": [],
+            "OME": [],
+            "OMATTR": [],
+            "OMATP": [],
+            "OMFOREIGN": [],
+            "OMR": []
+          },
+          "metadata_names_match": true,
+          "legacy_fallback": [
+            {
+              "name": "OMS",
+              "attributes": {
+                "cd": "list1",
+                "name": "list"
+              },
+              "text": ""
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "1"
+            },
+            {
+              "name": "OMSTR",
+              "attributes": {},
+              "text": "middle"
+            },
+            {
+              "name": "OMB",
+              "attributes": {},
+              "text": "QQ=="
+            },
+            {
+              "name": "OMI",
+              "attributes": {},
+              "text": "2"
+            }
+          ],
+          "legacy_matches_expected": true
+        }
+      ]
+    }
+  ],
+  "harness_success_is_product_success": false,
+  "coverage_complete": false,
+  "measured_ordering_pass": true,
+  "product_ordering_pass": null
+}
