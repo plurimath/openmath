@@ -10,6 +10,7 @@ module Openmath
   autoload :V3, "openmath/v3"
   autoload :Validation, "openmath/validation"
   autoload :Evaluation, "openmath/evaluation"
+  autoload :Foreign, "openmath/foreign"
   autoload :CD, "openmath/cd"
 
   module Base

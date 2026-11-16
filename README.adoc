@@ -28,9 +28,15 @@ OpenMath/OMSVN). Namespaced documents parse in both the unprefixed and the
   discipline — integers and rationals stay exact, floats contaminate to the
   limited class, unbound symbols refuse naming the symbol.
 
+* **Foreign objects**: markup inside OMFOREIGN (the schema's notOM content)
+  is captured verbatim at parse time (`notom_value`) and re-emitted at its
+  recorded positions on serialization — MathML, SVG, any well-formed
+  fragment round-trips byte-identically.
+
 Known limitations (tracked in the issues):
 
-* Non-OpenMath markup inside OMFOREIGN is not yet represented.
+* OMFOREIGN fragments re-serialize pretty-printed by nokogiri rather than
+  in the surrounding document's indentation.
 
 == Usage
 

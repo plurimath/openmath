@@ -17,6 +17,13 @@ module Openmath
             ordered
             map_attribute "version", to: :version
           end
+
+          def to_xml(**options, &block)
+            result = super(**options, &block)
+            return result unless Openmath::Foreign.contained?(self)
+
+            Openmath::Foreign.inject_tree(self, result)
+          end
         end
       end
     end
