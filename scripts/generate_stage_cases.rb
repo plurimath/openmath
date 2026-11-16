@@ -104,7 +104,7 @@ provenance = {
         "repository" => "https://github.com/plurimath/openmath",
         "commit" => gem_commit,
         "path" => "scripts/generate_stage_cases.rb",
-        "sha256" => Digest::SHA256.file(File.expand_path("../generate_stage_cases.rb", __dir__)).hexdigest,
+        "sha256" => Digest::SHA256.file(File.expand_path("generate_stage_cases.rb", __dir__)).hexdigest,
       },
       "inputs" => Dir[File.join(corpus_dir, "*.omxml")].sort.map do |path|
         {
