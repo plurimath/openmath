@@ -251,6 +251,51 @@ RSpec.describe Openmath do
     end
   end
 
+  describe "OMR reference resolution" do
+    it "resolves a fragment reference to its target within the scope" do
+      xml = om("<OMA>#{oms("arith1", "plus")}" \
+               "<OMI id=\"answer\">42</OMI><OMR href=\"#answer\"/></OMA>")
+
+      expect(described_class.evaluate(xml)).to eq(84)
+    end
+
+    it "resolves references reached through a lambda application" do
+      binder = "<OMBIND>#{oms("fns1", "lambda")}<OMBVAR>#{omv("x")}</OMBVAR>" \
+               "#{inner_app("arith1", "times", omv("x"), "<OMI id=\"seven\">7</OMI>")}</OMBIND>"
+      applied = om("<OMA>#{binder}#{omi(3)}</OMA>")
+
+      expect(described_class.evaluate(applied)).to eq(21)
+    end
+
+    it "gives both references to one target the same value" do
+      xml = om("<OMA>#{oms("arith1", "plus")}" \
+               "<OMI id=\"t\">6</OMI><OMR href=\"#t\"/><OMR href=\"#t\"/></OMA>")
+
+      expect(described_class.evaluate(xml)).to eq(18)
+    end
+
+    it "refuses cyclic references typed" do
+      xml = om("<OMA id=\"me\"><OMR href=\"#me\"/></OMA>")
+
+      expect { described_class.evaluate(xml) }
+        .to raise_error(Openmath::Evaluation::RecursionError, /cyclic OMR reference to "me"/)
+    end
+
+    it "refuses unresolvable references naming the id" do
+      xml = om("<OMR href=\"#missing\"/>")
+
+      expect { described_class.evaluate(xml) }
+        .to raise_error(Openmath::Evaluation::UnboundSymbolError, /\(reference\)#missing/)
+    end
+
+    it "refuses non-fragment hrefs" do
+      xml = om("<OMR href=\"http://example.org/obj\"/>")
+
+      expect { described_class.evaluate(xml) }
+        .to raise_error(Openmath::Evaluation::UnsupportedExpressionError, /not a fragment reference/)
+    end
+  end
+
   describe "the binding table artifact" do
     it "pins the shipped table's checksum" do
       checksum = Openmath::Evaluation::BindingTable.default_checksum

@@ -12,6 +12,7 @@ module Openmath
     autoload :ArityError, "openmath/evaluation/errors"
     autoload :OperandTypeError, "openmath/evaluation/errors"
     autoload :UnimplementedOperationError, "openmath/evaluation/errors"
+    autoload :RecursionError, "openmath/evaluation/errors"
     autoload :BindingTable, "openmath/evaluation/binding_table"
     autoload :Operations, "openmath/evaluation/operations"
     autoload :ErrorValue, "openmath/evaluation/error_value"

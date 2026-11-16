@@ -61,5 +61,15 @@ module Openmath
         super("binding table names unimplemented operation #{operation}")
       end
     end
+
+    # An OMR reference resolves to a target currently under evaluation.
+    class RecursionError < Error
+      attr_reader :name
+
+      def initialize(name)
+        @name = name
+        super("cyclic OMR reference to #{name.inspect}")
+      end
+    end
   end
 end

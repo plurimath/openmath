@@ -6,17 +6,55 @@ module Openmath
   module Evaluation
     # The tree walk: literals evaluate to themselves, applications resolve
     # their operator symbol through the binding table and dispatch to the
-    # named operation, error constructors evaluate to error values, and
-    # everything outside the evaluated surface refuses with a typed error.
+    # named operation, error constructors evaluate to error values, OMR
+    # references resolve within their document scope, and everything
+    # outside the evaluated surface refuses with a typed error.
     module Evaluator
       module_function
+
+      # The per-walk state: the variable environment and binding table in
+      # effect, the id index of the document scope, and the reference
+      # bookkeeping (memoized results, in-progress targets).
+      Context = Struct.new(:variables, :table, :index, :memo, :in_progress,
+                           keyword_init: true) do
+        def self.build(variables, table, root)
+          new(variables: variables, table: table, index: scope_index(root),
+              memo: {}, in_progress: [])
+        end
+
+        def with(variables:, table:)
+          Context.new(variables: variables, table: table, index: index,
+                      memo: memo, in_progress: in_progress)
+        end
+
+        def self.scope_index(root)
+          ids = {}
+          visit = ->(node) do
+            id = node.respond_to?(:id) ? node.id : nil
+            ids[id] = node if id
+            children_of(node).each { |child| visit.call(child) }
+          end
+          visit.call(root)
+          ids
+        end
+
+        def self.children_of(node)
+          return [] unless node.respond_to?(:element_order)
+
+          Evaluator.ordered_children(node)
+        end
+      end
 
       # Evaluates an OpenMath object under the variable bindings. Variables
       # bind by name (PM 1004's binding domain: numbers, booleans, strings).
       def evaluate(object, variables: {}, table: BindingTable.default)
+        walk(object, Context.build(variables, table, object))
+      end
+
+      def walk(object, context)
         case object
         when Openmath::V2::Omobj, Openmath::V3::Omobj
-          single(object, variables, table)
+          single(object, context)
         when Openmath::V2::Omi, Openmath::V3::Omi
           integer_literal(object)
         when Openmath::V2::Omf, Openmath::V3::Omf
@@ -26,17 +64,19 @@ module Openmath
         when Openmath::V2::Omb, Openmath::V3::Omb
           require_base64(object)
         when Openmath::V2::Omv, Openmath::V3::Omv
-          lookup_variable(object, variables)
+          lookup_variable(object, context.variables)
         when Openmath::V2::Oma, Openmath::V3::Oma
-          apply(object, variables, table)
+          apply(object, context)
         when Openmath::V2::Ombind, Openmath::V3::Ombind
-          bind(object, variables, table)
+          bind(object, context)
         when Openmath::V2::Omattr, Openmath::V3::Omattr
-          evaluate(attributed_object(object), variables: variables, table: table)
+          walk(attributed_object(object), context)
         when Openmath::V2::Ome, Openmath::V3::Ome
-          error_value(object, variables, table)
+          error_value(object, context)
+        when Openmath::V2::Omr, Openmath::V3::Omr
+          resolve_reference(object, context)
         else
-raise UnsupportedExpressionError, element_name(object)
+          raise UnsupportedExpressionError, element_name(object)
         end
       end
 
@@ -74,16 +114,16 @@ raise UnsupportedExpressionError, element_name(object)
         ordered
       end
 
-def element_name(object)
-  object.is_a?(Openmath::V2::Ombind) || object.is_a?(Openmath::V3::Ombind) ? "OMBIND" : object.class.name
-end
+      def element_name(object)
+        object.is_a?(Openmath::V2::Ombind) || object.is_a?(Openmath::V3::Ombind) ? "OMBIND" : object.class.name
+      end
 
-def single(omobj, variables, table)
+      def single(omobj, context)
         elements = ordered_children(omobj)
         raise UnsupportedExpressionError, "empty OMOBJ" if elements.empty?
         raise UnsupportedExpressionError, "OMOBJ with multiple children" if elements.size > 1
 
-        evaluate(elements.first, variables: variables, table: table)
+        walk(elements.first, context)
       end
 
       def integer_literal(node)
@@ -93,7 +133,7 @@ def single(omobj, variables, table)
 
       def float_literal(node)
         return Float(node.dec) if node.dec
-return [node.hex].pack("H*").unpack1("G") if node.hex
+        return [node.hex].pack("H*").unpack1("G") if node.hex
 
         raise OperandTypeError.new("OMF", "neither dec nor hex")
       end
@@ -112,28 +152,28 @@ return [node.hex].pack("H*").unpack1("G") if node.hex
         raise UnboundSymbolError.new("(variable)", name)
       end
 
-      def apply(oma, variables, table)
+      def apply(oma, context)
         children = ordered_children(oma)
         operator = children.first
         if operator.is_a?(Openmath::V2::Oms) || operator.is_a?(Openmath::V3::Oms)
-          apply_symbol(operator, children[1..], variables, table)
+          apply_symbol(operator, children[1..], context)
         else
-          closure = evaluate(operator, variables: variables, table: table)
+          closure = walk(operator, context)
           unless closure.is_a?(Closure)
             raise UnsupportedExpressionError,
                   "application of a #{closure.class} value"
           end
 
-          apply_closure(closure, children[1..], variables, table)
+          apply_closure(closure, children[1..], context)
         end
       end
 
-      def apply_symbol(operator, argument_nodes, variables, table)
-        binding = table.lookup(operator.cd, operator.name)
+      def apply_symbol(operator, argument_nodes, context)
+        binding = context.table.lookup(operator.cd, operator.name)
         raise UnboundSymbolError.new(operator.cd, operator.name) unless binding
 
         implementation, arity_spec = Operations.implementation(binding.operation)
-        arguments = argument_nodes.map { |child| evaluate(child, variables: variables, table: table) }
+        arguments = argument_nodes.map { |child| walk(child, context) }
         unless arity_spec.cover?(arguments.size)
           raise ArityError.new(binding.operation, arity_spec, arguments.size)
         end
@@ -141,20 +181,20 @@ return [node.hex].pack("H*").unpack1("G") if node.hex
         implementation.call(arguments)
       end
 
-      def apply_closure(closure, argument_nodes, variables, table)
-        arguments = argument_nodes.map { |child| evaluate(child, variables: variables, table: table) }
+      def apply_closure(closure, argument_nodes, context)
+        arguments = argument_nodes.map { |child| walk(child, context) }
         unless closure.names.size == arguments.size
           raise ArityError.new("lambda", closure.names.size..closure.names.size,
                                arguments.size)
         end
 
         environment = closure.environment.merge(closure.names.zip(arguments).to_h)
-        evaluate(closure.body, variables: environment, table: closure.table)
+        walk(closure.body, context.with(variables: environment, table: closure.table))
       end
 
       # fns1/lambda is the only binder in the evaluated surface; every
       # other head refuses through the unbound-symbol discipline.
-      def bind(ombind, variables, table)
+      def bind(ombind, context)
         head = ombind.oms_value.first
         unless head && head.cd == "fns1" && head.name == "lambda"
           raise UnboundSymbolError.new(head&.cd || "(binder)", head&.name || "(missing)")
@@ -171,7 +211,7 @@ return [node.hex].pack("H*").unpack1("G") if node.hex
         end
 
         Closure.new(names: names, body: body.first,
-                    environment: variables.dup, table: table)
+                    environment: context.variables.dup, table: context.table)
       end
 
       # omvar = OMV | OMATTR(OMATP, OMV); attributed variables bind by
@@ -204,12 +244,38 @@ return [node.hex].pack("H*").unpack1("G") if node.hex
         attributed
       end
 
-      def error_value(ome, variables, table)
+      # OMR stands for the object it references (the id within this
+      # document's scope). A shared subtree evaluates once per walk (the
+      # memo is keyed by the environment in effect); a reference to a
+      # target currently under evaluation is a cycle and refuses typed.
+      def resolve_reference(omr, context)
+        href = omr.href.to_s
+        name = href.sub(/\A#/, "")
+        unless href.start_with?("#") && !name.empty?
+          raise UnsupportedExpressionError, "OMR href #{href.inspect} is not a fragment reference"
+        end
+
+        target = context.index[name]
+        raise UnboundSymbolError.new("(reference)", name) unless target
+        raise RecursionError.new(name) if context.in_progress.include?(name)
+
+        memo_key = [name, context.variables.object_id]
+        return context.memo[memo_key] if context.memo.key?(memo_key)
+
+        context.in_progress << name
+        begin
+          context.memo[memo_key] = walk(target, context)
+        ensure
+          context.in_progress.delete(name)
+        end
+      end
+
+      def error_value(ome, context)
         symbol = ome.oms_value.first
         raise UnsupportedExpressionError, "error without a leading OMS" unless symbol
 
         content = ordered_children(ome).drop(1).map do |child|
-          evaluate(child, variables: variables, table: table)
+          walk(child, context)
         end
         ErrorValue.new(symbol.cd, symbol.name, content)
       end
