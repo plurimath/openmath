@@ -61,6 +61,15 @@ module Openmath
     CD.parse(input)
   end
 
+  # Parses a CDGroup document into Openmath::CD::GroupDocument.
+  def parse_cdgroup(input)
+    CD::Group.parse(input)
+  end
+
+  def validate_cdgroup!(xml)
+    CD::Group.validate!(xml)
+  end
+
   # Evaluates an OpenMath object (or XML text) under the variable bindings.
   def evaluate(object, variables: {}, table: nil, version: nil)
     args = { variables: variables, version: version }.compact
@@ -75,5 +84,5 @@ module Openmath
   end
 
   module_function :parse, :validate!, :valid?, :parse_cd, :canonical_equal?,
-                  :evaluate
+                  :parse_cdgroup, :validate_cdgroup!, :evaluate
 end

@@ -8,6 +8,7 @@ module Openmath
   # resolution. Modeled from schemas/omcd2.rng (the OpenMath 2 CD schema).
   module CD
     autoload :Namespace, "openmath/cd/namespace"
+    autoload :GroupNamespace, "openmath/cd/namespace"
     autoload :Configuration, "openmath/cd/configuration"
     autoload :Fmp, "openmath/cd/fmp"
     autoload :Example, "openmath/cd/example"
@@ -15,6 +16,10 @@ module Openmath
     autoload :Document, "openmath/cd/document"
     autoload :Collection, "openmath/cd/collection"
     autoload :Validation, "openmath/cd/validation"
+    autoload :GroupMember, "openmath/cd/group_document"
+    autoload :GroupDocument, "openmath/cd/group_document"
+    autoload :GroupCollection, "openmath/cd/group_collection"
+    autoload :Group, "openmath/cd/group_collection"
 
     module_function
 

@@ -1,0 +1,16 @@
+<CDGroup xmlns="http://www.openmath.org/OpenMathCDG">
+  <CDGroupName>testgroup</CDGroupName>
+  <CDGroupVersion>2</CDGroupVersion>
+  <CDGroupRevision>1</CDGroupRevision>
+  <CDGroupURL>http://www.openmath.org/cdgroups/testgroup</CDGroupURL>
+  <CDGroupDescription>Test group</CDGroupDescription>
+  <CDGroupMember>
+    <CDName>mycd1</CDName>
+    <CDVersion>1</CDVersion>
+  </CDGroupMember>
+  <CDGroupMember>
+    <CDComment>The second member pins its revision</CDComment>
+    <CDName>mycd2</CDName>
+    <CDVersion>3</CDVersion>
+  </CDGroupMember>
+</CDGroup>
