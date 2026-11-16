@@ -5,6 +5,8 @@ module Openmath
     # The typed refusals. Every one names what it refused; none of them
     # guesses (the honest-error discipline of the PM series).
     class Error < StandardError; end
+    class ChildrenOrderError < Error; end
+    class BindingArtifactError < Error; end
 
     # The symbol is not in the binding table.
     class UnboundSymbolError < Error

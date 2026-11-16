@@ -32,49 +32,22 @@ module Openmath
         when Openmath::V2::Ome, Openmath::V3::Ome
           error_value(object, variables, table)
         else
-raise UnsupportedExpressionError, element_name(object)
+          raise UnsupportedExpressionError, element_name(object)
         end
       end
 
-      # The children of a container in document order: element_order names
-      # each element as parsed; the per-type collections hold the values in
-      # the same relative order, so a cursor per element name reconstructs
-      # the sequence.
-      CHILD_ATTRIBUTES = {
-        "OMS" => :oms_value, "OMV" => :omv_value, "OMI" => :omi_value,
-        "OMB" => :omb_value, "OMSTR" => :omstr_value, "OMF" => :omf_value,
-        "OMA" => :oma_value, "OMBIND" => :ombind_value,
-        "OMBVAR" => :ombvar_value, "OME" => :ome_value,
-        "OMATTR" => :omattr_value, "OMATP" => :omatp_value,
-        "OMFOREIGN" => :omforeign_value, "OMR" => :omr_value,
-      }.freeze
+      # Public compatibility entrypoint used by downstream converters (#587).
+      CHILD_ATTRIBUTES = Children::ATTRIBUTES
 
       def ordered_children(container)
-        cursors = Hash.new(0)
-        ordered = container.element_order.filter_map do |element|
-          attribute = CHILD_ATTRIBUTES[element.name]
-          next unless attribute
-
-          values = container.public_send(attribute)
-          index = cursors[element.name]
-          cursors[element.name] += 1
-          values[index]
-        end
-        # Mixed-content elements can drop out of the order tracking; append
-        # any values the order walk did not consume, in collection order.
-        CHILD_ATTRIBUTES.each do |name, attribute|
-          values = container.public_send(attribute)
-          consumed = cursors[name]
-          ordered.concat(values.drop(consumed)) if values && values.size > consumed
-        end
-        ordered
+        Children.ordered(container)
       end
 
-def element_name(object)
-  object.is_a?(Openmath::V2::Ombind) || object.is_a?(Openmath::V3::Ombind) ? "OMBIND" : object.class.name
-end
+      def element_name(object)
+        object.is_a?(Openmath::V2::Ombind) || object.is_a?(Openmath::V3::Ombind) ? "OMBIND" : object.class.name
+      end
 
-def single(omobj, variables, table)
+      def single(omobj, variables, table)
         elements = ordered_children(omobj)
         raise UnsupportedExpressionError, "empty OMOBJ" if elements.empty?
         raise UnsupportedExpressionError, "OMOBJ with multiple children" if elements.size > 1
@@ -89,7 +62,7 @@ def single(omobj, variables, table)
 
       def float_literal(node)
         return Float(node.dec) if node.dec
-return [node.hex].pack("H*").unpack1("G") if node.hex
+        return [node.hex].pack("H*").unpack1("G") if node.hex
 
         raise OperandTypeError.new("OMF", "neither dec nor hex")
       end

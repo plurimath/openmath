@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schema",
+    "version",
+    "bindings",
+    "signatures"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "openmath-binding-fragment/1"
+    },
+    "version": {
+      "type": "integer",
+      "const": 1
+    },
+    "bindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "cdbase",
+          "cd",
+          "name",
+          "operation",
+          "signature"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "cdbase": {
+            "type": "string"
+          },
+          "cd": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "signature": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "signatures": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "operation"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "operation": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

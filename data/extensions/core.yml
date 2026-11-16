@@ -1,0 +1,11 @@
+{
+  "schema": "openmath-extension/1",
+  "id": "core",
+  "files": {
+    "data/bindings/core.yml": "c11c8e4f05b1388c9456ff9e25583eb963ad54f48a03442d56f340a3f368f5c3"
+  },
+  "bindings": [
+    "data/bindings/core.yml"
+  ],
+  "hooks": []
+}

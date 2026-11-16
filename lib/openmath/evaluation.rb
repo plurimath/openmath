@@ -6,6 +6,9 @@ module Openmath
   # and rationals stay exact, floats contaminate to the limited class,
   # unbound symbols refuse with a typed error naming the symbol.
   module Evaluation
+    autoload :Children, "openmath/evaluation/children"
+    autoload :ChildrenOrderError, "openmath/evaluation/errors"
+    autoload :BindingArtifactError, "openmath/evaluation/errors"
     autoload :Error, "openmath/evaluation/errors"
     autoload :UnboundSymbolError, "openmath/evaluation/errors"
     autoload :UnsupportedExpressionError, "openmath/evaluation/errors"

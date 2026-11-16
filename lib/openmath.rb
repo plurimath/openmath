@@ -3,6 +3,7 @@
 require "lutaml/model"
 
 module Openmath
+  autoload :Extensions, "openmath/extensions/registry"
   autoload :VERSION, "openmath/version"
   autoload :CommonElements, "openmath/common_elements"
   autoload :Namespace, "openmath/namespace"
@@ -67,3 +68,6 @@ module Openmath
 
   module_function :parse, :validate!, :valid?, :parse_cd, :evaluate
 end
+
+# Install discovered feature APIs once, including APIs unrelated to evaluation.
+Openmath::Extensions.install!

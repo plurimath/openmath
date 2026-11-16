@@ -1,0 +1,7 @@
+{
+  "source": "locally authored regression",
+  "files": {
+    "interleaved.xml": "69997d586583be83ec89687f16d11cef19710496718a60396c193631d9c2ee6b"
+  },
+  "expected": 7
+}

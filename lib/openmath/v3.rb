@@ -44,6 +44,7 @@ module Openmath
       Configuration.register_model(Omforeign, id: :omforeign)
       Configuration.register_model(Omr,       id: :omr)
       Configuration.register_model(Omobj,     id: :omobj)
+      CommonElements.singleton_class.prepend(Evaluation::Children::XMLParser)
       @registered = true
     end
 
