@@ -26,7 +26,11 @@ OpenMath/OMSVN). Namespaced documents parse in both the unprefixed and the
   the working core (nums1, arith1, relation1, logic1) to operations;
   `Openmath.evaluate(xml, variables:)` walks the tree under the exactness
   discipline — integers and rationals stay exact, floats contaminate to the
-  limited class, unbound symbols refuse naming the symbol.
+  limited class, unbound symbols refuse naming the symbol. `fns1/lambda`
+  binds: `OMBIND` evaluates to a closure captured lexically, applied
+  through an enclosing `OMA` with typed arity refusals; attributed
+  variables bind by their wrapped name; `OMATTR` evaluates its attributed
+  object, attributions riding along as data.
 
 * **Foreign objects**: markup inside OMFOREIGN (the schema's notOM content)
   is captured verbatim at parse time (`notom_value`) and re-emitted at its

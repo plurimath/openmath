@@ -20,6 +20,9 @@ RSpec.describe Openmath do
   def omf_dec(d) = %(<OMF dec="#{d}"/>)
   def omv(n) = %(<OMV name="#{n}"/>)
   def oms(cd, name) = %(<OMS cd="#{cd}" name="#{name}"/>)
+  def inner_app(op_cd, op_name, *args)
+    "<OMA>#{oms(op_cd, op_name)}#{args.join}</OMA>"
+  end
 
   describe "the arithmetic core" do
     it "evaluates plus, times, minus, unary_minus and abs exactly" do
@@ -152,8 +155,99 @@ RSpec.describe Openmath do
     end
 
     it "refuses constructs outside the evaluated surface" do
-      expect { described_class.evaluate(om("<OMBIND>#{oms("fns1", "lambda")}<OMBVAR>#{omv("x")}</OMBVAR>#{omi(0)}</OMBIND>")) }
-        .to raise_error(Openmath::Evaluation::UnsupportedExpressionError, /OMBIND/)
+      expect { described_class.evaluate(om("<OMBIND>#{oms("fns1", "Map")}<OMBVAR>#{omv("x")}</OMBVAR>#{omi(0)}</OMBIND>")) }
+        .to raise_error(Openmath::Evaluation::UnboundSymbolError, /fns1#Map/)
+    end
+  end
+
+  describe "lambda application" do
+    def lambda_om(*vars, body:)
+      variables = vars.map { |v| omv(v) }.join
+      "<OMBIND>#{oms("fns1", "lambda")}<OMBVAR>#{variables}</OMBVAR>#{body}</OMBIND>"
+    end
+
+    def applied_lambda(lambda_node, *args)
+      om("<OMA>#{lambda_node}#{args.join}</OMA>")
+    end
+
+    it "applies a lambda to its arguments" do
+      body = inner_app("arith1", "plus", omv("x"), omi(1))
+
+      expect(described_class.evaluate(applied_lambda(lambda_om("x", body: body), omi(2))))
+        .to eq(3)
+    end
+
+    it "keeps rationals exact through a lambda body" do
+      body = inner_app("arith1", "divided_by", omv("x"), omi(4))
+      result = described_class.evaluate(applied_lambda(lambda_om("x", body: body), omi(1)))
+
+      expect(result).to eq(Rational(1, 4))
+      expect(result).to be_a(Rational)
+    end
+
+    it "captures the environment lexically" do
+      body = inner_app("arith1", "plus", omv("x"), omv("y"))
+      applied = applied_lambda(lambda_om("x", body: body), omi(2))
+
+      expect(described_class.evaluate(applied, variables: { y: 10 })).to eq(12)
+    end
+
+    it "refuses arity mismatches naming lambda" do
+      body = inner_app("arith1", "plus", omv("x"), omv("y"))
+      applied = applied_lambda(lambda_om("x", body: body), omi(2), omi(3))
+
+      expect { described_class.evaluate(applied) }
+        .to raise_error(Openmath::Evaluation::ArityError, /lambda.*expected 1\.\.1, got 2/)
+    end
+
+    it "binds attributed variables by their wrapped name" do
+      attvar = "<OMATTR><OMATP>#{oms("misc", "def")}#{omi(0)}</OMATP>#{omv("x")}</OMATTR>"
+      body = inner_app("arith1", "times", omv("x"), omv("x"))
+      binder = "<OMBIND>#{oms("fns1", "lambda")}<OMBVAR>#{attvar}</OMBVAR>#{body}</OMBIND>"
+
+      expect(described_class.evaluate(applied_lambda(binder, omi(7))))
+        .to eq(49)
+    end
+
+    it "refuses applying a non-callable value" do
+      expect { described_class.evaluate(om("<OMA>#{omi(5)}</OMA>")) }
+        .to raise_error(Openmath::Evaluation::UnsupportedExpressionError, /application of a? ?Integer/)
+    end
+
+    it "refuses lambda without a single body" do
+      expect { described_class.evaluate(om("<OMBIND>#{oms("fns1", "lambda")}<OMBVAR>#{omv("x")}</OMBVAR>#{omi(1)}#{omi(2)}</OMBIND>")) }
+        .to raise_error(Openmath::Evaluation::UnsupportedExpressionError, /2 bodies/)
+    end
+
+    it "refuses non-lambda binders through the unbound-symbol discipline" do
+      binder = "<OMBIND>#{oms("fns1", "Map")}<OMBVAR>#{omv("x")}</OMBVAR>#{omi(0)}</OMBIND>"
+
+      expect { described_class.evaluate(om(binder)) }
+        .to raise_error(Openmath::Evaluation::UnboundSymbolError, /fns1#Map/)
+    end
+  end
+
+  describe "OMATTR semantics" do
+    it "evaluates the attributed object, ignoring presentational pairs" do
+      inner = inner_app("arith1", "plus", omi(1), omi(1))
+      attributed = "<OMATTR><OMATP>#{oms("present", "style")}<OMSTR>boxed</OMSTR></OMATP>#{inner}</OMATTR>"
+
+      expect(described_class.evaluate(om(attributed))).to eq(2)
+    end
+
+    it "evaluates attributions around bindings" do
+      binder = "<OMBIND>#{oms("fns1", "lambda")}<OMBVAR>#{omv("x")}</OMBVAR>" \
+               "#{inner_app("arith1", "times", omv("x"), omv("x"))}</OMBIND>"
+      attributed = "<OMATTR><OMATP>#{oms("misc", "def")}#{oms("mycd", "square")}</OMATP>#{binder}</OMATTR>"
+      closure = described_class.evaluate(om(attributed))
+
+      expect(closure).to be_a(Openmath::Evaluation::Closure)
+      expect(described_class.evaluate(om("<OMA>#{binder}<OMI>6</OMI></OMA>"))).to eq(36)
+    end
+
+    it "refuses attributions without an attributed object" do
+      expect { described_class.evaluate(om("<OMATTR><OMATP>#{oms("misc", "def")}</OMATP></OMATTR>")) }
+        .to raise_error(Openmath::Evaluation::UnsupportedExpressionError, /attribution without an object/)
     end
   end
 

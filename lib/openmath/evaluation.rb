@@ -15,6 +15,7 @@ module Openmath
     autoload :BindingTable, "openmath/evaluation/binding_table"
     autoload :Operations, "openmath/evaluation/operations"
     autoload :ErrorValue, "openmath/evaluation/error_value"
+    autoload :Closure, "openmath/evaluation/closure"
     autoload :Evaluator, "openmath/evaluation/evaluator"
 
     module_function

@@ -29,6 +29,10 @@ module Openmath
           lookup_variable(object, variables)
         when Openmath::V2::Oma, Openmath::V3::Oma
           apply(object, variables, table)
+        when Openmath::V2::Ombind, Openmath::V3::Ombind
+          bind(object, variables, table)
+        when Openmath::V2::Omattr, Openmath::V3::Omattr
+          evaluate(attributed_object(object), variables: variables, table: table)
         when Openmath::V2::Ome, Openmath::V3::Ome
           error_value(object, variables, table)
         else
@@ -111,20 +115,93 @@ return [node.hex].pack("H*").unpack1("G") if node.hex
       def apply(oma, variables, table)
         children = ordered_children(oma)
         operator = children.first
-        unless operator.is_a?(Openmath::V2::Oms) || operator.is_a?(Openmath::V3::Oms)
-          raise UnsupportedExpressionError, "application without an OMS operator"
-        end
+        if operator.is_a?(Openmath::V2::Oms) || operator.is_a?(Openmath::V3::Oms)
+          apply_symbol(operator, children[1..], variables, table)
+        else
+          closure = evaluate(operator, variables: variables, table: table)
+          unless closure.is_a?(Closure)
+            raise UnsupportedExpressionError,
+                  "application of a #{closure.class} value"
+          end
 
+          apply_closure(closure, children[1..], variables, table)
+        end
+      end
+
+      def apply_symbol(operator, argument_nodes, variables, table)
         binding = table.lookup(operator.cd, operator.name)
         raise UnboundSymbolError.new(operator.cd, operator.name) unless binding
 
         implementation, arity_spec = Operations.implementation(binding.operation)
-        arguments = children[1..].map { |child| evaluate(child, variables: variables, table: table) }
+        arguments = argument_nodes.map { |child| evaluate(child, variables: variables, table: table) }
         unless arity_spec.cover?(arguments.size)
           raise ArityError.new(binding.operation, arity_spec, arguments.size)
         end
 
         implementation.call(arguments)
+      end
+
+      def apply_closure(closure, argument_nodes, variables, table)
+        arguments = argument_nodes.map { |child| evaluate(child, variables: variables, table: table) }
+        unless closure.names.size == arguments.size
+          raise ArityError.new("lambda", closure.names.size..closure.names.size,
+                               arguments.size)
+        end
+
+        environment = closure.environment.merge(closure.names.zip(arguments).to_h)
+        evaluate(closure.body, variables: environment, table: closure.table)
+      end
+
+      # fns1/lambda is the only binder in the evaluated surface; every
+      # other head refuses through the unbound-symbol discipline.
+      def bind(ombind, variables, table)
+        head = ombind.oms_value.first
+        unless head && head.cd == "fns1" && head.name == "lambda"
+          raise UnboundSymbolError.new(head&.cd || "(binder)", head&.name || "(missing)")
+        end
+
+        ombvar = ombind.ombvar_value.first
+        raise UnsupportedExpressionError, "lambda without OMBVAR" unless ombvar
+
+        names = bound_variable_names(ombvar)
+        body = ordered_children(ombind).drop(2)
+        unless body.size == 1
+          raise UnsupportedExpressionError,
+                "lambda with #{body.size} bodies"
+        end
+
+        Closure.new(names: names, body: body.first,
+                    environment: variables.dup, table: table)
+      end
+
+      # omvar = OMV | OMATTR(OMATP, OMV); attributed variables bind by
+      # their wrapped name, attributes carried on the pair node itself.
+      def bound_variable_names(ombvar)
+        ordered_children(ombvar).map { |child| variable_name(child) }
+      end
+
+      def variable_name(node)
+        variable = node
+        if node.is_a?(Openmath::V2::Omattr) || node.is_a?(Openmath::V3::Omattr)
+          variable = attributed_object(node)
+        end
+        unless variable.is_a?(Openmath::V2::Omv) || variable.is_a?(Openmath::V3::Omv)
+          raise UnsupportedExpressionError, "binding variable #{variable.class}"
+        end
+
+        variable.name
+      end
+
+      # OMATTR evaluates its attributed object; the attribution pairs ride
+      # along as data and never alter the evaluation.
+      def attributed_object(omattr)
+        attributed = ordered_children(omattr).last
+        if attributed.nil? || attributed.is_a?(Openmath::V2::Omatp) ||
+            attributed.is_a?(Openmath::V3::Omatp)
+          raise UnsupportedExpressionError, "attribution without an object"
+        end
+
+        attributed
       end
 
       def error_value(ome, variables, table)
