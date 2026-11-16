@@ -11,6 +11,7 @@ module Openmath
   autoload :Validation, "openmath/validation"
   autoload :Evaluation, "openmath/evaluation"
   autoload :Foreign, "openmath/foreign"
+  autoload :Canonical, "openmath/canonical"
   autoload :CD, "openmath/cd"
 
   module Base
@@ -66,5 +67,12 @@ module Openmath
     Evaluation.evaluate(object, **args)
   end
 
-  module_function :parse, :validate!, :valid?, :parse_cd, :evaluate
+  # Canonical equality: two objects are canonically equal when their
+  # canonical serializations hash identically (see Openmath::Canonical).
+  def canonical_equal?(left, right)
+    Canonical.equal?(left, right)
+  end
+
+  module_function :parse, :validate!, :valid?, :parse_cd, :canonical_equal?,
+                  :evaluate
 end

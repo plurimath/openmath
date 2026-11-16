@@ -7,5 +7,14 @@ module Openmath
   # subclasses (e.g. Openmath::V2::CommonElements) declare the child object
   # collections and their element maps for their version's grammar.
   class CommonElements < Lutaml::Model::Serializable
+    # The canonical serialization profile (Openmath::Canonical): deterministic
+    # bytes for the same mathematical object.
+    def to_canonical_xml
+      Openmath::Canonical.xml(self)
+    end
+
+    def canonical_sha256
+      Openmath::Canonical.sha256(self)
+    end
   end
 end

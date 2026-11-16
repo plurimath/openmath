@@ -25,6 +25,11 @@ bundle exec rspec spec/openmath/v2/roundtrip_spec.rb:14  # single spec
   modules add each element's attributes and root; the version classes
   (`Openmath::V2::Oms` …) subclass CommonElements and include their Base
   module. Follow the mml gem's structure when extending.
+- **Canonical serialization**: `Openmath::Canonical` emits one
+  deterministic form (sorted attributes, default namespace on the canonical
+  root, no inter-element whitespace, OMI/OMB whitespace stripped, OMSTR and
+  foreign fragments verbatim). `#to_canonical_xml`/`#canonical_sha256` on
+  `Openmath::CommonElements`; `Openmath.canonical_equal?` compares.
 - **Registry, not direct types**: child attributes declare SYMBOL types
   (`attribute :oms_value, :oms, collection: true`) resolved through
   `Openmath::V2::Configuration`'s LutaML context

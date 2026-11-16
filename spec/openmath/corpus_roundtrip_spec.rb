@@ -25,5 +25,18 @@ RSpec.describe "the corpus round-trip" do
         expect(twice).to eq(once), "#{id}: not a fixed point under v#{version}"
       end
     end
+
+    it "#{id} hashes canonically stable across versions and parse cycles" do
+      xml = File.read(path)
+      hashes = [2, 3].map do |version|
+        object = Openmath.parse(xml, version: version)
+        reparsed = Openmath.parse(object.to_xml, version: version)
+        expect(reparsed.canonical_sha256).to eq(object.canonical_sha256),
+                                              "#{id}: canonical drift under v#{version}"
+        object.canonical_sha256
+      end
+
+      expect(hashes.uniq.size).to eq(1), "#{id}: v2 and v3 canonicals differ"
+    end
   end
 end

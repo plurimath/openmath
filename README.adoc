@@ -33,6 +33,11 @@ OpenMath/OMSVN). Namespaced documents parse in both the unprefixed and the
   recorded positions on serialization — MathML, SVG, any well-formed
   fragment round-trips byte-identically.
 
+* **Canonical serialization**: `#to_canonical_xml` and `#canonical_sha256`
+  on every element give one deterministic form of an object — invariant
+  under prefix choice, attribute order and insignificant whitespace —
+  with `Openmath.canonical_equal?` as the explicit equality operation.
+
 Known limitations (tracked in the issues):
 
 * OMFOREIGN fragments re-serialize pretty-printed by nokogiri rather than
