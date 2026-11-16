@@ -87,7 +87,8 @@ module Openmath
       # The children of a container in document order: element_order names
       # each element as parsed; the per-type collections hold the values in
       # the same relative order, so a cursor per element name reconstructs
-      # the sequence.
+      # the sequence. (lutaml-model's order tracking covers every content
+      # model as of 0.8.175 — see openmath#16.)
       CHILD_ATTRIBUTES = {
         "OMS" => :oms_value, "OMV" => :omv_value, "OMI" => :omi_value,
         "OMB" => :omb_value, "OMSTR" => :omstr_value, "OMF" => :omf_value,
@@ -99,7 +100,7 @@ module Openmath
 
       def ordered_children(container)
         cursors = Hash.new(0)
-        ordered = container.element_order.filter_map do |element|
+        container.element_order.filter_map do |element|
           attribute = CHILD_ATTRIBUTES[element.name]
           next unless attribute
 
@@ -108,14 +109,6 @@ module Openmath
           cursors[element.name] += 1
           values[index]
         end
-        # Mixed-content elements can drop out of the order tracking; append
-        # any values the order walk did not consume, in collection order.
-        CHILD_ATTRIBUTES.each do |name, attribute|
-          values = container.public_send(attribute)
-          consumed = cursors[name]
-          ordered.concat(values.drop(consumed)) if values && values.size > consumed
-        end
-        ordered
       end
 
       def element_name(object)
