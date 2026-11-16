@@ -15,13 +15,13 @@ module Openmath
     autoload :Document, "openmath/cd/document"
     autoload :Collection, "openmath/cd/collection"
     autoload :Validation, "openmath/cd/validation"
-  end
 
-  module_function
+    module_function
 
-  # Parses a CD document into Openmath::CD::Document.
-  def parse_cd(input)
-    CD::Configuration.register_models!
-    CD::Document.from_xml(input, register: CD::Configuration::CONTEXT_ID)
+    # Parses a CD document into Openmath::CD::Document.
+    def parse(input)
+      Configuration.register_models!
+      Document.from_xml(input, register: Configuration::CONTEXT_ID)
+    end
   end
 end

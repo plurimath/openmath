@@ -9,17 +9,8 @@ module Openmath
   autoload :V2, "openmath/v2"
   autoload :V3, "openmath/v3"
   autoload :Validation, "openmath/validation"
-
-  module CD
-    autoload :Namespace, "openmath/cd/namespace"
-    autoload :Configuration, "openmath/cd/configuration"
-    autoload :Fmp, "openmath/cd/fmp"
-    autoload :Example, "openmath/cd/example"
-    autoload :Definition, "openmath/cd/definition"
-    autoload :Document, "openmath/cd/document"
-    autoload :Collection, "openmath/cd/collection"
-    autoload :Validation, "openmath/cd/validation"
-  end
+  autoload :Evaluation, "openmath/evaluation"
+  autoload :CD, "openmath/cd"
 
   module Base
     autoload :Oms, "openmath/base/oms"
@@ -64,9 +55,15 @@ module Openmath
 
   # Parses a CD document into Openmath::CD::Document.
   def parse_cd(input)
-    CD::Configuration.register_models!
-    CD::Document.from_xml(input)
+    CD.parse(input)
   end
 
-  module_function :parse, :validate!, :valid?, :parse_cd
+  # Evaluates an OpenMath object (or XML text) under the variable bindings.
+  def evaluate(object, variables: {}, table: nil, version: nil)
+    args = { variables: variables, version: version }.compact
+    args[:table] = table if table
+    Evaluation.evaluate(object, **args)
+  end
+
+  module_function :parse, :validate!, :valid?, :parse_cd, :evaluate
 end
