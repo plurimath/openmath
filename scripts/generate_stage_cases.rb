@@ -22,6 +22,7 @@ $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 require "openmath"
 require "digest"
 require "yaml"
+require "fileutils"
 
 corpus_dir = File.expand_path("../spec/fixtures/corpus", __dir__)
 testsuite = ARGV.include?("--testsuite") ? ARGV[ARGV.index("--testsuite") + 1] : nil
