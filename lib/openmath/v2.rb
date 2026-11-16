@@ -48,7 +48,7 @@ module Openmath
 
     def parse(input)
       register_models!
-      Omobj.from_xml(input)
+      Omobj.from_xml(input, register: Configuration::CONTEXT_ID)
     end
   end
 end
