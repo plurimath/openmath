@@ -35,7 +35,7 @@ unless File.exist?(ledger_path)
 end
 
 ledger = YAML.safe_load_file(ledger_path, aliases: false)
-generation = ledger["entries"].map { |entry| entry["generation"] }.max + 1
+generation = (ledger["entries"].map { |entry| entry["generation"] }.max || 0) + 1
 dir = File.join(testsuite, "stages", "openmath", "generations", format("%06d", generation))
 abort "#{dir} already exists" if File.exist?(dir)
 
