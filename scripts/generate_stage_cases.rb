@@ -51,7 +51,7 @@ Dir[File.join(corpus_dir, "*.omxml")].sort.each do |path|
   reparsed = Openmath.parse(output, version: 2)
   abort "#{id}: not a serialization fixed point" unless reparsed.to_xml == output
 
-  group = id.split("-").first
+  group = id.split("-").first.tr("_", "-")
   groups[group] << {
     "id" => id,
     "input" => xml,
@@ -66,9 +66,10 @@ end
 
 payloads = groups.keys.sort.map do |group|
   rows = groups[group]
-  { "path" => "payloads/#{group}.yaml", "size" => nil,
-    "sha256" => nil, "producer" => "stage-gem", "source" => {"kind" => "generated"},
-    "ids" => rows.map { |row| row["id"] } }
+  { "path" => "payloads/#{group}.yaml", "bytes" => nil,
+    "sha256" => nil, "producer" => "stage-gem",
+    "source" => {"relation" => "generated", "file" => nil},
+    "rows" => rows.map { |row| row["id"] } }
 end
 
 FileUtils.mkdir_p(File.join(dir, "payloads"))
@@ -114,24 +115,48 @@ provenance = {
           "sha256" => Digest::SHA256.file(path).hexdigest,
         }
       end,
-      "boundary" => "model-roundtrip",
+      "environment" => {
+        "ruby" => { "engine" => RUBY_ENGINE, "version" => RUBY_VERSION },
+        "xml_engine" => "nokogiri #{Nokogiri::VERSION}",
+        "lockfile" => { "file" => "Gemfile.lock",
+                        "sha256" => (begin
+                          Digest::SHA256.file(File.expand_path("../Gemfile.lock", __dir__)).hexdigest
+                        rescue StandardError
+                          nil
+                        end) },
+        "dependencies" => { "lutaml-model" => Gem.loaded_specs["lutaml-model"].version.to_s },
+        "compiler" => nil,
+        "binding" => { "schema" => "openmath-binding-table/1",
+                       "version" => Openmath::Evaluation::BindingTable.default.version,
+                       "sha256" => Openmath::Evaluation::BindingTable.default_checksum },
+        "lml" => nil,
+      },
+      "semantic_boundary" => "model-roundtrip",
+      "configuration" => {},
     },
   },
   "payloads" => payloads.map do |entry|
     path = File.join(dir, entry["path"])
-    entry["size"] = File.size(path)
+    entry["bytes"] = File.size(path)
     entry["sha256"] = Digest::SHA256.file(path).hexdigest
     entry
   end,
-}
-File.write(File.join(dir, "provenance.yaml"),
+}File.write(File.join(dir, "provenance.yaml"),
            "# Generation #{generation} of the openmath stage corpus. Immutable: " \
            "never edit this directory; add a new generation instead. See " \
            "docs/stage-corpus-contract.adoc.\n" + YAML.dump(provenance))
 
-snapshot = Dir[File.join(dir, "**", "*")].select { |path| File.file?(path) }.sort
-  .map { |path| "#{path.delete_prefix("#{testsuite}/")}:#{Digest::SHA256.file(path).hexdigest}" }
-digest = Digest::SHA256.hexdigest(snapshot.join("\n"))
+# The testsuite's snapshot digest: sha256 over `<file sha256>  <path>\n`
+# for every file of the generation, paths relative to the generation
+# directory, ordered by their bytes (validate-stages.rb's formula).
+names = Dir.children(dir).flat_map do |entry|
+  path = File.join(dir, entry)
+  File.directory?(path) ? Dir.glob(File.join(entry, "**", "*"), base: dir) : [entry]
+end.sort_by(&:b)
+lines = names.map do |name|
+  "#{Digest::SHA256.file(File.join(dir, name)).hexdigest}  #{name}\n"
+end
+digest = "sha256:#{Digest::SHA256.hexdigest(lines.join.encode('UTF-8'))}"
 
 row_count = groups.values.sum(&:size)
 ledger["entries"] << {
