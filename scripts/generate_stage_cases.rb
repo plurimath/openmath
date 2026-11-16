@@ -141,7 +141,8 @@ provenance = {
     entry["sha256"] = Digest::SHA256.file(path).hexdigest
     entry
   end,
-}File.write(File.join(dir, "provenance.yaml"),
+}
+File.write(File.join(dir, "provenance.yaml"),
            "# Generation #{generation} of the openmath stage corpus. Immutable: " \
            "never edit this directory; add a new generation instead. See " \
            "docs/stage-corpus-contract.adoc.\n" + YAML.dump(provenance))
