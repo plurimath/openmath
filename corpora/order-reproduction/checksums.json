@@ -1,0 +1,10 @@
+{
+  "corpora/order-reproduction/issue-1163.json": "7b958bd42dd4996286919fa4b7e8260096687f6db8db5ccbdf4e4d605e686c4d",
+  "corpora/order-reproduction/manifest.json": "dfa86b61c36d4ab9bee0ed93575c1cac007c2282b711f37b8969a6f05301e463",
+  "corpora/order-reproduction/observed.json": "34843780b990b478c958d0e1de61c9f09fdd840d7b37116b8c21d900d2e17edc",
+  "spec/fixtures/order_reproduction/attribute-only.xml": "d7a63f378e04bb3aff6de7991c7d411ccf7a4110be5827e5bcfffcf45b37dd18",
+  "spec/fixtures/order_reproduction/interleaved.xml": "0acf0e48085c53a2c326172f4cb3818096c192a927e9024604371ff79e733795",
+  "spec/fixtures/order_reproduction/planning-counterexample.xml": "4be28007a68d8b838e26afa35b68a6b2ca063acb7f78eede8ee3065fae357af9",
+  "spec/fixtures/order_reproduction/repeated-bytes.xml": "1e69c9c6877c6b7ed5a1163f8804a8f7de579ef3ab5a17fc02590fb59cfc89b4",
+  "spec/fixtures/order_reproduction/repeated-text.xml": "63f8a4e9f77ac9e1ca6434fd5846c6040cc582d0b9397c41e63e15ca619547de"
+}
