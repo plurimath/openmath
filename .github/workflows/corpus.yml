@@ -25,7 +25,7 @@ defaults:
 # The checkout rides plurimath-testsuite PR #54 (generation 2) until it
 # merges, then the ref flips to the merge commit.
 env:
-  TESTSUITE_COMMIT: e3c78ee9223679888f82e61b8e42c7919e290468
+  TESTSUITE_COMMIT: bae7f1ec07822d5097fbfbb7968c279c0cec3bcc
   TESTSUITE_REF: refs/pull/54/head
   PIN: spec/fixtures/testsuite-pin.yml
 
