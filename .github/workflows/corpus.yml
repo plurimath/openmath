@@ -1,0 +1,61 @@
+name: corpus
+
+# Replays the plurimath-testsuite openmath stage generation pinned in
+# spec/fixtures/testsuite-pin.yml: the testsuite's own validator checks
+# the pin, and the parity spec replays every non-superseded row of the
+# pinned generation (supersession classification per the -r2 flow).
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  schedule:
+    - cron: "37 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+# The testsuite commit is a literal here (not read from a step output) so
+# the checkout ref is fixed by this file; a step checks it against the pin.
+env:
+  TESTSUITE_COMMIT: e3c78ee9223679888f82e61b8e42c7919e290468
+  PIN: spec/fixtures/testsuite-pin.yml
+
+jobs:
+  replay:
+    name: Pinned testsuite generation replay
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: plurimath/plurimath-testsuite
+          ref: ${{ env.TESTSUITE_COMMIT }}
+          path: tmp/plurimath-testsuite
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: OpenMath/CDs
+          ref: cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c
+          path: tmp/openmath-cds
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: The checkout matches the pin
+        run: |
+          pinned=$(grep '^commit:' "$PIN" | awk '{print $2}')
+          test "$pinned" = "$TESTSUITE_COMMIT"
+      - name: The testsuite's validator checks the pin
+        run: ruby tmp/plurimath-testsuite/scripts/validate-stages.rb tmp/plurimath-testsuite --pin "$PIN"
+      - name: Replay the pinned generation
+        env:
+          OPENMATH_TESTSUITE: ${{ github.workspace }}/tmp/plurimath-testsuite
+          OPENMATH_CDS: ${{ github.workspace }}/tmp/openmath-cds
+        run: bundle exec rspec spec/openmath/testsuite_parity_spec.rb
