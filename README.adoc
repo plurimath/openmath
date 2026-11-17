@@ -47,6 +47,13 @@ OpenMath/OMSVN). Namespaced documents parse in both the unprefixed and the
   under prefix choice, attribute order and insignificant whitespace —
   with `Openmath.canonical_equal?` as the explicit equality operation.
 
+* **Content MathML v4**: `Openmath::ContentMathML.parse`/`generate`
+  ride the same content models (the plurimath#35 re-parenting) —
+  csymbol ↔ symbol, apply ↔ application, lambda/bvar ↔ the binding
+  containers — with the MathML 4 operator table transforming to the
+  strict form, exact cn constructions (rational, based integers,
+  e-notation), and typed refusals for everything outside the semantic
+  core.
 * **Binary encoding**: `Openmath::Binary.encode`/`decode` speak the
   standard's compact tagged format — both framings, streaming packets,
   internal and external references, the shared-object optimization backed

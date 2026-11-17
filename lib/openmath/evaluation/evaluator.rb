@@ -43,7 +43,7 @@ module Openmath
         end
 
         def self.children_of(node)
-          return [] unless node.respond_to?(:element_order)
+          return [] unless node.respond_to?(:element_order) && node.element_order
 
           Evaluator.ordered_children(node)
         end

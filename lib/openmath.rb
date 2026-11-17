@@ -13,6 +13,8 @@ module Openmath
   autoload :Foreign, "openmath/foreign"
   autoload :Canonical, "openmath/canonical"
   autoload :Binary, "openmath/binary"
+  autoload :ContentMathML, "openmath/content_mathml"
+  autoload :ContentMathMLOperators, "openmath/content_mathml_operators"
   autoload :Tagged, "openmath/tagged"
   autoload :CD, "openmath/cd"
 
