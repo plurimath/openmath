@@ -22,11 +22,11 @@ defaults:
 
 # The testsuite commit is a literal here (not read from a step output) so
 # the checkout ref is fixed by this file; a step checks it against the pin.
-# The checkout rides plurimath-testsuite PR #54 (generation 2) until it
-# merges, then the ref flips to the merge commit.
+# Commit, generation and digest change together in one deliberate upgrade
+# (the testsuite upgrade flow), in step with spec/fixtures/testsuite-pin.yml.
 env:
-  TESTSUITE_COMMIT: bae7f1ec07822d5097fbfbb7968c279c0cec3bcc
-  TESTSUITE_REF: refs/pull/54/head
+  TESTSUITE_COMMIT: e0e7d49735fcda2a27b3cfe450f6e448551b0c41
+  TESTSUITE_REF: e0e7d49735fcda2a27b3cfe450f6e448551b0c41
   PIN: spec/fixtures/testsuite-pin.yml
 
 jobs:
