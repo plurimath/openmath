@@ -22,8 +22,11 @@ defaults:
 
 # The testsuite commit is a literal here (not read from a step output) so
 # the checkout ref is fixed by this file; a step checks it against the pin.
+# The checkout rides plurimath-testsuite PR #54 (generation 2) until it
+# merges, then the ref flips to the merge commit.
 env:
   TESTSUITE_COMMIT: e3c78ee9223679888f82e61b8e42c7919e290468
+  TESTSUITE_REF: refs/pull/54/head
   PIN: spec/fixtures/testsuite-pin.yml
 
 jobs:
@@ -35,7 +38,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: plurimath/plurimath-testsuite
-          ref: ${{ env.TESTSUITE_COMMIT }}
+          ref: ${{ env.TESTSUITE_REF }}
           path: tmp/plurimath-testsuite
           persist-credentials: false
       - uses: actions/checkout@v4
