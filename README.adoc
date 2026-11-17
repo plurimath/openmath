@@ -23,14 +23,54 @@ OpenMath/OMSVN). Namespaced documents parse in both the unprefixed and the
   symbol resolution with cdbase matching, and CD validation against
   `omcd2.rng` — CD content is data, never code.
 * **Evaluation**: the CD binding table (`data/binding-table-1.yml`) binds
-  the working core (nums1, arith1, relation1, logic1) to operations;
-  `Openmath.evaluate(xml, variables:)` walks the tree under the exactness
-  discipline — integers and rationals stay exact, floats contaminate to the
-  limited class, unbound symbols refuse naming the symbol.
+  the working families — nums1, arith1, relation1, logic1, integer1,
+  rounding1, set1/list1, interval1, linalg1/linalg2/linalg3 — to exact
+  operations; `Openmath.evaluate(xml, variables:)` walks the tree under the
+  exactness discipline — integers and rationals stay exact, floats
+  contaminate to the limited class, unbound symbols refuse naming the
+  symbol. `fns1/lambda` binds: `OMBIND` evaluates to a closure captured
+  lexically, applied through an enclosing `OMA` with typed arity refusals;
+  `map`/`suchthat` ride the lambda layer; attributed variables bind by
+  their wrapped name; `OMATTR` evaluates its attributed object,
+  attributions riding along as data; `OMR` references resolve within the
+  document scope with cycle detection; shape contradictions refuse with
+  the DimensionMismatch name. calculus1 stays symbolic — outside the
+  evaluated surface, refused typed.
+
+* **Foreign objects**: markup inside OMFOREIGN (the schema's notOM content)
+  is captured verbatim at parse time (`notom_value`) and re-emitted at its
+  recorded positions on serialization — MathML, SVG, any well-formed
+  fragment round-trips byte-identically.
+
+* **Canonical serialization**: `#to_canonical_xml` and `#canonical_sha256`
+  on every element give one deterministic form of an object — invariant
+  under prefix choice, attribute order and insignificant whitespace —
+  with `Openmath.canonical_equal?` as the explicit equality operation.
+
+* **Content MathML v4**: `Openmath::ContentMathML.parse`/`generate`
+  ride the same content models (the plurimath#35 re-parenting) —
+  csymbol ↔ symbol, apply ↔ application, lambda/bvar ↔ the binding
+  containers — with the MathML 4 operator table transforming to the
+  strict form, exact cn constructions (rational, based integers,
+  e-notation), and typed refusals for everything outside the semantic
+  core.
+* **Binary encoding**: `Openmath::Binary.encode`/`decode` speak the
+  standard's compact tagged format — both framings, streaming packets,
+  internal and external references, the shared-object optimization backed
+  by OMR, and typed refusals for every malformed byte sequence. Every
+  corpus object round-trips at a binary fixed point.
+
+* **The PM register**: the `pmquant` CD family (`data/pmquant.ocd`, schema-
+  validated) carries PM 1002's quantity/uncertainty constructors — `ustd`,
+  `uexp`, `ucov` — as OpenMath data with its own signature file; quantities
+  combine under JCGM 101's first-order propagation, and
+  `Openmath.evaluate_stochastic` runs deterministic Monte-Carlo evaluation
+  under a declared generator and seed (same seed, same samples).
 
 Known limitations (tracked in the issues):
 
-* Non-OpenMath markup inside OMFOREIGN is not yet represented.
+* OMFOREIGN fragments re-serialize pretty-printed by nokogiri rather than
+  in the surrounding document's indentation.
 
 == Usage
 

@@ -1,0 +1,14 @@
+<CD xmlns="http://www.openmath.org/OpenMathCD">
+  <CDName>mycd2</CDName>
+  <CDBase>http://example.org/cd/mycd2</CDBase>
+  <CDVersion>3</CDVersion>
+  <CDRevision>2</CDRevision>
+  <CDStatus>official</CDStatus>
+  <CDDate>2026-02-01</CDDate>
+  <CDReviewDate>2027-02-01</CDReviewDate>
+  <Description>Test CD two</Description>
+  <CDDefinition>
+    <Name>other</Name>
+    <Description>Another symbol</Description>
+  </CDDefinition>
+</CD>

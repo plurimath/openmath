@@ -1,0 +1,12 @@
+# The plurimath-testsuite stage generation this gem replays in CI
+# (.github/workflows/corpus.yml and the OPENMATH_TESTSUITE parity spec).
+# Commit, generation and digest change together, in one deliberate
+# upgrade; the testsuite's `ruby scripts/validate-stages.rb <checkout>
+# --pin <this file>` checks them.
+---
+schema: plurimath-stage/pin/1
+repository: https://github.com/plurimath/plurimath-testsuite
+commit: bae7f1ec07822d5097fbfbb7968c279c0cec3bcc
+language: openmath
+generation: 2
+snapshot_digest: sha256:6b16742bacc9817e30cb629282262808d1c4d830bbeb96107251311703a5d4bf

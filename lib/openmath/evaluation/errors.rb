@@ -61,5 +61,35 @@ module Openmath
         super("binding table names unimplemented operation #{operation}")
       end
     end
+
+    # An OMR reference resolves to a target currently under evaluation.
+    class RecursionError < Error
+      attr_reader :name
+
+      def initialize(name)
+        @name = name
+        super("cyclic OMR reference to #{name.inspect}")
+      end
+    end
+
+    # Shapes contradict (the PM error extension name).
+    class DimensionMismatchError < Error
+      attr_reader :context
+
+      def initialize(context)
+        @context = context
+        super("DimensionMismatch: #{context}")
+      end
+    end
+
+    # An application contradicts the operator's STS signature.
+    class SignatureViolationError < Error
+      attr_reader :detail
+
+      def initialize(detail)
+        @detail = detail
+        super(detail)
+      end
+    end
   end
 end

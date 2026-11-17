@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 schema: openmath-binding-table/1
-version: 1
+version: 4
 description: >
   The CD binding table: which content-dictionary symbols evaluate, and the
   operation each binds to. Adding a binding is adding data here plus the
@@ -11,6 +11,7 @@ bindings:
   # nums1 — the number constructions
   - { cd: nums1, name: integer, operation: identity }
   - { cd: nums1, name: rational, operation: rational }
+  - { cd: nums1, name: based_integer, operation: based_integer }
   # arith1 — the arithmetic core
   - { cd: arith1, name: plus, operation: plus }
   - { cd: arith1, name: times, operation: times }
@@ -18,6 +19,9 @@ bindings:
   - { cd: arith1, name: unary_minus, operation: unary_minus }
   - { cd: arith1, name: divided_by, operation: divided_by }
   - { cd: arith1, name: power, operation: power }
+  - { cd: arith1, name: root, operation: root }
+  - { cd: arith1, name: sum, operation: sum }
+  - { cd: arith1, name: product, operation: product }
   - { cd: arith1, name: abs, operation: abs }
   - { cd: arith1, name: max, operation: max }
   - { cd: arith1, name: min, operation: min }
@@ -28,9 +32,45 @@ bindings:
   - { cd: relation1, name: lt, operation: lt }
   - { cd: relation1, name: geq, operation: geq }
   - { cd: relation1, name: leq, operation: leq }
+  - { cd: relation1, name: approx, operation: approx }
   # logic1 — the connectives
   - { cd: logic1, name: and, operation: and }
   - { cd: logic1, name: or, operation: or }
   - { cd: logic1, name: xor, operation: xor }
   - { cd: logic1, name: not, operation: not }
   - { cd: logic1, name: implies, operation: implies }
+  # integer1 / rounding1 — exact integer semantics
+  - { cd: integer1, name: factorial, operation: factorial }
+  - { cd: integer1, name: quotient, operation: quotient }
+  - { cd: integer1, name: remainder, operation: remainder }
+  - { cd: rounding1, name: floor, operation: floor }
+  - { cd: rounding1, name: ceiling, operation: ceiling }
+  - { cd: rounding1, name: round, operation: round }
+  # set1 / list1 — exact collections; suchthat/map ride the lambda layer
+  - { cd: list1, name: list, operation: list }
+  - { cd: set1, name: set, operation: set }
+  - { cd: set1, name: in, operation: in }
+  - { cd: set1, name: size, operation: size }
+  - { cd: list1, name: map, operation: map }
+  - { cd: set1, name: suchthat, operation: suchthat }
+  # interval1 — exact domains
+  - { cd: interval1, name: interval, operation: interval }
+  - { cd: interval1, name: interval_oo, operation: interval_oo }
+  - { cd: interval1, name: interval_oc, operation: interval_oc }
+  - { cd: interval1, name: interval_co, operation: interval_co }
+  # linalg — exact matrices over rationals
+  - { cd: linalg2, name: matrix, operation: matrix }
+  - { cd: linalg2, name: matrixrow, operation: matrixrow }
+  - { cd: linalg1, name: transpose, operation: transpose }
+  - { cd: linalg3, name: determinant, operation: determinant }
+  - { cd: linalg1, name: vector_product, operation: vector_product }
+  # pmquant — the PM 1002 quantity/uncertainty constructors
+  - { cd: pmquant, name: ustd, operation: ustd }
+  - { cd: pmquant, name: uexp, operation: uexp }
+  - { cd: pmquant, name: ucov, operation: ucov }
+  - { cd: pmquant, name: value, operation: value }
+  # pmquant — the PM 1002 quantity/uncertainty constructors
+  - { cd: pmquant, name: ustd, operation: ustd }
+  - { cd: pmquant, name: uexp, operation: uexp }
+  - { cd: pmquant, name: ucov, operation: ucov }
+  - { cd: pmquant, name: value, operation: value }

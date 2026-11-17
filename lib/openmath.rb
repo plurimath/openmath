@@ -10,6 +10,12 @@ module Openmath
   autoload :V3, "openmath/v3"
   autoload :Validation, "openmath/validation"
   autoload :Evaluation, "openmath/evaluation"
+  autoload :Foreign, "openmath/foreign"
+  autoload :Canonical, "openmath/canonical"
+  autoload :Binary, "openmath/binary"
+  autoload :ContentMathML, "openmath/content_mathml"
+  autoload :ContentMathMLOperators, "openmath/content_mathml_operators"
+  autoload :Tagged, "openmath/tagged"
   autoload :CD, "openmath/cd"
 
   module Base
@@ -58,12 +64,44 @@ module Openmath
     CD.parse(input)
   end
 
+  # Parses a CDGroup document into Openmath::CD::GroupDocument.
+  def parse_cdgroup(input)
+    CD::Group.parse(input)
+  end
+
+  def validate_cdgroup!(xml)
+    CD::Group.validate!(xml)
+  end
+
   # Evaluates an OpenMath object (or XML text) under the variable bindings.
-  def evaluate(object, variables: {}, table: nil, version: nil)
-    args = { variables: variables, version: version }.compact
+  # When STS signatures are supplied, applications check against their
+  # operator's signature and violations refuse typed.
+  def evaluate(object, variables: {}, table: nil, version: nil, signatures: nil)
+    args = { variables: variables, version: version, signatures: signatures }.compact
     args[:table] = table if table
     Evaluation.evaluate(object, **args)
   end
 
-  module_function :parse, :validate!, :valid?, :parse_cd, :evaluate
+  # Deterministic Monte-Carlo evaluation over uncertainty-carrying
+  # objects: every pmquant quantity draws from its category's documented
+  # distribution under the seeded generator; the result carries the
+  # generator, seed, sample count, samples, mean and standard deviation,
+  # so the same seed reproduces the same run.
+  def evaluate_stochastic(object, samples:, seed:, generator: "mt19937",
+                          variables: {}, table: nil, version: nil)
+    args = { variables: variables, version: version }.compact
+    args[:table] = table if table
+    Evaluation::Stochastic.evaluate(object, samples: samples, seed: seed,
+                                    generator: generator, **args)
+  end
+
+  # Canonical equality: two objects are canonically equal when their
+  # canonical serializations hash identically (see Openmath::Canonical).
+  def canonical_equal?(left, right)
+    Canonical.equal?(left, right)
+  end
+
+  module_function :parse, :validate!, :valid?, :parse_cd, :canonical_equal?,
+                  :parse_cdgroup, :validate_cdgroup!, :evaluate,
+                  :evaluate_stochastic
 end
