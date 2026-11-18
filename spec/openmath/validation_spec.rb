@@ -29,7 +29,7 @@ RSpec.describe Openmath do
     expect { described_class.validate!("<nope/>", version: 2) }
       .to raise_error(
         Openmath::Validation::ValidationError,
-        /Expecting element OMOBJ, got nope/,
+        /element "nope" not allowed anywhere; expected element "OMOBJ"/,
       )
   end
 
