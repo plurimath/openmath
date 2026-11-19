@@ -57,4 +57,54 @@
       </OMA>
     </OMOBJ>
   </Signature>
+  <Signature name="upper_limit">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+        <OMS cd="sts" name="mapsto"/>
+        <OMS cd="setname1" name="R"/>
+        <OMV name="Limit"/>
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  <Signature name="lower_limit">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+        <OMS cd="sts" name="mapsto"/>
+        <OMS cd="setname1" name="R"/>
+        <OMV name="Limit"/>
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  <Signature name="simple_acceptance">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+        <OMS cd="sts" name="mapsto"/>
+        <OMV name="DecisionRule"/>
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  <Signature name="guarded_acceptance">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+        <OMS cd="sts" name="mapsto"/>
+        <OMS cd="setname1" name="R"/>
+        <OMV name="DecisionRule"/>
+      </OMA>
+    </OMOBJ>
+  </Signature>
+  <Signature name="constraint">
+    <OMOBJ xmlns="http://www.openmath.org/OpenMath">
+      <OMA>
+        <OMS cd="sts" name="mapsto"/>
+        <OMS cd="sts" name="Object"/>
+        <OMS cd="sts" name="Object"/>
+        <OMS cd="sts" name="Object"/>
+        <OMA>
+          <OMS cd="sts" name="nary"/>
+          <OMS cd="setname2" name="Boolean"/>
+        </OMA>
+        <OMV name="ConstraintResult"/>
+      </OMA>
+    </OMOBJ>
+  </Signature>
 </CDSignatures>

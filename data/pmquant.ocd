@@ -1,13 +1,13 @@
 <CD xmlns="http://www.openmath.org/OpenMathCD">
   <CDName>pmquant</CDName>
   <CDBase>http://www.plurimath.org/cd</CDBase>
-  <CDDate>2026-11-16</CDDate>
+  <CDDate>2026-11-19</CDDate>
   <CDStatus>experimental</CDStatus>
   <CDUses>
     <CDName>sts</CDName>
   </CDUses>
   <CDVersion>1</CDVersion>
-  <CDRevision>0</CDRevision>
+  <CDRevision>1</CDRevision>
   <Description>
     The PM quantity and uncertainty constructors: the measurement-uncertainty
     categories of PM 1002 (the standard, expanded and coverage-interval
@@ -15,7 +15,8 @@
     the constructed value's identity; converting between categories is a
     computation (PM 1004), never a rendering act. This CD is the Plurimath PM
     register's own content dictionary; it is experimental and loads beside
-    the official collection.
+    the official collection. Revision 1 adds the constraint symbols of PM
+    1012: the limits, the decision rules and the constraint evaluation.
   </Description>
   <CDDefinition>
     <Name>ustd</Name>
@@ -85,5 +86,87 @@
       class preserved.
     </CMP>
     <Example>value(ustd(10.3, 0.2))</Example>
+  </CDDefinition>
+  <CDDefinition>
+    <Name>upper_limit</Name>
+    <Role>application</Role>
+    <Description>
+      An upper limit (PM 1012 clause 5): upper_limit(L) states the boundary
+      L with the comparison direction "at or below". A result satisfies it
+      when the result does not exceed L.
+    </Description>
+    <CMP>
+      The boundary is a number; exact boundaries stay exact.
+    </CMP>
+    <Example>upper_limit(100)</Example>
+  </CDDefinition>
+  <CDDefinition>
+    <Name>lower_limit</Name>
+    <Role>application</Role>
+    <Description>
+      A lower limit (PM 1012 clause 5): lower_limit(L) states the boundary
+      L with the comparison direction "at or above". A result satisfies it
+      when the result is not below L.
+    </Description>
+    <CMP>
+      The boundary is a number; exact boundaries stay exact.
+    </CMP>
+    <Example>lower_limit(10)</Example>
+  </CDDefinition>
+  <CDDefinition>
+    <Name>simple_acceptance</Name>
+    <Role>application</Role>
+    <Description>
+      The simple acceptance decision rule (PM 1012 clause 6):
+      simple_acceptance() lets the boundary comparison decide. There is no
+      guard band and no conditional verdict.
+    </Description>
+    <CMP>
+      The verdict is satisfied when the reported value of the result is
+      within the limit, and not-satisfied otherwise. A result exactly at
+      the boundary is within the limit.
+    </CMP>
+    <Example>simple_acceptance()</Example>
+  </CDDefinition>
+  <CDDefinition>
+    <Name>guarded_acceptance</Name>
+    <Role>application</Role>
+    <Description>
+      The guarded acceptance decision rule (PM 1012 clause 6, the ILAC-G8
+      family): guarded_acceptance(k) sets the guard band to k times the
+      standard uncertainty of the result. For an upper limit L the
+      conditional zone is [L - k u, L]; for a lower limit it is
+      [L, L + k u]. Both ends of the zone belong to it.
+    </Description>
+    <CMP>
+      The coverage factor k is a positive number. The rule applies to
+      results of the standard uncertainty category (ustd); other results
+      refuse. A result outside the limit is not-satisfied, a result inside
+      the zone is conditional, and any other result is satisfied.
+    </CMP>
+    <Example>guarded_acceptance(2)</Example>
+  </CDDefinition>
+  <CDDefinition>
+    <Name>constraint</Name>
+    <Role>application</Role>
+    <Description>
+      The constraint evaluation (PM 1012 clause 5): constraint(limit,
+      result, rule) evaluates one result against one limit under one
+      decision rule and gives a constraint result: the verdict
+      (satisfied, not-satisfied or conditional), the signed residual, the
+      rule and the diagnostics. constraint(limit, result, rule, guard)
+      also takes the applicability guard (PM 1012 clause 8), a boolean
+      evaluated through the same path as any other expression.
+    </Description>
+    <CMP>
+      The signed residual is result - L in the limit's own number:
+      negative for a result under an upper limit, positive for a result
+      over a lower one. Under guarded acceptance the residual carries its
+      expanded uncertainty (k u at factor k), and the result states the
+      band and the zone. A guard that is false records the constraint as
+      inapplicable; it is not an error. A guard that is not a boolean
+      refuses.
+    </CMP>
+    <Example>constraint(upper_limit(100), ustd(99.7, 0.5), guarded_acceptance(2))</Example>
   </CDDefinition>
 </CD>

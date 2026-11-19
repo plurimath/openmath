@@ -22,6 +22,7 @@ module Openmath
     autoload :Closure, "openmath/evaluation/closure"
     autoload :Interval, "openmath/evaluation/interval"
     autoload :Uncertain, "openmath/evaluation/uncertain"
+    autoload :Constraint, "openmath/evaluation/constraint"
     autoload :Stochastic, "openmath/evaluation/stochastic"
     autoload :Portable, "openmath/evaluation/portable"
     autoload :Evaluator, "openmath/evaluation/evaluator"
