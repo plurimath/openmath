@@ -36,7 +36,7 @@ RSpec.describe Openmath do
   it "refuses an OMF carrying both dec and hex" do
     xml = "<OMOBJ #{NS}><OMF dec=\"0.5\" hex=\"A\"/></OMOBJ>"
     expect { described_class.validate!(xml, version: 2) }
-      .to raise_error(Openmath::Validation::ValidationError, /attribute combination matches no branch/
+      .to raise_error(Openmath::Validation::ValidationError, /attribute combination matches no branch/)
   end
 
   it "refuses an OME without a leading symbol" do
