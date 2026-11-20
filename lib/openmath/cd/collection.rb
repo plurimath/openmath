@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "nokogiri"
+require "leptris"
 
 module Openmath
   module CD
@@ -68,15 +68,18 @@ module Openmath
       # Validates a CD document against the vendored omcd2.rng. Returns the
       # list of Openmath::Validation::Error objects; empty when valid.
       def self.validate(xml)
-        @schema ||= Nokogiri::XML::RelaxNG(
-          File.open(File.expand_path("../../../schemas/omcd2.rng", __dir__)),
+        @schema ||= Leptris::XML::RelaxNG.parse_file(
+          File.expand_path("../../../schemas/omcd2.rng", __dir__),
         )
-        document = Nokogiri::XML(xml) { |config| config.norecover }
-        raise Openmath::Validation::ValidationError,
-              [Openmath::Validation::Error.new("malformed XML", "/")] if document.errors.any?
+        begin
+          document = Leptris::XML.parse(xml, strict: true)
+        rescue Leptris::XML::ParseError
+          raise Openmath::Validation::ValidationError,
+                [Openmath::Validation::Error.new("malformed XML", "/")]
+        end
 
         @schema.validate(document).map do |e|
-          Openmath::Validation::Error.new(e.message, e.path)
+          Openmath::Validation::Error.new(e, nil)
         end
       end
 

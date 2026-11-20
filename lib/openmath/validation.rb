@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "nokogiri"
+require "leptris"
 
 module Openmath
   module Validation
@@ -31,20 +31,20 @@ module Openmath
         raise ArgumentError, "unsupported OpenMath version #{version.inspect}"
       end
       @schemas ||= {}
-      @schemas[version] ||= Nokogiri::XML::RelaxNG(
-        File.open(File.expand_path("../../schemas/#{file}", __dir__)),
+      @schemas[version] ||= Leptris::XML::RelaxNG.parse_file(
+        File.expand_path("../../schemas/#{file}", __dir__),
       )
     end
 
     # Validates the document against the version's schema. Returns the list
     # of Error objects; empty when the document is valid.
     def validate(xml, version: 2)
-      document = Nokogiri::XML(xml) { |config| config.norecover }
-      raise ValidationError, [Error.new("malformed XML", "/")] if document.errors.any?
-
+      document = Leptris::XML.parse(xml, strict: true)
       schema(version).validate(document).map do |e|
-        Error.new(e.message, e.path)
+        Error.new(e, nil)
       end
+    rescue Leptris::XML::ParseError
+      raise ValidationError, [Error.new("malformed XML", "/")]
     end
 
     # Validates and raises ValidationError carrying every violation.
