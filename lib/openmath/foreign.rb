@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require "nokogiri"
+require "moxml"
 
 module Openmath
   # Foreign-markup capture for OMFOREIGN (the schema's notOM content).
   #
   # lutaml-model's mapping DSL has no representation for arbitrary-markup
   # children, so capture rides a source-side pass: after the typed parse,
-  # the document is re-walked with nokogiri in parallel with the model
+  # the document is re-walked with Moxml in parallel with the model
   # tree, and every OMFOREIGN's foreign children (elements outside the
   # OpenMath namespace) are serialized verbatim into the instance's
   # +notom_value+, with +notom_positions+ recording how many OpenMath
@@ -15,7 +15,6 @@ module Openmath
   # back at those positions through Base::Omobj's to_xml override.
   module Foreign
     OPENMATH_NS = "http://www.openmath.org/OpenMath"
-    SAVE_OPTIONS = Nokogiri::XML::Node::SaveOptions::AS_XML
 
     module_function
 
@@ -32,7 +31,7 @@ module Openmath
     # Omforeign's notom_value/notom_positions from the serialized foreign
     # children in document order. Nested OMFOREIGN objects descend.
     def capture(object, source)
-      root = Nokogiri.XML(source).root
+      root = Moxml.parse(source).root
       return object unless root
 
       capture_node(object, root)
@@ -43,19 +42,19 @@ module Openmath
     # locating each OMFOREIGN node by the same positional pairing capture
     # used, and re-serializes.
     def inject_tree(object, xml_string)
-      doc = Nokogiri.XML(xml_string)
+      doc = Moxml.parse(xml_string)
       place(object, doc.root)
       root_serialize(doc)
     end
 
     # Appends the fragments of a standalone Omforeign serialization.
     def inject(xml, fragments)
-      doc = Nokogiri.XML(xml)
+      doc = Moxml.parse(xml)
       target = doc.root
       return xml.to_s unless target
 
       fragments.each do |fragment|
-        node = Nokogiri.XML(fragment).root
+        node = Moxml.parse(fragment).root
         target.add_child(node) if node
       end
       root_serialize(doc)
@@ -67,7 +66,7 @@ module Openmath
       positions = []
       cursor = child_cursor(model)
 
-      node.element_children.each do |child|
+      element_children(node).each do |child|
         model_child = cursor.call(child.name)
         om_children += 1 if model_child || openmath_child?(child)
         if model_child
@@ -80,14 +79,14 @@ module Openmath
 
       return unless omforeign?(model)
 
-      model.notom_value = foreign.map { |n| n.to_xml(save_with: SAVE_OPTIONS) }
+      model.notom_value = foreign.map { |n| n.to_xml(indent: 0, expand_empty: false) }
       model.notom_positions = positions
     end
 
     def place(model, node)
       cursor = child_cursor(model)
 
-      node.element_children.each do |child|
+      element_children(node).each do |child|
         model_child = cursor.call(child.name)
         next unless model_child
 
@@ -101,9 +100,9 @@ module Openmath
     def insert_fragments(node, model)
       fragments = Array(model.notom_value)
       positions = Array(model.notom_positions)
-      siblings = node.element_children.select { |c| openmath_child?(c) }
+      siblings = element_children(node).select { |c| openmath_child?(c) }
       fragments.each_with_index do |fragment, i|
-        fragment_node = Nokogiri.XML(fragment).root
+        fragment_node = Moxml.parse(fragment).root
         next unless fragment_node
 
         anchor = siblings[positions[i]] if positions[i]
@@ -116,7 +115,13 @@ module Openmath
     end
 
     def openmath_child?(node)
-      (node.namespace&.href || OPENMATH_NS) == OPENMATH_NS
+      (node.namespace_uri || OPENMATH_NS) == OPENMATH_NS
+    end
+
+    # Element children only, in document order (the walk skips text,
+    # comments and processing instructions).
+    def element_children(node)
+      node.children.select { |child| child.is_a?(Moxml::Element) }
     end
 
     # Document-order model child of +name+ matched positionally against
@@ -140,7 +145,7 @@ module Openmath
     end
 
     def root_serialize(doc)
-      doc.root.to_xml(save_with: SAVE_OPTIONS)
+      doc.root.to_xml(indent: 0, expand_empty: false)
     end
   end
 end

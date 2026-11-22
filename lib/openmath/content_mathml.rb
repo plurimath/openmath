@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "nokogiri"
+require "moxml"
 
 module Openmath
   # The Content MathML v4 encoding (the plurimath#35 re-parenting:
@@ -28,7 +28,7 @@ module Openmath
     # Parses Content MathML into the versioned object model: the parsed
     # object slots into an OMOBJ root, as the XML and binary readers do.
     def parse(input, version: 2)
-      doc = Nokogiri.XML(input) { |config| config.norecover }
+      doc = Moxml.parse(input)
       root = doc.root
       raise Error, "no root element" unless root
 
@@ -54,16 +54,11 @@ module Openmath
 
     def content_element(name, children = nil, attributes = nil)
       attributes_arg = attributes && !attributes.empty? ? attributes : nil
-      if children.nil?
-        node = Nokogiri::XML::Node.new(name, Nokogiri::XML::Document.new)
-        attributes_arg&.each { |key, value| node[key] = value }
-        node
-      else
-        node = Nokogiri::XML::Node.new(name, children.first.document)
-        attributes_arg&.each { |key, value| node[key] = value }
-        children.each { |child| node.add_child(child) }
-        node
-      end
+      doc = children&.first&.document || Moxml.new.create_document
+      node = doc.create_element(name)
+      attributes_arg&.each { |key, value| node[key] = value }
+      children&.each { |child| node.add_child(child) }
+      node
     end
 
     # The reader: one Content MathML element at a time.
@@ -333,12 +328,12 @@ module Openmath
       end
 
       def document
-        wrapper = Nokogiri::XML::Document.new
-        math = Nokogiri::XML::Node.new("math", wrapper)
+        wrapper = Moxml.new.create_document
+        math = wrapper.create_element("math")
         math["xmlns"] = NAMESPACE
         math.add_child(element(@root))
         wrapper.root = math
-        math.to_xml(indent: 2)
+        wrapper.to_xml(indent: 2, declaration: false, expand_empty: false)
       end
 
       def element(node)
@@ -436,7 +431,7 @@ module Openmath
       end
 
       def sep(document)
-        Nokogiri::XML::Node.new("sep", document)
+        document.create_element("sep")
       end
     end
   end
