@@ -45,7 +45,6 @@ RSpec.describe Openmath do
   end
 
   it "refuses a bad base64 byte array" do
-    skip "leptris#2080: an attribute-prefixed <data> leaf skips the lexical check"
     xml = "<OMOBJ #{NS}><OMB>not-base64!!!</OMB></OMOBJ>"
     expect(described_class.valid?(xml, version: 2)).to be(false)
   end
