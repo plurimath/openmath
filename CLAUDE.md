@@ -61,7 +61,7 @@ bundle exec rspec spec/openmath/v2/roundtrip_spec.rb:14  # single spec
 
 - No schema validation of the root element; the reader is lenient.
 - Foreign markup inside OMFOREIGN is captured verbatim by
-  `Openmath::Foreign.capture` (parse-time nokogiri pass into `notom_value`,
+  `Openmath::Foreign.capture` (parse-time Moxml pass into `notom_value`,
   re-emitted at recorded positions on serialization); the mapping DSL has no
   arbitrary-markup representation, so capture rides the source pass, not the
   lutaml mappings.

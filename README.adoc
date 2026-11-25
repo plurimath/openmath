@@ -16,7 +16,7 @@ OpenMath/OMSVN). Namespaced documents parse in both the unprefixed and the
 
 * **Validation ships**: `Openmath.valid?` / `validate!` check any document
   against its version's vendored RelaxNG schema (OpenMath 2 and the OM3
-  draft) through nokogiri; violations refuse with typed errors.
+  draft) through leptris; violations refuse with typed errors.
 * **OpenMath 3**: the versioned hierarchy (`Openmath::V3`) parses and
   round-trips the same object grammar under `Openmath.parse(xml, version: 3)`.
 * **Content dictionaries**: the CD document model, the collection loader,
@@ -74,8 +74,10 @@ OpenMath/OMSVN). Namespaced documents parse in both the unprefixed and the
 
 Known limitations (tracked in the issues):
 
-* OMFOREIGN fragments re-serialize pretty-printed by nokogiri rather than
-  in the surrounding document's indentation.
+* Validation rides the leptris RelaxNG engine; two engine gaps remain
+  tracked upstream (attribute-choice exclusivity leptris#2079, base64Binary
+  typing leptris#2080) and the OM3 draft path waits on the combine fix
+  (leptris#1709 family).
 
 == Usage
 

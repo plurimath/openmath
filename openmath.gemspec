@@ -28,7 +28,11 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "lutaml-model", "~> 0.8"
   spec.add_dependency "moxml", "~> 0.6.1"
-  spec.add_dependency "nokogiri", "~> 1.16"
+  # RelaxNG validation and the XML engine run through leptris; nokogiri
+  # stays a development dependency for the engine-matrix spec only.
+  spec.add_dependency "leptris", "~> 1.9"
+
+  spec.add_development_dependency "nokogiri"
 
   spec.metadata["rubygems_mfa_required"] = "true"
 end
