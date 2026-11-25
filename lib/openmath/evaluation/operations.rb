@@ -71,6 +71,12 @@ module Openmath
         uexp:          [->(args) { uexp(args) }, 3..4],
         ucov:          [->(args) { ucov(args) }, 3..5],
         value:         [->(args) { quantity_value(args) }, 1..1],
+        # pmquant — the PM 1012 constraint evaluation
+        upper_limit:        [->(args) { Constraint.upper_limit(args) }, 1..1],
+        lower_limit:        [->(args) { Constraint.lower_limit(args) }, 1..1],
+        simple_acceptance:  [->(args) { Constraint.simple_acceptance(args) }, 0..0],
+        guarded_acceptance: [->(args) { Constraint.guarded_acceptance(args) }, 1..1],
+        constraint:         [->(args) { Constraint.evaluate(args) }, 3..4],
       }.freeze
 
       def implementation(operation)

@@ -65,7 +65,12 @@ OpenMath/OMSVN). Namespaced documents parse in both the unprefixed and the
   `uexp`, `ucov` — as OpenMath data with its own signature file; quantities
   combine under JCGM 101's first-order propagation, and
   `Openmath.evaluate_stochastic` runs deterministic Monte-Carlo evaluation
-  under a declared generator and seed (same seed, same samples).
+  under a declared generator and seed (same seed, same samples). The same CD
+  carries PM 1012's constraint symbols: `upper_limit` and `lower_limit`,
+  the `simple_acceptance` and `guarded_acceptance` decision rules, and
+  `constraint`, which evaluates a result against a limit and gives the
+  verdict (satisfied, not-satisfied or conditional) with the signed
+  residual.
 
 Known limitations (tracked in the issues):
 

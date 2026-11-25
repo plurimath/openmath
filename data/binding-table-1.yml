@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 schema: openmath-binding-table/1
-version: 4
+version: 5
 description: >
   The CD binding table: which content-dictionary symbols evaluate, and the
   operation each binds to. Adding a binding is adding data here plus the
@@ -74,3 +74,9 @@ bindings:
   - { cd: pmquant, name: uexp, operation: uexp }
   - { cd: pmquant, name: ucov, operation: ucov }
   - { cd: pmquant, name: value, operation: value }
+  # pmquant — the PM 1012 constraint evaluation
+  - { cd: pmquant, name: upper_limit, operation: upper_limit }
+  - { cd: pmquant, name: lower_limit, operation: lower_limit }
+  - { cd: pmquant, name: simple_acceptance, operation: simple_acceptance }
+  - { cd: pmquant, name: guarded_acceptance, operation: guarded_acceptance }
+  - { cd: pmquant, name: constraint, operation: constraint }
